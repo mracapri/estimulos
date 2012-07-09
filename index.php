@@ -1,5 +1,4 @@
 <?php
-	// Incluyendo libreria
 	include "content/indicadores_lib.php";
 ?>
 <html>
