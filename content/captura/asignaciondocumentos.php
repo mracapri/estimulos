@@ -106,7 +106,7 @@
 	
 						</li>
 						<li>
-							Indicador:
+							Indic:
 							<a href="#">indicador</a>
 	
 						</li>
