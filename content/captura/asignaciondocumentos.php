@@ -102,7 +102,7 @@
 						<li>
 						
 							Categoría:
-							<a href="#">categoria</a>
+							<a href="#">cat</a>
 	
 						</li>
 						<li>
