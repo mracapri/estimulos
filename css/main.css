@@ -1,0 +1,55 @@
+a.ver {
+	background: url(../img/inc.png) repeat scroll 184px 142px transparent;
+	width:34px;
+	display: block;
+	height:30px;
+	margin:auto;	
+}
+div.navbar-separador
+{
+	min-height: 10px;
+	padding-right: 20px;
+	padding-left: 20px;
+	background-color: #C3C3C3;
+	text-align:center;
+	color:#999999;
+	border:1px solid #C3C3C3;
+	font-size:.85em;
+}
+
+
+div#indicadores .row-fluid:nth-child(odd):not(#indicadores-headers) 
+{
+
+    background-color: GhostWhite;
+	border: 1px solid Gainsboro;
+}
+
+
+div#encabezado
+{
+    font-family: "Arial";
+    font-size: 1.1em;
+    font-weight: bold;
+	
+	
+}
+
+
+div.categorias
+{
+	font-family:"Arial";
+	
+}
+
+div.row-fluid
+{
+border:1px solid white;
+}
+
+
+form#botones
+{
+	position:relative;top:170px;left:380px;
+	width:60%;
+}
