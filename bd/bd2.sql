@@ -93,7 +93,7 @@ CREATE  TABLE IF NOT EXISTS `estimulos`.`porcentaje_indicador` (
   `id_porcentajeindicador` INT NOT NULL ,
   `id_categoriaindicador` INT NULL ,
   `porcentaje` INT NULL ,
-  `descripción` VARCHAR(45) NULL ,
+  `descripcion` VARCHAR(45) NULL ,
   `anio` YEAR NULL ,
   PRIMARY KEY (`id_porcentajeindicador`) ,
   INDEX `index_categoriaindicador` (`id_categoriaindicador` ASC) ,
