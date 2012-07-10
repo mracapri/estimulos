@@ -1,5 +1,5 @@
 <?php
-	include "lib/mysql.php";
+	include "lib/librerias.php";
 	
 	function generaIndicadoresHtml(){
 		/* SQL */
@@ -91,11 +91,10 @@
 			$plantillaElemento = str_replace("[PORCENTAJE_CATEGORIA]", $sumaPorcentaje, $plantillaElemento);
 		}
 		
+		// cerrando conexion a base de datos
+		close($conexion);
 		
 		return $plantillaElemento;
 	}
-	/* Funcion para mandar mensajes al log del navegador*/
-	function log_($mensaje){
-		error_log("\n".$mensaje."\n", 3, "/errors-estimulos.log");
-	 }
+
 ?>

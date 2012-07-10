@@ -26,9 +26,7 @@
 	<script type='text/javascript' src='../../js/bootstrap.js'></script>
 	<script type='text/javascript' src='../../js/bootstrap-modal.js'></script>
 	<script type='text/javascript' src='../../js/bootstrap-dropdown.js'></script>
-	<script type='text/javascript' src='../../js/jquery-ui-1.8.21.custom.min.js'></script>
-	<script type='text/javascript' src='../../js/jquery-ui-1.8.21.custom.min.js'></script>
-	
+	<script type='text/javascript' src='../../js/jquery-ui-1.8.21.custom.min.js'></script>	
 
 
 	<!-- js application -->
