@@ -34,11 +34,6 @@
 	<!-- YUI -->
 	<script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
 
-	<style type="text/css">
-#controles-configuracion div[class*=span] {
-    border: 1px solid;
-}
-	</style>
 </head>
 
 <body>
@@ -119,21 +114,84 @@
 								<button type="submit" class="btn btn-info">Guardar</button>
 								<button type="submit" class="btn btn-danger">Cancelar</button>
 		    				</form>
-		    				<div class="span">
-		    					<ul>
-		    						<li>Evaluacion 2010</li>
-		    						<li>Evaluacion 2011</li>
-		    						<li>Evaluacion 2012</li>
-		    						<li>Evaluacion 2013</li>
-		    						<li>Evaluacion 2014</li>
-		    					</ul>
+
+	    					<!-- tabla de periodos -->
+							<table class="table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>periodo</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>2012</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>2013</td>
+									</tr>
+								</tbody>
+							</table>
+
+		    			</div>
+		    			<div class="span4">
+		    				<div class="span12">
+								<button type="submit" class="btn">Agregar Permisos</button>
+
+								<table class="table">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Docente</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Mario Rivera Angeles</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>Abril A. Mejia Macias</td>
+										</tr>
+									</tbody>
+								</table>
+
 		    				</div>
-		    			</div>
-		    			<div class="span4">
 
-		    			</div>
-		    			<div class="span4">
 
+							<button type="submit" class="btn">Agregar Evaluador</button>
+
+							<table class="table">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Evaluador</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>Mario Rivera Angeles</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>Abril A. Mejia Macias</td>
+									</tr>
+								</tbody>
+							</table>
+		    			</div>
+
+
+		    			<div class="span4">
+		    				<select>
+		    					<option>Reporte de Excel</option>
+		    					<option>Ordenado por porcentajes</option>
+		    				</select>
+		    				<br />
+		    				<button type="submit" class="btn">Generar reporte</button>
 		    			</div>
 		    		</div>
 		    	</div>
