@@ -163,4 +163,4 @@ pip-log.txt
 .DS_Store
 
 #configuracion de base de datos
-mysql_properties.*
+lib/mysql_properties.php
