@@ -1,5 +1,5 @@
 <?php
-	include "content/indicadores_lib.php";
+	include "configuraciones_lib.php";
 ?>
 <html>
 <head>
@@ -23,7 +23,7 @@
 
    
    	<!-- js bootstrap framework -->
-	<script src="js/jquery-1.7.2.min.js"></script>
+	<script src="/js/jquery-1.7.2.min.js"></script>
 	<script type='text/javascript' src='/js/bootstrap.js'></script>
 	<script type='text/javascript' src='/js/bootstrap-modal.js'></script>
 	<script type='text/javascript' src='/js/bootstrap-dropdown.js'></script>
@@ -97,68 +97,10 @@
 			   	</div>
 		</div>
 			
-			<!--Contenido de categorias e Indicadores-->
-			
-			
-			<div id="indicadores" class="container">
-				<!--Linea de encabezado-->
-					<div class="row-fluid" id="indicadores-headers">
-						<div class="span3" id="encabezado">
-							Categorias
-						</div>
-						<div class="span1" id="encabezado">	
-							Porcentaje Categoria
-						</div>
-						<div class="span4" id="encabezado">
-							Indicador
-						</div>
-						<div  class="span1" id="encabezado">
-							Porcentaje Indicador
-						</div>
-						<div  class="span2" id="encabezado">
-							Estado
-						</div>
-						<div class="span1" id="encabezado">
-							Ver
-						</div>
-					</div>
-					
-					
-				<!--Separador-->
-					<div class="navbar-separador">
-						
-					</div>
-					
-				<?php echo generaIndicadoresHtml(); ?>
+		<!-- Contenido de configuracion -->
+		<div id="indicadores" class="container">
 
-				
-					<!--Botones -->
-				<div class="row-fluid show-grid">
-					<div class="span2 categorias"></div>
-					
-					<div class="span2 categorias">
-						<button class="btn btn-danger">Imprimir Reporte</button>
-					</div>
-					
-					<div class="span1 categorias"></div>
-					
-					
-					<div class="span2 categorias">
-						<button class="btn btn-danger">Enviar al Evaluador</button>
-					</div>
-					
-					<div class="span1 categorias"></div>
-					
-					<div class="span2 categorias">
-						<button class="btn btn-danger">Imprimir Acuse</button>
-					</div>
-					<div class="span2 categorias"></div>
-					
-				</div>
-						
-			</div>
-			<br/>	
-	</div>
+		</div>
 	
 
 

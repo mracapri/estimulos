@@ -4,16 +4,15 @@ var UTVM = {
 	/* funcion que permite enviar mensajes a la consola del navegador */
 	log: function(message){
 		$this = this;
-		/*YUI().use('console', function (Y) {
+		YUI().use('console', function (Y) {
 			Y.log(message, "info",  $this.appName);
-		});*/
+		});
 	},
 
 	/* funcion de inicio de la aplicacion */
 	init : function(){
 		this.log("Iniciando aplicacion");
-
-		//$('.dropdown-toggle').dropdown();
+		$('.dropdown-toggle').dropdown();
 	},
 
 	/* funcion principal */
