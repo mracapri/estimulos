@@ -163,4 +163,4 @@ pip-log.txt
 .DS_Store
 
 # ignorar configuracion de base de datos
-mysql_properties.php
+lib/mysql_properties.php
