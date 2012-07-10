@@ -273,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `porcentaje_indicador` (
   `id_porcentajeindicador` int(11) NOT NULL,
   `id_categoriaindicador` int(11) DEFAULT NULL,
   `porcentaje` int(11) DEFAULT NULL,
-  `descripción` varchar(45) DEFAULT NULL,
+  `descripcion` varchar(45) DEFAULT NULL,
   `anio` year(4) DEFAULT NULL,
   PRIMARY KEY (`id_porcentajeindicador`),
   KEY `index_categoriaindicador` (`id_categoriaindicador`),
