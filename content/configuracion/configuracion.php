@@ -34,6 +34,11 @@
 	<!-- YUI -->
 	<script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
 
+	<style type="text/css">
+#controles-configuracion div[class*=span] {
+    border: 1px solid;
+}
+	</style>
 </head>
 
 <body>
@@ -98,8 +103,41 @@
 		</div>
 			
 		<!-- Contenido de configuracion -->
-		<div id="indicadores" class="container">
+		<div id="controles-configuracion" class="container">
+		    <div class="row-fluid">
+			    <div class="span12">
+				    <div class="row-fluid">
+		    			<div class="span4">
+		    				<form class="well">
+								<input name="input-descripcion" type="text" class="span12" placeholder="Descripcion">
+								<input name="input-anio" type="text" class="span12" placeholder="Anio">
+								<input name="input-fecha-captura" type="text" class="span12" placeholder="Fecha captura">
+								<input name="input-fecha-limite-captura" type="text" class="span12" placeholder="Fecha limite captura">
+								<input name="input-fecha-evaluacion" type="text" class="span12" placeholder="Fecha evaluacion">
+								<input name="input-fecha-limite-evaluacion" type="text" class="span12" placeholder="Fecha limite evaluacion">
+								<button type="submit" class="btn">Nueva</button>
+								<button type="submit" class="btn btn-info">Guardar</button>
+								<button type="submit" class="btn btn-danger">Cancelar</button>
+		    				</form>
+		    				<div class="span">
+		    					<ul>
+		    						<li>Evaluacion 2010</li>
+		    						<li>Evaluacion 2011</li>
+		    						<li>Evaluacion 2012</li>
+		    						<li>Evaluacion 2013</li>
+		    						<li>Evaluacion 2014</li>
+		    					</ul>
+		    				</div>
+		    			</div>
+		    			<div class="span4">
 
+		    			</div>
+		    			<div class="span4">
+
+		    			</div>
+		    		</div>
+		    	</div>
+		    </div>
 		</div>
 	
 
