@@ -151,10 +151,7 @@ div#encabezado
     font-family: "Arial";
     font-size: 1.1em;
     font-weight: bold;
-	
-	
 }
-
 
 div.categorias
 {
@@ -167,7 +164,6 @@ div.row-fluid
 border:1px solid white;
 }
 
-
 form#botones {
      left: 380px;
      position: relative;
@@ -176,4 +172,14 @@ form#botones {
 }
  .text-area {
     margin-top: 11px;
+}
+.seccion5
+ {
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 0 0 2px gray;
+    height: 85%;
+    margin: 0%;
+	padding:2%;
+    width: 17%;
+    float: left;
 }
