@@ -42,18 +42,14 @@
 	<!-- barra negro -->
 	<div class="navbar">
 	    <div class="navbar-inner">
-		    <div class="container">
+		    <div class="container-fluid">
 				<a class="brand" href="#">Programa de Estimulos</a>
 				<ul class="nav">
-				    <li>
-				    	<a href="#">PREDA</a>
-				    </li>
-
 					<li class="active">
-						<a id="nombre-persona" href="#">BIENVENIDO</a>
+						<a id="nombre-persona" href="#">Inicio de Sesion</a>
 					</li>
 					<li class="brand">
-					<a href="#">INICIA SESION</a>
+						<a href="#">BIENVENIDO</a>
 					</li>
 				</ul>
 		    </div>
@@ -61,22 +57,20 @@
 	</div>
 
 	<!-- contenedor principal -->
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="span4 seccion5">
-				<div class="seccion1-1">
+			<div class="seccion5 span9">
+			</div>
+			<div class="span3 seccion5">
+				<div class="seccion1-1-1">
 				</div>
 				<form class="well">
-					<div class="span2">
-						INICIAR SESION
-					</div>
 					<label>Usuario</label>
-					<input class="span2" type="text" placeholder="Nombre del Usuario" name="usuario"/>
+					<input class="span12" type="text" placeholder="Nombre del Usuario" name="usuario"/>
 					<label>Constraseña</label>
 					<input class="span2" type="text" placeholder="Contraseña" name="contrasena"/>
 				</form>
 			</div>
-
 		</div>
 	</div>
 

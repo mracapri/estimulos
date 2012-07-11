@@ -57,6 +57,18 @@
 					<li class="brand">
 					<a href="#">Evaluación Documentos Indicador</a>
 					</li>
+					<div class="btn-group pull-right open">
+						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
+							<i class="icon-user"></i>
+								Username
+						
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+							<li class="divider">Perfil</li>
+							<li>
+				</ul>
+					</div>
 				</ul>
 		    </div>
 	    </div>
@@ -127,11 +139,37 @@
 				
 				</div>
 				<div class="span2 seccion1-2">
-					<div class="spand1 seccion1-3">
+					<div class="span1 seccion1-3">
+						<div class="pdf">
+							<a href='#' class='pdf'></a>
+					</div>
+						<div class="span2 seccion3-2-1">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+						</div>
 					</div>
 					<div class="span1 seccion1-3">
+						<div class="pdf">
+							<a href='#' class='pdf'></a>
+						</div>
+						<div class="span2 seccion3-2-1">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+						</div>
 					</div>
-					<div class="spand1 seccion1-3">
+					<div class="span1 seccion1-3">
+						<div class="pdf">
+							<a href='#' class='pdf'></a>
+						</div>
+						<div class="span2 seccion3-2-1">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+						</div>
+					</div>
+					<div class="span1 seccion1-3">
+						<div class="pdf">
+							<a href='#' class='pdf'></a>
+						</div>
+						<div class="span2 seccion3-2-1">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+						</div>
 					</div>
 				</div>
 			</div>

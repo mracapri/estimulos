@@ -183,3 +183,39 @@ form#botones {
     width: 17%;
     float: left;
 }
+a.pdf {
+	background: url("../img/sistema.png") repeat scroll 152px 358px transparent;
+    display: block;
+    height: 74px;
+    width: 60px;
+	margin:auto;
+	box-shadow: 0 0 2px gray;	
+}
+.pdf
+{
+    border: none;
+    height: 76px;
+    margin: 12%;
+}
+.seccion1-1-1 
+{
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 0 0 2px gray;
+    height: 22%;
+    margin: 3%;
+    width: 94%;
+	margin-bottom: 5%;
+}
+.seccion3-2-1
+ {
+	border: 1px solid white;
+    height: 0%;
+    margin: 15% 0% 0% 1%
+}
+.hero-unite {
+    background-color: #EEEEEE;
+    border-radius: 6px 6px 6px 6px;
+    margin-bottom: 30px;
+    padding: 60px;
+	width: 800px;
+}
