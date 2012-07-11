@@ -68,7 +68,9 @@
 					<label>Usuario</label>
 					<input class="span12" type="text" placeholder="Nombre del Usuario" name="usuario"/>
 					<label>Constraseña</label>
-					<input class="span2" type="text" placeholder="Contraseña" name="contrasena"/>
+					<input class="span12" type="password" placeholder="Contraseña" name="contrasena"/>
+					<div class="span6"></div>
+					<button class="btn btn-primary">Iniciar Sesion</button>
 				</form>
 			</div>
 		</div>
