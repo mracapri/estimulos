@@ -104,22 +104,22 @@
 						<li>
 						
 							Categoría:
-							<a href="#">categoria</a>
+							<a href="#">Categoria</a>
 	
 						</li>
 						<li>
 							Indicador:
-							<a href="#">indicador</a>
+							<a href="#">Indicador</a>
 	
 						</li>
 						<li>
 							Descripción:
-							<a href="#">des</a>
+							<a href="#">Descripción</a>
 	
 						</li>
 						<li>
 							Puntuacion maxima a obtener:
-							<a href="#">punt</a>
+							<a href="#">Puntuación</a>
 	
 						</li>
 						
@@ -129,7 +129,7 @@
 				<div class="span2 seccion1-2">
 					<div class="spand1 seccion1-3">
 					</div>
-					<div class="spand1 seccion1-3">
+					<div class="span1 seccion1-3">
 					</div>
 					<div class="spand1 seccion1-3">
 					</div>
@@ -139,34 +139,23 @@
 				<div class="span2 seccion1-1" >
 					<ul>
 						<li>Evaluación</li>
-						<li>Verifique las evidencias y asigne la calificación</li>
+						<li><a href="#">Verifique las evidencias y asigne la calificación</a></li>
 					</ul>
 				</div>
-				<div class="span2 seccion1-2" >
-						<div class="span3 seccion1-4">
-							<form>
-								Porcentaje: <input type="text" name="porcentaje" />
+				<div class="span6 seccion1-2 " >
+					<form class="well">
+							<input class="span4" type="text" placeholder="Porcentaje" name="porcentaje" />
+							<input class="span4" type="text" placeholder="Calificación" name="calificacion" />
+							<label class="checkbox">Incorrecto
+								<input type="checkbox" name="incorrecto"/>
+							</label>
+							<textarea class="span4 text-area" placeholder="Comentario"></textarea>								
 							</form>
 						</div>
-						<div class="span3 seccion1-4">
-							<form>
-								Calificación: <input type="text" name="calificacion" />
-							</form>
-						</div>
-						<div class="span3 seccion1-4">
-							<form id="input1">
-								<input type="checkbox" name="incorrecto" value="Incorrecto" />  Incorrecto
-							</form>
-						</div>
-						<div class="span3 seccion1-4">
-							<form>
-								Motivo: <input type="text" name="motivo" />
-							</form>
-						
-						</div>
-				</div>
-				<div class="span2" >
+				<div class="span4" id="boton">
+					<div class="span1">
 					<button class="btn btn-danger">Guardar</button>
+					</div>
 				</div>
 			</div>
 		</div>	
