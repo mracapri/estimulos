@@ -12,6 +12,99 @@
 	Responsable: Noemi M.
 ********************************************************************************/
 
+ul {
+    list-style-type: none;
+    margin: 5%;
+}
+
+.seccion1, .seccion2 {
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 0pt 0pt 2px gray;
+    float: left;
+    height: 500px;
+    margin: 4%;
+    width: 40%;
+}
+
+.seccion1-1 {
+    border-radius: 15px 15px 15px 15px;
+    border: 1px solid gray;
+    height: 25%;
+    margin: 5%;
+    width: 90%;
+}
+
+.seccion1-2 {
+    border-radius: 15px 15px 15px 15px;
+    border: 1px solid white;
+    height: 45%;
+    margin: 5%;
+    overflow-y: auto;
+    width: 90%;
+}
+
+.seccion1-3:hover{
+	cursor:pointer;
+	box-shadow:0 0 3px gray;
+}
+
+.seccion1-3 {
+    border-radius: 0px 15px 15px 15px;
+    border: 1px solid gray;
+    float: left;
+    height: 100px;
+    margin: 13pt 13px;
+    width: 100px;
+}
+
+.seccion1-4 {
+    border: 1px solid;
+    height: 12%;
+    margin: 1%;
+    padding: 2%;
+    width: 92%;
+}
+
+.seccion3 {
+    border-radius: 15px 15px 15px 15px;
+    border: 1px solid gray;
+    height: 400px;
+    margin: 2%;
+}
+
+.seccion3-1 {
+    border: 1px solid gray;
+    height: 70%;
+    margin: 3%;
+    overflow-y: auto;
+}
+
+
+.seccion3-2 {
+	border: 1px solid white;
+    height: 10%;
+    margin: 93% 5% 2% 6%;
+ 
+}
+.seccion3-3 {
+    border: 1px solid white;
+    height: 10%;
+    margin: 105% -5% 2% 6%;
+    position: relative;
+}
+
+.seleccion-documento {
+    border: 1px solid white;
+    position: relative;
+	top: -0.5px;
+    left:-1.5.px;
+    
+}
+
+.etiqueta-documento {
+    border: 1px solid;
+    margin: 7px;
+}
 
 /********************************************************************************
 	CSS Estilos
