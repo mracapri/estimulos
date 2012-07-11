@@ -100,35 +100,122 @@
 			<!-- diseno fluido con bootstrap -->
 			<div class="span12 seccion3">
 				<div class="span2">
-					Docentes a Evaluar
-				</div>
-				<br/>
-				<div class="span2">
-				Elegir docente a Evaluar
+					<ul>
+						<li>
+							Docentes a evaluar
+						</li>
+						<li>
+							Elegir docente a evaluar
+						</li>
+					</ul>
 				</div>
 				<div class="span11 seccion3-1">
 					<div class="spand1 seccion1-3">
-						<div class="spand1 seccion3-2">
+						<div class="spand1 seccion3-3">
+							<span class="label"><a href="#">Nombredocente</a></span>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
 					</div>
+					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
+					</div>
+					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
+					</div>
+					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
+					</div>
+					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
+					</div>
+					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
+					</div>
+					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
+					</div>
+					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
+					</div>
+					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
+					</div>
+					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
+					</div>
+					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<span class="label"><a href="#">Nombredocente</a></span>
+						</div>
+					</div>
+					<div class="spand1 seccion1-3">
+						<div class="spand1 seccion3-3">
+							<a href="#">Nombredocente</a>
+						</div>
+					</div>
+					
 			</div>
 		</div>	
 	</div>
