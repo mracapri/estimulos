@@ -127,6 +127,7 @@
 						<span class="seleccion-documento"><input type="checkbox" /></span>
 						<div class="spand1 seccion3-2">
 							<a href="#" rel="tooltip" title="first tooltip">hover over me ...</a>
+							<a rel="tooltip" href="#" data-original-title="first tooltip">you probably</a>
 						</div>
 					</div>
 					<div class="span1 seccion1-3" >
