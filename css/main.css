@@ -28,7 +28,8 @@ ul {
 
 .seccion1-1 {
     border-radius: 15px 15px 15px 15px;
-    border: 1px solid gray;
+     
+	 box-shadow: 0pt 0pt 2px gray;
     height: 25%;
     margin: 5%;
     width: 90%;
@@ -36,8 +37,9 @@ ul {
 
 .seccion1-2 {
     border-radius: 15px 15px 15px 15px;
-    border: 1px solid white;
-    height: 45%;
+     
+	 box-shadow: 0pt 0pt 2px gray;
+     height: 50%;
     margin: 5%;
     overflow-y: auto;
     width: 90%;
@@ -105,6 +107,10 @@ ul {
     border: 1px solid;
     margin: 7px;
 }
+													   
+
+
+
 
 /********************************************************************************
 	CSS Estilos
@@ -162,8 +168,12 @@ border:1px solid white;
 }
 
 
-form#botones
-{
-	position:relative;top:170px;left:380px;
-	width:60%;
+form#botones {
+     left: 380px;
+     position: relative;
+     top: 170px;
+     width: 60%;
+}
+ .text-area {
+    margin-top: 11px;
 }
