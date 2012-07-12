@@ -69,15 +69,15 @@ ul {
 
 .seccion3 {
     border-radius: 15px 15px 15px 15px;
-    border: 1px solid gray;
-    height: 400px;
+    box-shadow: 0pt 0pt 2px gray;
+    height: 600px;
     margin: 2%;
 }
 
 .seccion3-1 {
-    border: 1px solid gray;
+    box-shadow: 0pt 0pt 2px gray;
     height: 70%;
-    margin: 3%;
+    margin: 4%;
     overflow-y: auto;
 }
 
@@ -98,8 +98,8 @@ ul {
 .seleccion-documento {
     border: 1px solid white;
     position: relative;
-	top: -0.5px;
-    left:-1.5.px;
+	top: 0px;
+    left:0px;
     
 }
 
@@ -107,6 +107,14 @@ ul {
     border: 1px solid;
     margin: 7px;
 }
+.formato {
+	font-family: "Arial";
+    font-size: 1em;
+    font-weight: bold;
+	color:;
+	
+	}
+
 													   
 
 

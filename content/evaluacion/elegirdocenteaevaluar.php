@@ -102,7 +102,7 @@
 				<div class="span2">
 					<ul>
 						<li>
-							Docentes a evaluar
+							<p class="formato">Docentes a evaluar</p>
 						</li>
 						<li>
 							Elegir docente a evaluar
@@ -111,111 +111,119 @@
 				</div>
 				<div class="span11 seccion3-1">
 					<div class="spand1 seccion1-3">
-						<div class="spand1 seccion3-3">
-							<span class="label"><a href="#">Nombredocente</a></span>
-						</div>
-					</div>
-					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-important" "seleccion-documento">Sin evaluar</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>n>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
+						<span class="label label-info" "seleccion-documento">Evaluado</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
 					<div class="spand1 seccion1-3">
-						<div class="spand1 seccion3-3">
-							<span class="label"><a href="#">Nombredocente</a></span>
-						</div>
-					</div>
-					<div class="spand1 seccion1-3">
+						<span class="label label-important" "seleccion-documento">Sin evaluar</span>
 						<div class="spand1 seccion3-3">
 							<a href="#">Nombredocente</a>
 						</div>
 					</div>
-					
 			</div>
 		</div>	
 	</div>
