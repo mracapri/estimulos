@@ -15,21 +15,21 @@
 	<title>Programa de Estimulos</title>
 
 	<!-- css bootstrap framework -->
-	<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
-	<link rel="stylesheet" href="/css/bootstrap-responsive.min.css" type="text/css">
+	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="css/bootstrap-responsive.min.css" type="text/css">
 
 	<!-- css application -->
-	<link rel="stylesheet" href="/css/main.css" type="text/css">
+	<link rel="stylesheet" href="css/main.css" type="text/css">
 
    
    	<!-- js bootstrap framework -->
 	<script src="js/jquery-1.7.2.min.js"></script>
-	<script type='text/javascript' src='/js/bootstrap.js'></script>
-	<script type='text/javascript' src='/js/bootstrap-modal.js'></script>
-	<script type='text/javascript' src='/js/bootstrap-dropdown.js'></script>
+	<script type='text/javascript' src='js/bootstrap.js'></script>
+	<script type='text/javascript' src='js/bootstrap-modal.js'></script>
+	<script type='text/javascript' src='js/bootstrap-dropdown.js'></script>
 
 	<!-- js application -->
-	<script type='text/javascript' src='/js/main.js'></script>
+	<script type='text/javascript' src='js/main.js'></script>
 
 	<!-- YUI -->
 	<script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>

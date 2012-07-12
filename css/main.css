@@ -28,7 +28,8 @@ ul {
 
 .seccion1-1 {
     border-radius: 15px 15px 15px 15px;
-    border: 1px solid gray;
+     
+	 box-shadow: 0pt 0pt 2px gray;
     height: 25%;
     margin: 5%;
     width: 90%;
@@ -36,8 +37,9 @@ ul {
 
 .seccion1-2 {
     border-radius: 15px 15px 15px 15px;
-    border: 1px solid white;
-    height: 45%;
+     
+	 box-shadow: 0pt 0pt 2px gray;
+     height: 50%;
     margin: 5%;
     overflow-y: auto;
     width: 90%;
@@ -67,15 +69,15 @@ ul {
 
 .seccion3 {
     border-radius: 15px 15px 15px 15px;
-    border: 1px solid gray;
-    height: 400px;
+    box-shadow: 0pt 0pt 2px gray;
+    height: 600px;
     margin: 2%;
 }
 
 .seccion3-1 {
-    border: 1px solid gray;
+    box-shadow: 0pt 0pt 2px gray;
     height: 70%;
-    margin: 3%;
+    margin: 4%;
     overflow-y: auto;
 }
 
@@ -96,8 +98,8 @@ ul {
 .seleccion-documento {
     border: 1px solid white;
     position: relative;
-	top: -0.5px;
-    left:-1.5.px;
+	top: 0px;
+    left:0px;
     
 }
 
@@ -105,6 +107,18 @@ ul {
     border: 1px solid;
     margin: 7px;
 }
+.formato {
+	font-family: "Arial";
+    font-size: 1em;
+    font-weight: bold;
+	color:;
+	
+	}
+
+													   
+
+
+
 
 /********************************************************************************
 	CSS Estilos
@@ -145,10 +159,7 @@ div#encabezado
     font-family: "Arial";
     font-size: 1.1em;
     font-weight: bold;
-	
-	
 }
-
 
 div.categorias
 {
@@ -161,9 +172,58 @@ div.row-fluid
 border:1px solid white;
 }
 
-
-form#botones
+form#botones {
+     left: 380px;
+     position: relative;
+     top: 170px;
+     width: 60%;
+}
+ .text-area {
+    margin-top: 11px;
+}
+.seccion5
+ {
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 0 0 2px gray;
+    height: 85%;
+    margin: 0%;
+	padding:2%;
+    width: 17%;
+    float: left;
+}
+a.pdf {
+	background: url("../img/sistema.png") repeat scroll 152px 358px transparent;
+    display: block;
+    height: 74px;
+    width: 60px;
+	margin:auto;
+	box-shadow: 0 0 2px gray;	
+}
+.pdf
 {
-	position:relative;top:170px;left:380px;
-	width:60%;
+    border: none;
+    height: 76px;
+    margin: 12%;
+}
+.seccion1-1-1 
+{
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 0 0 2px gray;
+    height: 22%;
+    margin: 3%;
+    width: 94%;
+	margin-bottom: 5%;
+}
+.seccion3-2-1
+ {
+	border: 1px solid white;
+    height: 0%;
+    margin: 15% 0% 0% 1%
+}
+.hero-unite {
+    background-color: #EEEEEE;
+    border-radius: 6px 6px 6px 6px;
+    margin-bottom: 30px;
+    padding: 60px;
+	width: 800px;
 }
