@@ -75,6 +75,7 @@ ul {
 }
 
 .seccion3-1 {
+	border-radius: 15px 15px 15px 15px;
     box-shadow: 0pt 0pt 2px gray;
     height: 70%;
     margin: 4%;
@@ -85,13 +86,13 @@ ul {
 .seccion3-2 {
 	border: 1px solid white;
     height: 10%;
-    margin: 93% 5% 2% 6%;
+    margin: 13% 5% 2% 6%;
  
 }
 .seccion3-3 {
     border: 1px solid white;
     height: 10%;
-    margin: 105% -5% 2% 6%;
+    margin: 90% -5% 2% 6%;
     position: relative;
 }
 
@@ -114,7 +115,33 @@ ul {
 	color:;
 	
 	}
-
+.pdf2
+{
+    border: medium none;
+    height: 76px;
+    margin: -2%;
+}
+.secciontext
+{
+	border: 1px solid white;
+    left: 10px;
+    position: relative;
+    top: 15px;
+}
+a.usuario {
+	background: url("../img/sistema.png") repeat scroll -173px 540px transparent;
+    display: block;
+    height: 74px;
+    width: 60px;
+	margin:auto;
+	box-shadow: 0 0 2px gray;	
+}
+.usuario
+{
+    border: medium none;
+    height: 0%;
+    margin: 3%;
+}
 													   
 
 

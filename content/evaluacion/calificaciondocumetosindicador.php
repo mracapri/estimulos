@@ -191,8 +191,12 @@
 							</form>
 						</div>
 				<div class="span4" id="boton">
+					<div class="row-fluid">
+						<div class="span6"></div>
+						<div class="span4"></div>	
 					<div class="span1">
 					<button class="btn btn-danger">Guardar</button>
+						</div>
 					</div>
 				</div>
 			</div>

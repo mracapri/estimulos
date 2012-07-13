@@ -95,8 +95,8 @@
 
 		<div id="captura-indicadores" class="container">
 			<!-- diseno fluido con bootstrap -->
-			<div class="spand6 seccion1">
-				<div class="spand2 seccion1-1" >
+			<div class="span6 seccion1">
+				<div class="span2 seccion1-1" >
 					<ul>
 						<li>
 						
@@ -123,95 +123,132 @@
 					</ul>
 				
 				</div>
-				<div class="spand2 seccion1-2">
-					<div class="spand1 seccion1-3" >
+				<div class="span2 seccion1-2">
+					<div class="span1 seccion1-3" >
 						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="spand1 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+						<div class="pdf2">
+							<a href='#' class='pdf'></a>
 						</div>
+						<div class="span2 seccion3-2">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
 					</div>
-					<div class="spand1 seccion1-3" >
-						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="spand1 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
-						</div>
 					</div>
-					<div class="spand1 seccion1-3" >
+					<div class="span1 seccion1-3" >
 						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="spand1 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+						<div class="pdf2">
+							<a href='#' class='pdf'></a>
 						</div>
+						<div class="span1 seccion3-2">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
 					</div>
-					<div class="spand1 seccion1-3" >
-						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="spand1 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
-						</div>
 					</div>
-					<div class="spand1 seccion1-3" >
+					<div class="span1 seccion1-3" >
 						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="spand1 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+						<div class="pdf2">
+							<a href='#' class='pdf'></a>
 						</div>
+						<div class="span1 seccion3-2">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+					</div>
+					</div>
+					<div class="span1 seccion1-3" >
+						<span class="seleccion-documento"><input type="checkbox" /></span>
+						<div class="pdf2">
+							<a href='#' class='pdf'></a>
+						</div>
+						<div class="span1 seccion3-2">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+					</div>
+					</div>
+					<div class="span1 seccion1-3" >
+						<span class="seleccion-documento"><input type="checkbox" /></span>
+						<div class="pdf2">
+							<a href='#' class='pdf'></a>
+						</div>
+						<div class="span1 seccion3-2">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
 					</div>
 				</div>
-				
+				</div>
+					<div class="row-fluid">
+						<div class="span6"></div>
+						<div class="span3"></div>
 					<div class="span2">
 						<button class="btn btn-danger">Remover</button>
 			</div>
+			</div>
 				
 			</div>
-			<div class="spand6 seccion2">
-				<div class="spand2 seccion1-1" >
+			<div class="span6 seccion2">
+				<div class="span2 seccion1-1" >
 					<ul>
 						<li>Documentos</li>
 						<li>Seleccione los documentos</li>
 					</ul>
 				</div>
-				<div class="spand2 seccion1-2" >
-					<div class="spand1 seccion1-3" >
+				<div class="span2 seccion1-2" >
+					<div class="span1 seccion1-3" >
 						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="spand1 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+						<div class="pdf2">
+							<a href='#' class='pdf'></a>
 						</div>
+						<div class="span1 seccion3-2">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
 					</div>
-					<div class="spand1 seccion1-3" >
-						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="spand1 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
-						</div>
-					</div>
-					<div class="spand1 seccion1-3" >
-						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="spand1 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
-						</div>
-					</div>
-					<div class="spand1 seccion1-3" >
-						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="spand1 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
-						</div>
 					</div>
 					<div class="span1 seccion1-3" >
 						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="spand1 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+						<div class="pdf2">
+							<a href='#' class='pdf'></a>
 						</div>
+						<div class="span1 seccion3-2">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+					</div>
 					</div>
 					<div class="span1 seccion1-3" >
 						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="spand1 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+						<div class="pdf2">
+							<a href='#' class='pdf'></a>
 						</div>
+						<div class="span1 seccion3-2">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+					</div>
+					</div>
+					<div class="span1 seccion1-3" >
+						<span class="seleccion-documento"><input type="checkbox" /></span>
+						<div class="pdf2">
+							<a href='#' class='pdf'></a>
+						</div>
+						<div class="span1 seccion3-2">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+					</div>
+					</div>
+					<div class="span1 seccion1-3" >
+						<span class="seleccion-documento"><input type="checkbox" /></span>
+						<div class="pdf2">
+							<a href='#' class='pdf'></a>
+						</div>
+						<div class="span1 seccion3-2">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+					</div>
+					</div>
+					<div class="span1 seccion1-3" >
+						<span class="seleccion-documento"><input type="checkbox" /></span>
+						<div class="pdf2">
+							<a href='#' class='pdf'></a>
+						</div>
+						<div class="span1 seccion3-2">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
 					</div>
 				</div>
-
-					<div class="spand1">
+				</div>
+				<div class="row-fluid">
+					<div class="span6"></div>
+					<div class="span3"></div>	
+					<div class="span1">
 						<button class="btn btn-primary">Agregar</button>
 					</div>
-				
-			
+				</div>
 			</div>
 			<div class="row-fluid">
 				<div class="span6"></div>
