@@ -57,9 +57,39 @@
 	</div>
 
 	<!-- contenedor principal -->
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row-fluid">
 			<div class="seccion5 span9">
+				<form class="seccionconter">
+				</form>
+				<div class="seccionlarge ">
+					<span class="label label-info" "seleccion-documento"="">Importante: Esta aplicación solo es compatible con los siguientes navegadores.</span>	<br/><br/>
+						
+						<div class="span2 ">
+							<a class="firefox" href="http://www.mozilla.org/es-MX/firefox/new/" target="_blank"></a>
+								<div class="span8 seccion3-2-1-2">
+									<a class="btn btn-success" title="first tooltip" rel="tooltip" href="http://www.mozilla.org/es-MX/firefox/new/" target="_blank">Descargar</a>
+			</div>
+						</div>
+						<div class="span2 ">
+							<a class="chrome" href="https://www.google.com/chrome/" target="_blank"></a>
+								<div class="span8 seccion3-2-1-2">
+									<a class="btn btn-success" title="first tooltip" rel="tooltip" href="https://www.google.com/chrome/"target="_blank">Descargar</a>
+								</div>
+						</div>
+						<div class="span2 ">
+							<a class="safari" href="http://www.apple.com/mx/safari/" target="_blank"></a>
+								<div class="span12 seccion3-2-1-2">
+									<a  class="btn btn-success" title="first tooltip" rel="tooltip" href="http://www.apple.com/mx/safari/" target="_blank">Descargar</a>
+								</div>
+						</div>
+						<div class="span2 ">
+							<a class="opera" href="http://www.opera.com/" target="_blank"></a>
+								<div class="span8 seccion3-2-1-2">
+									<a class="btn btn-success" title="first tooltip" rel="tooltip" href="http://www.opera.com/" target="_blank">Descargar</a>
+								</div>
+						</div>
+				</div>
 			</div>
 			<div class="span3 seccion5">
 				<div class="seccion1-1-1">
@@ -69,7 +99,7 @@
 					<input class="span12" type="text" placeholder="Nombre del Usuario" name="usuario"/>
 					<label>Constraseña</label>
 					<input class="span12" type="password" placeholder="Contraseña" name="contrasena"/>
-					<div class="span6"></div>
+					<div class="span5"></div>
 					<button class="btn btn-primary">Iniciar Sesion</button>
 				</form>
 			</div>

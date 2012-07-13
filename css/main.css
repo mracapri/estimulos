@@ -247,10 +247,70 @@ a.pdf {
     height: 0%;
     margin: 15% 0% 0% 1%
 }
-.hero-unite {
-    background-color: #EEEEEE;
-    border-radius: 6px 6px 6px 6px;
-    margin-bottom: 30px;
-    padding: 60px;
-	width: 800px;
+
+.seccionlarge {
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 0 0 2px gray;
+    height: 25%;
+    padding: 1%;
+    width: 97%;
+	margin-top: 2%;
+    overflow-y: auto;
+
+}
+.seccionconter {
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 0 0 2px gray;
+    height: 68%;
+    margin: 0;
+    padding: 1%;
+    width: 97%;
+}
+
+a.firefox 
+{
+    background: url("../img/buscadores.png") repeat scroll 130px 382px transparent;
+    
+    display: block;
+    height: 58px;
+	margin-top: -5px;
+    width: 58px;
+	margin-left: 12px;
+    margin-bottom: 3px;
+}
+a.chrome
+{
+    background: url("../img/buscadores.png") repeat scroll 92px 316px   transparent;
+    
+    display: block;
+    height: 58px;
+    margin-top: -5px;
+    width: 58px;
+	margin-left: 12px;
+    margin-bottom: 3px;
+}
+a.safari
+{
+   background: url("../img/buscadores.png") repeat scroll -40px 314px transparent;
+    display: block;
+    height: 58px;
+    margin-top: -5px;
+    width: 58px;
+	margin-left: 27px;
+    margin-bottom: 3px;
+}
+a.opera {
+    background: url("../img/buscadores.png") repeat scroll -8px 120px transparent;
+    display: block;
+    height: 58px;
+    margin-top: -5px;
+    width: 61px;
+	margin-left: 10px;
+    margin-bottom: 3px;
+}
+
+.seccion3-2-1-2
+ {
+    height: 0%;
+    margin: -1% 0 0 1%;
 }
