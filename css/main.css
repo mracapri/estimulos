@@ -269,7 +269,7 @@ a.pdf {
 
 a.firefox 
 {
-    background: url("../img/buscadores.png") repeat scroll 130px 382px transparent;
+    background: url("../img/buscadores.png") repeat scroll 112px 0px transparent;
     
     display: block;
     height: 58px;
@@ -280,7 +280,7 @@ a.firefox
 }
 a.chrome
 {
-    background: url("../img/buscadores.png") repeat scroll 92px 316px   transparent;
+    background: url("../img/buscadores.png") repeat scroll 82px 276px   transparent;
     
     display: block;
     height: 58px;
@@ -291,16 +291,16 @@ a.chrome
 }
 a.safari
 {
-   background: url("../img/buscadores.png") repeat scroll -40px 314px transparent;
+   background: url("../img/buscadores.png") repeat scroll -192px 54px transparent;
     display: block;
     height: 58px;
     margin-top: -5px;
     width: 58px;
-	margin-left: 27px;
+	margin-left: 18px;
     margin-bottom: 3px;
 }
 a.opera {
-    background: url("../img/buscadores.png") repeat scroll -8px 120px transparent;
+    background: url("../img/buscadores.png") repeat scroll 1px 110px transparent;
     display: block;
     height: 58px;
     margin-top: -5px;
