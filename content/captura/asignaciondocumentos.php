@@ -1,5 +1,6 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
- "http://www.w3.org/TR/html4/strict.dtd">
+<?php
+	include "asignaciondocumentos_lib.php";
+?>
 <html>
 <head>
 
@@ -95,18 +96,23 @@
 
 		<div id="captura-indicadores" class="container">
 			<!-- diseno fluido con bootstrap -->
+			<?php 
+				$idIndicador = $_GET["id_indicador"];
+				$detalle= consultaDetalleIndicador($idIndicador); 
+				//echo $detalle;
+			?>
 			<div class="span6 seccion1">
 				<div class="span2 seccion1-1" >
 					<ul>
 						<li>
 						
 							Categoría:
-							<a href="#">cat</a>
+							<a href="#"><?php echo $detalle[1]; ?></a>
 	
 						</li>
 						<li>
 							Indicador:
-							<a href="#">indicador</a>
+							<a href="#"><?php echo $detalle[2]; ?></a>
 	
 						</li>
 						<li>
@@ -116,8 +122,7 @@
 						</li>
 						<li>
 							Puntuación máxima a obtener: 
-							<a href="#">punt</a>
-	
+							<a href="#"><?php echo $detalle[4]; ?></a>
 						</li>
 						
 					</ul>
@@ -138,7 +143,7 @@
 						<div class="pdf2">
 							<a href='#' class='pdf'></a>
 						</div>
-						<div class="span1 seccion3-2">
+						<div class="span2 seccion3-2">
 							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
 					</div>
 					</div>
@@ -147,7 +152,7 @@
 						<div class="pdf2">
 							<a href='#' class='pdf'></a>
 						</div>
-						<div class="span1 seccion3-2">
+						<div class="span2 seccion3-2">
 							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
 					</div>
 					</div>
@@ -156,7 +161,7 @@
 						<div class="pdf2">
 							<a href='#' class='pdf'></a>
 						</div>
-						<div class="span1 seccion3-2">
+						<div class="span2 seccion3-2">
 							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
 					</div>
 					</div>
@@ -165,7 +170,7 @@
 						<div class="pdf2">
 							<a href='#' class='pdf'></a>
 						</div>
-						<div class="span1 seccion3-2">
+						<div class="span2 seccion3-2">
 							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
 					</div>
 				</div>
@@ -192,7 +197,7 @@
 						<div class="pdf2">
 							<a href='#' class='pdf'></a>
 						</div>
-						<div class="span1 seccion3-2">
+						<div class="span2 seccion3-2">
 							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
 					</div>
 					</div>
@@ -201,7 +206,7 @@
 						<div class="pdf2">
 							<a href='#' class='pdf'></a>
 						</div>
-						<div class="span1 seccion3-2">
+						<div class="span2 seccion3-2">
 							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
 					</div>
 					</div>
@@ -210,7 +215,7 @@
 						<div class="pdf2">
 							<a href='#' class='pdf'></a>
 						</div>
-						<div class="span1 seccion3-2">
+						<div class="span2 seccion3-2">
 							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
 					</div>
 					</div>
@@ -219,7 +224,7 @@
 						<div class="pdf2">
 							<a href='#' class='pdf'></a>
 						</div>
-						<div class="span1 seccion3-2">
+						<div class="span2 seccion3-2">
 							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
 					</div>
 					</div>
@@ -228,7 +233,7 @@
 						<div class="pdf2">
 							<a href='#' class='pdf'></a>
 						</div>
-						<div class="span1 seccion3-2">
+						<div class="span2 seccion3-2">
 							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
 					</div>
 					</div>
@@ -237,7 +242,7 @@
 						<div class="pdf2">
 							<a href='#' class='pdf'></a>
 						</div>
-						<div class="span1 seccion3-2">
+						<div class="span2 seccion3-2">
 							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
 					</div>
 				</div>
