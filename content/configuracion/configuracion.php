@@ -124,14 +124,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>1</td>
-										<td>2012</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>2013</td>
-									</tr>
+									<?php echo consultaEvaluaciones(); ?>
 								</tbody>
 							</table>
 
@@ -148,14 +141,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td>Mario Rivera Angeles</td>
-										</tr>
-										<tr>
-											<td>2</td>
-											<td>Abril A. Mejia Macias</td>
-										</tr>
+										<?php consultaPermisosEspeciales(); ?>
 									</tbody>
 								</table>
 
