@@ -1,5 +1,29 @@
 <?php
 	include "configuraciones_lib.php";
+
+	/* Variables de entrada despues de enviar los datos de registro */
+	$inputDescripcion = $_POST['input-descripcion'];
+	$inputAnio = $_POST['input-anio'];
+	$inputFechaCaptura = $_POST['input-fecha-captura'];
+	$inputFechaLimiteCaptura = $_POST['input-fecha-limite-captura'];
+	$inputFechaEvaluacion = $_POST['input-fecha-evaluacion'];
+	$inputFechaLimiteEvaluacion = $_POST['input-fecha-limite-evaluacion'];
+
+	/* descion para guardar */
+	$guardar = $_GET['guardar'];
+	if (!empty($guardar)) {
+
+		/* Registrando evaluacion */
+
+		$resultado = registraEvaluacion(
+			$inputDescripcion, 
+			$inputAnio, 
+			$inputFechaCaptura, 
+			$inputFechaLimiteCaptura, 
+			$inputFechaEvaluacion, 
+			$inputFechaLimiteEvaluacion);
+	}
+
 ?>
 <html>
 <head>
@@ -27,6 +51,7 @@
 	<script type='text/javascript' src='../../js/bootstrap.js'></script>
 	<script type='text/javascript' src='../../js/bootstrap-modal.js'></script>
 	<script type='text/javascript' src='../../js/bootstrap-dropdown.js'></script>
+	<script type='text/javascript' src='../../js/bootstrap-alert.js'></script>
 
 	<!-- js application -->
 	<script type='text/javascript' src='../../js/main.js'></script>
@@ -103,17 +128,24 @@
 			    <div class="span12">
 				    <div class="row-fluid">
 		    			<div class="span4">
-		    				<form class="well">
-								<input name="input-descripcion" type="text" class="span12" placeholder="Descripcion">
-								<input name="input-anio" type="text" class="span12" placeholder="Anio">
-								<input name="input-fecha-captura" type="text" class="span12" placeholder="Fecha captura">
-								<input name="input-fecha-limite-captura" type="text" class="span12" placeholder="Fecha limite captura">
-								<input name="input-fecha-evaluacion" type="text" class="span12" placeholder="Fecha evaluacion">
-								<input name="input-fecha-limite-evaluacion" type="text" class="span12" placeholder="Fecha limite evaluacion">
-								<button type="submit" class="btn">Nueva</button>
+		    				<form class="well"  method="post" action="configuracion.php?guardar=1">
+								<input name="input-descripcion" type="text" class="span12" placeholder="Descripcion" value="<?php echo $inputDescripcion; ?>">
+								<input name="input-anio" type="text" class="span12" placeholder="Anio" value="<?php echo $inputAnio; ?>">
+								<input name="input-fecha-captura" type="text" class="span12" placeholder="Fecha captura" value="<?php echo $inputFechaCaptura; ?>">
+								<input name="input-fecha-limite-captura" type="text" class="span12" placeholder="Fecha limite captura" value="<? echo $inputFechaLimiteCaptura; ?>">
+								<input name="input-fecha-evaluacion" type="text" class="span12" placeholder="Fecha evaluacion" value="<?php echo $inputFechaEvaluacion; ?>">
+								<input name="input-fecha-limite-evaluacion" type="text" class="span12" placeholder="Fecha limite evaluacion" value="<? echo $inputFechaLimiteEvaluacion; ?>">
+								<button type="button" class="btn">Nueva</button>
 								<button type="submit" class="btn btn-info">Guardar</button>
-								<button type="submit" class="btn btn-danger">Cancelar</button>
+								<button type="button" class="btn btn-danger">Cancelar</button>
 		    				</form>
+
+
+		    				<?php 
+		    					if(!empty($resultado)){
+		    						echo $resultado;
+		    					}
+		    				 ?>
 
 	    					<!-- tabla de periodos -->
 							<table class="table">
@@ -133,6 +165,7 @@
 		    				<div class="span12">
 								<button type="submit" class="btn">Agregar Permisos</button>
 
+								<!-- permisos especiales -->
 								<table class="table">
 									<thead>
 										<tr>
@@ -141,7 +174,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<?php consultaPermisosEspeciales(); ?>
+										<?php echo consultaPermisosEspeciales(); ?>
 									</tbody>
 								</table>
 
@@ -150,22 +183,18 @@
 
 							<button type="submit" class="btn">Agregar Evaluador</button>
 
+							<!-- Evaluador -->
 							<table class="table">
 								<thead>
 									<tr>
 										<th>#</th>
+										<th>RFC</th>
 										<th>Evaluador</th>
+										<th>Tipo</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>1</td>
-										<td>Mario Rivera Angeles</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>Abril A. Mejia Macias</td>
-									</tr>
+									<?php echo consultaEvaluadores(); ?>
 								</tbody>
 							</table>
 		    			</div>
@@ -173,8 +202,7 @@
 
 		    			<div class="span4">
 		    				<select>
-		    					<option>Reporte de Excel</option>
-		    					<option>Ordenado por porcentajes</option>
+		    					<?php  echo consultaReportes();?>
 		    				</select>
 		    				<br />
 		    				<button type="submit" class="btn">Generar reporte</button>
