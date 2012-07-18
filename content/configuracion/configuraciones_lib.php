@@ -105,7 +105,7 @@
 	function consultaReportes(){
 		$htmlPlantilla = "";
 
-		// abriendo conexion a base de datos del siin
+		// abriendo conexion a base de datos
 		$conection = getConnection();
 
 		$sql = "select ";
@@ -140,6 +140,11 @@
 			$resultado = "Por favor, introduzca la descripcion";
 		}else if(empty($anio)){
 			$resultado = "Por favor, introduzca el anio";
+			/*
+			if (preg_match("/\bweb\b/i", $anio)) {
+			    $resultado "Anio incorrecto";
+			}
+			*/
 		}else if(empty($fechaCaptura)){
 			$resultado = "Por favor, introduzca la fecha de captura";
 		}else if(empty($fechaLimiteCaptura)){
@@ -150,13 +155,46 @@
 			$resultado = "Por favor introduzca la fecha limite de evaluacion";
 		}
 
-		$alertaHtml = str_replace("_mensaje_", $resultado, $alertaHtml);
-
+		// si todos los campos vienen llenos, ejeutamos el insert
 		if(empty($resultado)){
-			return "";
-		}else{
-			return $alertaHtml;
+			// abriendo conexion a base de datos
+			$conection = getConnection();
+
+			// insert para salvar registros en la tabla evaluacion
+			$queryInsert = "";
+			$queryInsert .="insert into ";
+			$queryInsert .="evaluacion(anio, descripcion, fecha_captura, fecha_limite_captura, fecha_evaluacion, fecha_limite_evaluacion) ";
+			$queryInsert .="values (";
+			$queryInsert .=		"".$anio.", ";
+			$queryInsert .=		"'".$descripcion."', ";
+			$queryInsert .=		"DATE('".$fechaCaptura."'), ";
+			$queryInsert .=		"DATE('".$fechaLimiteCaptura."'), ";
+			$queryInsert .=		"DATE('".$fechaEvaluacion."'), ";
+			$queryInsert .=		"DATE('".$fechaLimiteEvaluacion."') ";
+			$queryInsert .=")";
+
+			// ejecutano insert sql
+			if (!mysql_query($queryInsert,$conection)){
+				$errorCode = mysql_errno();
+				if(!empty($errorCode)){
+					if($errorCode == 1062){ // registro duplicado
+						$resultado = "Ya existe una evulacion con el mismo anio";
+					}
+				}
+			}
+
+			// cerrando conexion
+			close($conection);
 		}
+
+		// volvemos a preguntar para asegurar que no existen erores sql
+		if (!empty($resultado)) {
+			$alertaHtml = str_replace("_mensaje_", $resultado, $alertaHtml);
+			return $alertaHtml;
+		}else{
+			return "";
+		}
+
 	}
 
 ?>

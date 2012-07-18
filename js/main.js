@@ -13,6 +13,17 @@ var UTVM = {
 	init : function(){
 		this.log("Iniciando aplicacion");
 		$('.dropdown-toggle').dropdown();
+
+		/* pantalla de coonfiguracion */
+
+		// boton guardar
+		$("#btn-guardar").click(function(){
+			$('#modal-evaluaciones').modal();
+		});
+
+		$('#btn-guardar-si').click(function(){
+			$('input#guardar').val("1");
+		});
 	},
 
 	/* funcion principal */

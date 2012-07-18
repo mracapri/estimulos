@@ -10,7 +10,7 @@
 	$inputFechaLimiteEvaluacion = $_POST['input-fecha-limite-evaluacion'];
 
 	/* descion para guardar */
-	$guardar = $_GET['guardar'];
+	$guardar = $_POST['guardar'];
 	if (!empty($guardar)) {
 
 		/* Registrando evaluacion */
@@ -52,6 +52,8 @@
 	<script type='text/javascript' src='../../js/bootstrap-modal.js'></script>
 	<script type='text/javascript' src='../../js/bootstrap-dropdown.js'></script>
 	<script type='text/javascript' src='../../js/bootstrap-alert.js'></script>
+	<script type='text/javascript' src='../../js/bootstrap-tooltip.js'></script>
+	<script type='text/javascript' src='../../js/bootstrap-popover.js'></script>	
 
 	<!-- js application -->
 	<script type='text/javascript' src='../../js/main.js'></script>
@@ -104,15 +106,10 @@
 				</div>
 
 			    <div class="span2 categorias">
-				   	<a href="#">Estado de la captura</a>
 				</div>
 
 
 				<div class="span6 categorias">
-					<div id="barra-estado" class="progress progress-striped active">
-						<div class="bar" style="width: <?php echo "20%"?> 	;">
-						</div>	
-					</div>
 				</div>
 
 
@@ -128,16 +125,43 @@
 			    <div class="span12">
 				    <div class="row-fluid">
 		    			<div class="span4">
-		    				<form class="well"  method="post" action="configuracion.php?guardar=1">
-								<input name="input-descripcion" type="text" class="span12" placeholder="Descripcion" value="<?php echo $inputDescripcion; ?>">
-								<input name="input-anio" type="text" class="span12" placeholder="Anio" value="<?php echo $inputAnio; ?>">
-								<input name="input-fecha-captura" type="text" class="span12" placeholder="Fecha captura" value="<?php echo $inputFechaCaptura; ?>">
-								<input name="input-fecha-limite-captura" type="text" class="span12" placeholder="Fecha limite captura" value="<? echo $inputFechaLimiteCaptura; ?>">
-								<input name="input-fecha-evaluacion" type="text" class="span12" placeholder="Fecha evaluacion" value="<?php echo $inputFechaEvaluacion; ?>">
-								<input name="input-fecha-limite-evaluacion" type="text" class="span12" placeholder="Fecha limite evaluacion" value="<? echo $inputFechaLimiteEvaluacion; ?>">
-								<button type="button" class="btn">Nueva</button>
-								<button type="submit" class="btn btn-info">Guardar</button>
+		    				<form class="well"  method="post" action="configuracion.php">
+		    					<label>Descripcion</label>
+								<input id="input-descripcion" name="input-descripcion" type="text" class="span12" value="<?php echo $inputDescripcion; ?>">
+								<label>Anio</label>
+								<input name="input-anio" type="text" class="span12" value="<?php echo $inputAnio; ?>">
+								<label>Fecha captura</label>
+								<input name="input-fecha-captura" type="text" class="span12" value="<?php echo $inputFechaCaptura; ?>">
+								<label>Fecha limite captura</label>
+								<input name="input-fecha-limite-captura" type="text" class="span12" value="<? echo $inputFechaLimiteCaptura; ?>">
+								<label>Fecha evaluacion</label>
+								<input name="input-fecha-evaluacion" type="text" class="span12" value="<?php echo $inputFechaEvaluacion; ?>">
+								<label>Fecha limite evaluacion</label>
+								<input name="input-fecha-limite-evaluacion" type="text" class="span12" value="<? echo $inputFechaLimiteEvaluacion; ?>">
+
+								<!-- botonos del formulario -->
+								<button type="button" class="btn btn-info" id="btn-guardar">Guardar</button>
 								<button type="button" class="btn btn-danger">Cancelar</button>
+
+								<!-- campos ocultos -->
+								<input id="guardar" name="guardar" type="hidden">
+
+
+								<!-- Vetana modal -->
+								<div class="modal hide" id="modal-evaluaciones">
+									<div class="modal-header">
+										<h3>Evaluaciones</h3>
+									</div>
+									
+									<div class="modal-body">
+										<p>Esta seguro de capturar la informacion</p>
+									</div>
+									<div class="modal-footer">
+										<a href="#" class="btn" data-dismiss="modal">No</a>
+										<button id="btn-guardar-si" type="submit" class="btn">Si</button>
+									</div>
+								</div>
+
 		    				</form>
 
 
@@ -211,8 +235,6 @@
 		    	</div>
 		    </div>
 		</div>
-	
-
 
 </body>
 </html>
