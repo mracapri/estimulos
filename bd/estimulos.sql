@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `evaluacion_indicador` (
 
 CREATE TABLE IF NOT EXISTS `evaluador` (
   `RFC_evaluador` varchar(10) NOT NULL,
-  `nombre` varchar(20) DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
   `tipo` varchar(10) DEFAULT NULL,
   `anio` year(4) DEFAULT NULL,
   PRIMARY KEY (`RFC_evaluador`),
@@ -392,4 +392,14 @@ CREATE TABLE IF NOT EXISTS `permisos_especiales` (
   PRIMARY KEY (`rfc`),
   KEY `index_rfc` (`anio`),
   KEY `index_anio5` (`anio`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/* REPORTES */
+
+CREATE TABLE IF NOT EXISTS `reportes` (
+  `id_reporte` integer DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
+  `path` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id_reporte`),
+  KEY `index_rfc` (`id_reporte`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
