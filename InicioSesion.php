@@ -100,7 +100,7 @@
 					<label>Constraseña</label>
 					<input class="span12" type="password" placeholder="Contraseña" name="contrasena"/>
 					<div class="span5"></div>
-					<button class="btn btn-primary">Iniciar Sesion</button>
+					<a class="btn btn-primary" >Iniciar Sesion</a>
 				</form>
 			</div>
 		</div>

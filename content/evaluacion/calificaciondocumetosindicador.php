@@ -1,5 +1,6 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
- "http://www.w3.org/TR/html4/strict.dtd">
+<?php
+	include "../captura/asignaciondocumentos_lib.php";
+?>
 <html>
 <head>
 
@@ -64,9 +65,9 @@
 						
 						</a>
 						<ul class="dropdown-menu">
-							<li>
-							<li class="divider">Perfil</li>
-							<li>
+							<li><a href="#">Perfil</a></li>
+							<li><a href="#">Settings</a></li>
+							<li><a href="#">Out</a></li>
 				</ul>
 					</div>
 				</ul>
@@ -110,28 +111,33 @@
 
 		<div id="captura-indicadores" class="container">
 			<!-- diseno fluido con bootstrap -->
+			<?php 
+				$idIndicador = $_GET["id_indicador"];
+				$detalle= consultaDetalleIndicador($idIndicador); 
+				//echo $detalle;
+			?>
 			<div class="span6 seccion1">
 				<div class="span2 seccion1-1" >
 					<ul>
 						<li>
 						
 							Categoría:
-							<a href="#">Categoria</a>
+							<a href="#"><?php echo $detalle[1]; ?></a>
 	
 						</li>
 						<li>
 							Indicador:
-							<a href="#">Indicador</a>
+							<a href="#"><?php echo $detalle[2]; ?></a>
 	
 						</li>
 						<li>
 							Descripción:
-							<a href="#">Descripción</a>
+							<a href="#"><?php echo $detalle[3]; ?></a>
 	
 						</li>
 						<li>
 							Puntuacion maxima a obtener:
-							<a href="#">Puntuación</a>
+							<a href="#"><?php echo $detalle[4]; ?></a>
 	
 						</li>
 						

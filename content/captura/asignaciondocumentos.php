@@ -117,7 +117,7 @@
 						</li>
 						<li>
 							Descripción:
-							<a href="#">des</a>
+							<a href="#"><?php echo $detalle[3]; ?></a>
 	
 						</li>
 						<li>

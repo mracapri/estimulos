@@ -81,7 +81,7 @@
 				$plantillaElemento .=		"[OBSERVACION]";
 				$plantillaElemento .=	"</div>";
 				$plantillaElemento .=	"<div class='span1 categorias'>";
-				$plantillaElemento .=		"<a href='#' class='ver'></a>";
+				$plantillaElemento .=		"<a href='calificaciondocumetosindicador.php?id_indicador=".$row[id_indicador]."' class='ver'></a>";
 				$plantillaElemento .=	"</div>";
 				$plantillaElemento .="</div>";
 			
