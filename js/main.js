@@ -16,13 +16,32 @@ var UTVM = {
 
 		/* pantalla de coonfiguracion */
 
-		// boton guardar
+		// boton guardar evaluaciones
 		$("#btn-guardar").click(function(){
 			$('#modal-evaluaciones').modal();
 		});
 
 		$('#btn-guardar-si').click(function(){
-			$('input#guardar').val("1");
+			$('input#guardar-evaluacion').val("1");
+		});
+
+		// boton guardar permisos
+		$("#btn-agregar-permiso").click(function(){
+			$('#modal-permisos').modal();
+		});
+
+		$('#btn-guardar-si-permisos').click(function(){
+			$('input#guardar-permisos').val("1");
+		});
+
+
+		// boton guardar evaluador
+		$("#btn-agregar-evaluador").click(function(){
+			$('#modal-evaluador').modal();
+		});
+
+		$('#btn-guardar-si-evaluador').click(function(){
+			$('input#guardar-evaluador').val("1");
 		});
 	},
 

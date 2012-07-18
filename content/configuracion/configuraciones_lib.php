@@ -128,7 +128,30 @@
 		return $htmlPlantilla;
 	}
 
-	function registraEvaluacion($descripcion, $anio, $fechaCaptura, $fechaLimiteCaptura, $fechaEvaluacion, $fechaLimiteEvaluacion){
+	function registraPermisoEspecial(){
+		/* Variables de entrada despues de enviar los datos de registro de permisos especiales*/
+		$inputRfcPermisos = $_POST['input-rfc-permisos'];
+
+	}
+
+	function registraEvaluador(){
+		/* Variables de entrada despues de enviar los datos de registro de evaluadores*/
+		$inputRfcPermisos = $_POST['input-rfc-evaluador'];
+		$inputRfcPermisos = $_POST['input-nombre-evaluador'];
+		$inputRfcPermisos = $_POST['input-tipo-evaluador'];
+		
+	}	
+
+	function registraEvaluacion(){
+
+		/* Variables de entrada despues de enviar los datos de registro de evaluacion*/
+		$descripcion = $_POST['input-descripcion'];
+		$anio = $_POST['input-anio'];
+		$fechaCaptura = $_POST['input-fecha-captura'];
+		$fechaLimiteCaptura = $_POST['input-fecha-limite-captura'];
+		$fechaEvaluacion = $_POST['input-fecha-evaluacion'];
+		$fechaLimiteEvaluacion = $_POST['input-fecha-limite-evaluacion'];
+
 		$resultado = "";
 
 		$alertaHtml = "";	
@@ -184,7 +207,7 @@
 			}
 
 			// cerrando conexion
-			close($conection);
+			close($conection);	
 		}
 
 		// volvemos a preguntar para asegurar que no existen erores sql
@@ -192,6 +215,13 @@
 			$alertaHtml = str_replace("_mensaje_", $resultado, $alertaHtml);
 			return $alertaHtml;
 		}else{
+			// limpiando variables
+			$inputDescripcion = "";
+			$inputAnio = "";
+			$inputFechaCaptura = "";
+			$inputFechaLimiteCaptura = "";
+			$inputFechaEvaluacion = "";
+			$inputFechaLimiteEvaluacion = "";
 			return "";
 		}
 

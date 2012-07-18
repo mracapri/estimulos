@@ -1,28 +1,23 @@
 <?php
 	include "configuraciones_lib.php";
 
-	/* Variables de entrada despues de enviar los datos de registro */
-	$inputDescripcion = $_POST['input-descripcion'];
-	$inputAnio = $_POST['input-anio'];
-	$inputFechaCaptura = $_POST['input-fecha-captura'];
-	$inputFechaLimiteCaptura = $_POST['input-fecha-limite-captura'];
-	$inputFechaEvaluacion = $_POST['input-fecha-evaluacion'];
-	$inputFechaLimiteEvaluacion = $_POST['input-fecha-limite-evaluacion'];
+	$guardarEvaluacion = $_POST['guardar-evaluacion'];
+	$guardarPermisoEspecial = $_POST['guardar-permiso'];
+	$guardarEvaluador = $_POST['guardar-evaluador'];
 
-	/* descion para guardar */
-	$guardar = $_POST['guardar'];
-	if (!empty($guardar)) {
 
+	if (!empty($guardarEvaluacion)) {
 		/* Registrando evaluacion */
-
-		$resultado = registraEvaluacion(
-			$inputDescripcion, 
-			$inputAnio, 
-			$inputFechaCaptura, 
-			$inputFechaLimiteCaptura, 
-			$inputFechaEvaluacion, 
-			$inputFechaLimiteEvaluacion);
+		$resultado = registraEvaluacion();
+	}else if(!empty($guardarPermisoEspecial)){
+		/* Registrando permiso especial */
+		registraPermisoEspecial();
+	}else if(!empty($guardarEvaluador)){
+		/* Registrando evaluador*/
+		registraEvaluador();
 	}
+
+
 
 ?>
 <html>
@@ -144,7 +139,7 @@
 								<button type="button" class="btn btn-danger">Cancelar</button>
 
 								<!-- campos ocultos -->
-								<input id="guardar" name="guardar" type="hidden">
+								<input id="guardar-evaluacion" name="guardar-evaluacion" type="hidden">
 
 
 								<!-- Vetana modal -->
@@ -187,8 +182,7 @@
 		    			</div>
 		    			<div class="span4">
 		    				<div class="span12">
-								<button type="submit" class="btn">Agregar Permisos</button>
-
+								<button type="submit" class="btn" id="btn-agregar-permiso">Agregar Permisos</button>
 								<!-- permisos especiales -->
 								<table class="table">
 									<thead>
@@ -202,10 +196,30 @@
 									</tbody>
 								</table>
 
+								<form>
+									<!-- Vetana modal -->
+									<div class="modal hide" id="modal-permisos">
+										<div class="modal-header">
+											<h3>Permisos especiales</h3>
+										</div>
+										
+										<div class="modal-body">
+											<p>Introduzca el RFC</p>
+											<input name="input-rfc-permisos" type="text" class="span12"/>
+										</div>
+										<div class="modal-footer">
+											<a href="#" class="btn" data-dismiss="modal">No</a>
+											<button id="btn-guardar-si-permisos" type="submit" class="btn">Si</button>
+										</div>
+									</div>
+
+									<!-- botonos ocultos de la forma -->
+									<input id="guardar-permiso" name="guardar-permiso" type="hidden">
+								</form>
 		    				</div>
 
 
-							<button type="submit" class="btn">Agregar Evaluador</button>
+							<button type="submit" class="btn" id="btn-agregar-evaluador">Agregar Evaluador</button>
 
 							<!-- Evaluador -->
 							<table class="table">
@@ -221,6 +235,34 @@
 									<?php echo consultaEvaluadores(); ?>
 								</tbody>
 							</table>
+
+							<form>
+								<!-- Vetana modal -->
+								<div class="modal hide" id="modal-evaluador">
+									<div class="modal-header">
+										<h3>Evaluadores</h3>
+									</div>
+									
+									<div class="modal-body">
+										<p>Introduzca el RFC</p>
+										<input name="input-rfc-evaluador" type="text" class="span12"/>
+										<p>Nombre</p>
+										<input name="input-nombre-evaluador" type="text" class="span12"/>
+										<p>Tipo</p>
+										<select name="input-tipo-evaluador">
+											<option value="I">Interno</option>
+											<option value="E">Externo</option>
+										</select>
+									</div>
+									<div class="modal-footer">
+										<a href="#" class="btn" data-dismiss="modal">No</a>
+										<button id="btn-guardar-si-evaluador" type="submit" class="btn">Si</button>
+									</div>
+								</div>
+
+								<!-- botonos ocultos de la forma -->
+								<input id="guardar-evaluador" name="guardar-evaluador" type="hidden">
+							</form>
 		    			</div>
 
 
