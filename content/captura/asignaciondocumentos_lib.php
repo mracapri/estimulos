@@ -41,7 +41,7 @@
 			$plantillaElementoAsignacion .= 		"<input type='checkbox' title='{nombre: ".$row[0]."}'/>";
 			$plantillaElementoAsignacion .= 	"</span>";
 			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
-			$plantillaElementoAsignacion .= 		"<a href='#' class='pdf'>";
+			$plantillaElementoAsignacion .= 		"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/7/".$row[0]."' class='pdf'>";
 			//$plantillaElementoAsignacion .=				$row[1];
 			$plantillaElementoAsignacion .= 		"</a>";
 			$plantillaElementoAsignacion .= 	"</div>";
