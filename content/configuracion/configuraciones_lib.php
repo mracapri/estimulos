@@ -1,10 +1,30 @@
 <?php
 	include "../../lib/librerias.php";
-	
+
+
+
+	$guardarEvaluacion = $_POST['guardar-evaluacion'];
+	$guardarPermisoEspecial = $_POST['guardar-permiso'];
+	$guardarEvaluador = $_POST['guardar-evaluador'];
+
+	if (!empty($guardarEvaluacion)) {
+		// Registrando evaluacion
+		$resultado = registraEvaluacion();
+	}else if(!empty($guardarPermisoEspecial)){
+		// Registrando permiso especial
+		registraPermisoEspecial();
+	}else if(!empty($guardarEvaluador)){
+		// Registrando evaluador
+		registraEvaluador();
+	}
+
 	/*
 
 	*/
 	function consultaEvaluaciones(){
+
+		
+		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario
 
 		$htmlPlantilla = "";
 
@@ -43,6 +63,9 @@
 	}
 
 	function consultaPermisosEspeciales(){
+
+		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario		
+
 		$htmlPlantilla = "";
 		// abriendo conexion a base de datos del siin
 		$conection = getConnection();
@@ -71,6 +94,8 @@
 	}
 
 	function consultaEvaluadores(){
+		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario		
+
 		$htmlPlantilla = "";
 
 		// abriendo conexion a base de datos del siin
@@ -103,6 +128,8 @@
 	}
 
 	function consultaReportes(){
+		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario		
+
 		$htmlPlantilla = "";
 
 		// abriendo conexion a base de datos
@@ -129,20 +156,44 @@
 	}
 
 	function registraPermisoEspecial(){
+		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario		
+
 		/* Variables de entrada despues de enviar los datos de registro de permisos especiales*/
 		$inputRfcPermisos = $_POST['input-rfc-permisos'];
+
 
 	}
 
 	function registraEvaluador(){
+		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario		
+
 		/* Variables de entrada despues de enviar los datos de registro de evaluadores*/
-		$inputRfcPermisos = $_POST['input-rfc-evaluador'];
-		$inputRfcPermisos = $_POST['input-nombre-evaluador'];
-		$inputRfcPermisos = $_POST['input-tipo-evaluador'];
-		
+		$inputRfcEvaluador = $_POST['input-rfc-evaluador'];
+		$inputNombreEvaluador = $_POST['input-nombre-evaluador'];
+		$inputTipoEvaluador = $_POST['input-tipo-evaluador'];
+
+		if(empty($inputRfcEvaluador)){
+			$resultado = "Por favor, introduzca el RFC del evaluador";
+		}else if(empty($inputNombreEvaluador)){
+			$resultado = "Por favor, introduzca el nombre del evaluador";
+		}
+
 	}	
 
+	function construyeAlertaHtml($mensaje){
+		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario		
+
+		$alertaHtml = "";	
+		$alertaHtml .= "<div class='alert alert-error'>";	
+		$alertaHtml .= 		"_mensaje_";
+		$alertaHtml .= "</div>";	
+		$alertaHtml = str_replace("_mensaje_", $mensaje, $alertaHtml);
+		return $alertaHtml;
+	}
+
 	function registraEvaluacion(){
+
+		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario		
 
 		/* Variables de entrada despues de enviar los datos de registro de evaluacion*/
 		$descripcion = $_POST['input-descripcion'];
@@ -153,11 +204,6 @@
 		$fechaLimiteEvaluacion = $_POST['input-fecha-limite-evaluacion'];
 
 		$resultado = "";
-
-		$alertaHtml = "";	
-		$alertaHtml .= "<div class='alert alert-error'>";	
-		$alertaHtml .= 		"_mensaje_";
-		$alertaHtml .= "</div>";	
 
 		if(empty($descripcion)){
 			$resultado = "Por favor, introduzca la descripcion";
@@ -212,8 +258,7 @@
 
 		// volvemos a preguntar para asegurar que no existen erores sql
 		if (!empty($resultado)) {
-			$alertaHtml = str_replace("_mensaje_", $resultado, $alertaHtml);
-			return $alertaHtml;
+			return construyeAlertaHtml($resultado);
 		}else{
 			// limpiando variables
 			$inputDescripcion = "";

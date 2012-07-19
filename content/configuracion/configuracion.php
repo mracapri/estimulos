@@ -1,25 +1,3 @@
-<?php
-	include "configuraciones_lib.php";
-
-	$guardarEvaluacion = $_POST['guardar-evaluacion'];
-	$guardarPermisoEspecial = $_POST['guardar-permiso'];
-	$guardarEvaluador = $_POST['guardar-evaluador'];
-
-
-	if (!empty($guardarEvaluacion)) {
-		/* Registrando evaluacion */
-		$resultado = registraEvaluacion();
-	}else if(!empty($guardarPermisoEspecial)){
-		/* Registrando permiso especial */
-		registraPermisoEspecial();
-	}else if(!empty($guardarEvaluador)){
-		/* Registrando evaluador*/
-		registraEvaluador();
-	}
-
-
-
-?>
 <html>
 <head>
 
@@ -55,7 +33,10 @@
 
 	<!-- YUI -->
 	<script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
-
+	
+	<?php
+		include "configuraciones_lib.php";
+	?>
 </head>
 
 <body>
@@ -120,7 +101,7 @@
 			    <div class="span12">
 				    <div class="row-fluid">
 		    			<div class="span4">
-		    				<form class="well"  method="post" action="configuracion.php">
+		    				<form class="well" method="post">
 		    					<label>Descripcion</label>
 								<input id="input-descripcion" name="input-descripcion" type="text" class="span12" value="<?php echo $inputDescripcion; ?>">
 								<label>Anio</label>
@@ -196,7 +177,7 @@
 									</tbody>
 								</table>
 
-								<form>
+								<form method="post">
 									<!-- Vetana modal -->
 									<div class="modal hide" id="modal-permisos">
 										<div class="modal-header">
@@ -236,7 +217,7 @@
 								</tbody>
 							</table>
 
-							<form>
+							<form method="post">
 								<!-- Vetana modal -->
 								<div class="modal hide" id="modal-evaluador">
 									<div class="modal-header">
