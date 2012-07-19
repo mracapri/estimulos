@@ -201,7 +201,7 @@
 					<div class="span6"></div>
 					<div class="span3"></div>	
 					<div class="span1">
-						<button class="btn btn-primary">Agregar</button>
+						<button class="btn btn-primary" id="agregar-documento">Agregar</button>
 					</div>
 				</div>
 			</div>

@@ -43,6 +43,18 @@ var UTVM = {
 		$('#btn-guardar-si-evaluador').click(function(){
 			$('input#guardar-evaluador').val("1");
 		});
+
+		/* captura de documentos */
+		$('#agregar-documento').click(function(){
+			var documentosSeleccionados = $("#documentos-trayectorias input[type=checkbox]:checked");
+			if(documentosSeleccionados.size() > 0){
+				$.each(documentosSeleccionados, function(key, value){
+					console.log(value);
+				});
+			}else{
+				alert("Seleccione las evidencias de la lista derecha");
+			}
+		});
 	},
 
 	/* funcion principal */
