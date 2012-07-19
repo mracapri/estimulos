@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `evaluacion` (
 CREATE TABLE IF NOT EXISTS `evaluacion_indicador` (
   `id_evaluacionindicador` int(11) NOT NULL,
   `id_categoriaindicador` int(11) DEFAULT NULL,
-  `RFC_empleado` varchar(10) DEFAULT NULL,
+  `RFC_docente` varchar(10) DEFAULT NULL,
   `id_porcentajeindicador` int(11) DEFAULT NULL,
   `cal_porcentaje` int(11) DEFAULT NULL,
   `RFC_evaluador` varchar(10) DEFAULT NULL,
