@@ -30,9 +30,10 @@ USE estimulos;
 CREATE TABLE IF NOT EXISTS `asignacion_indicador` (
   `id_asignacionindicador` int(11) NOT NULL,
   `id_categoriaindicador` int(11) DEFAULT NULL,
-  `RFC_evaluador` varchar(45) DEFAULT NULL,
+  `RFC_docente` varchar(45) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
-  `anio` year(4) DEFAULT NULL,
+  `anio` int(4) DEFAULT NULL,
+  `doc_evidencia` varchar(50) DEFAULT NULL, 
   PRIMARY KEY (`id_asignacionindicador`),
   KEY `index_catindicador` (`id_categoriaindicador`),
   KEY `index_anio5` (`anio`)
@@ -52,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `asignacion_indicador` (
 CREATE TABLE IF NOT EXISTS `categoria` (
   `id_categoria` int(11) NOT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
-  `anio` year(4) DEFAULT NULL,
+  `anio` int(4) DEFAULT NULL,
   PRIMARY KEY (`id_categoria`),
   KEY `index_anio1` (`anio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -161,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `evaluacion_indicador` (
   `RFC_evaluador` varchar(10) DEFAULT NULL,
   `estado` varchar(15) DEFAULT NULL,
   `motivo` varchar(255) DEFAULT NULL,
-  `anio` year(4) DEFAULT NULL,
+  `anio` int(4) DEFAULT NULL,
   PRIMARY KEY (`id_evaluacionindicador`),
   KEY `index_categoriaindicad` (`id_categoriaindicador`),
   KEY `index_porcentaje` (`id_porcentajeindicador`),
@@ -184,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `evaluador` (
   `RFC_evaluador` varchar(10) NOT NULL,
   `nombre` varchar(100) DEFAULT NULL,
   `tipo` varchar(10) DEFAULT NULL,
-  `anio` year(4) DEFAULT NULL,
+  `anio` int(4) DEFAULT NULL,
   PRIMARY KEY (`RFC_evaluador`),
   KEY `index_anio6` (`anio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -203,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `evaluador` (
 CREATE TABLE IF NOT EXISTS `indicador` (
   `id_indicador` int(11) NOT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
-  `anio` year(4) DEFAULT NULL,
+  `anio` int(4) DEFAULT NULL,
   PRIMARY KEY (`id_indicador`),
   KEY `index_anio2` (`anio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -256,7 +257,7 @@ INSERT INTO `indicador` (`id_indicador`, `descripcion`, `anio`) VALUES
 
 CREATE TABLE IF NOT EXISTS `modificaciones` (
   `RFC` varchar(45) DEFAULT NULL,
-  `anio` year(4) DEFAULT NULL,
+  `anio` int(4) DEFAULT NULL,
   KEY `index_anio7` (`anio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -276,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `porcentaje_indicador` (
   `id_categoriaindicador` int(11) DEFAULT NULL,
   `porcentaje` int(11) DEFAULT NULL,
   `descripcion` varchar(45) DEFAULT NULL,
-  `anio` year(4) DEFAULT NULL,
+  `anio` int(4) DEFAULT NULL,
   PRIMARY KEY (`id_porcentajeindicador`),
   KEY `index_categoriaindicador` (`id_categoriaindicador`),
   KEY `index_anio4` (`anio`)
@@ -383,3 +384,26 @@ ALTER TABLE `porcentaje_indicador`
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
+
+/* PERMISOS ESPECIALES */
+
+CREATE TABLE IF NOT EXISTS permisos_especiales (
+  rfc varchar(10) NOT NULL,
+  anio int(4) NOT NULL,
+  INDEX rfc (rfc),
+  INDEX anio (anio),
+  PRIMARY KEY (rfc)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE permisos_especiales
+  ADD CONSTRAINT `fk_evaluacion_permisos` FOREIGN KEY (anio) REFERENCES evaluacion (anio) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+/* REPORTES */
+
+CREATE TABLE IF NOT EXISTS `reportes` (
+  `id_reporte` integer DEFAULT NULL,
+  `nombre` varchar(100) DEFAULT NULL,
+  `path` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id_reporte`),
+  KEY `index_rfc` (`id_reporte`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
