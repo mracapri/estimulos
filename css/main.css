@@ -37,11 +37,11 @@ ul {
 
 .seccion1-2 {
     border-radius: 15px 15px 15px 15px;
-     
-	 box-shadow: 0pt 0pt 2px gray;
-     height: 50%;
+	box-shadow: 0pt 0pt 2px gray;
+    height: 50%;
     margin: 5%;
     overflow-y: auto;
+	overflow-x:hidden;
     width: 90%;
 }
 
