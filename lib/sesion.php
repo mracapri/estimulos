@@ -11,6 +11,8 @@
 	*/
 	define("SEGURIDAD", "0"); 
 
+	/* login provisional */
+	logIn();
 
 	function verificarSesionDelUsuario(){
 		if(SEGURIDAD == 1){
@@ -41,7 +43,15 @@
 
 	/* Iniciar sesion */
 	function logIn(){
+		// iniciando sesion
+		//session_start();
 
+		// store session data
+		$_SESSION['idEmpleado'] = "E704";
+		$_SESSION['idPeriodos'] = "44, 45, 46";
+		$_SESSION['anioEvaluacion'] = (2012-1);
+		$_SESSION['usuarioFirmado'] = "1";
+		$_SESSION['nombreUsuario'] = "Mario Rivera Angeles";
 	}
 
 	/* Terminar sesion */
