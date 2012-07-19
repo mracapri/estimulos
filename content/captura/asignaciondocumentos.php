@@ -196,7 +196,6 @@
 					<?php echo consultaArchivosHtml(); ?>
 					<!-- termina documentos de trayectorias --> 
 				</div>
-				</div>
 				<div class="row-fluid">
 					<div class="span6"></div>
 					<div class="span3"></div>	
