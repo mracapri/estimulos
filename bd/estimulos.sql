@@ -252,23 +252,6 @@ INSERT INTO `indicador` (`id_indicador`, `descripcion`, `anio`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `modificaciones`
---
-
-CREATE TABLE IF NOT EXISTS `modificaciones` (
-  `RFC` varchar(45) DEFAULT NULL,
-  `anio` int(4) DEFAULT NULL,
-  KEY `index_anio7` (`anio`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `modificaciones`
---
-
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `porcentaje_indicador`
 --
 
@@ -370,8 +353,7 @@ ALTER TABLE `indicador`
 --
 -- Constraints for table `modificaciones`
 --
-ALTER TABLE `modificaciones`
-  ADD CONSTRAINT `fk_anio7` FOREIGN KEY (`anio`) REFERENCES `evaluacion` (`anio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 
 --
 -- Constraints for table `porcentaje_indicador`
@@ -388,11 +370,11 @@ ALTER TABLE `porcentaje_indicador`
 /* PERMISOS ESPECIALES */
 
 CREATE TABLE IF NOT EXISTS permisos_especiales (
-  rfc varchar(10) NOT NULL,
-  anio int(4) NOT NULL,
-  INDEX rfc (rfc),
+  `RFC` varchar(10) DEFAULT NULL,
+  `anio` int(4) DEFAULT NULL,
+  INDEX RFC (RFC),
   INDEX anio (anio),
-  PRIMARY KEY (rfc)
+  PRIMARY KEY (RFC)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE permisos_especiales
