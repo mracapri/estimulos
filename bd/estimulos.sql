@@ -383,26 +383,3 @@ ALTER TABLE `porcentaje_indicador`
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
-
-/* PERMISOS ESPECIALES */
-
-CREATE TABLE IF NOT EXISTS permisos_especiales (
-  rfc varchar(10) NOT NULL,
-  anio int(4) NOT NULL,
-  INDEX rfc (rfc),
-  INDEX anio (anio),
-  PRIMARY KEY (rfc)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-ALTER TABLE permisos_especiales
-  ADD CONSTRAINT `fk_evaluacion_permisos` FOREIGN KEY (anio) REFERENCES evaluacion (anio) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-/* REPORTES */
-
-CREATE TABLE IF NOT EXISTS `reportes` (
-  `id_reporte` integer DEFAULT NULL,
-  `nombre` varchar(100) DEFAULT NULL,
-  `path` varchar(250) DEFAULT NULL,
-  PRIMARY KEY (`id_reporte`),
-  KEY `index_rfc` (`id_reporte`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
