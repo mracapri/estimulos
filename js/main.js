@@ -49,11 +49,41 @@ var UTVM = {
 			var documentosSeleccionados = $("#documentos-trayectorias input[type=checkbox]:checked");
 			if(documentosSeleccionados.size() > 0){
 				$.each(documentosSeleccionados, function(key, value){
-					console.log(value);
+					var documento = $(value).parent().parent().clone();
+					$(documento).appendTo("#documentos-asignados");
 				});
 			}else{
 				alert("Seleccione las evidencias de la lista derecha");
 			}
+			$("#documentos-trayectorias input[type=checkbox]:checked").removeAttr("checked");
+			$("#documentos-asignados input[type=checkbox]:checked").removeAttr("checked");
+		});
+
+		/* captura de documentos */
+		$('#quitar-documento').click(function(){
+			var documentosSeleccionados = $("#documentos-asignados input[type=checkbox]:checked");
+			if(documentosSeleccionados.size() > 0){
+				$.each(documentosSeleccionados, function(key, value){
+					var documento = $(value).parent().parent().remove();
+				});
+			}
+		});
+
+		$("#guardar-cambios-asignacion").click(function(){			
+			var documento ={
+				nombre: ""
+			};
+			var documentos = new Array();
+			$.each($("#documentos-asignados input[type=checkbox]"), function(key, value){
+				var nombreDocumento = $(value).attr('data-nombre-archivo');
+				documento.nombre = nombreDocumento;
+				documentos[key] = documento;
+			});
+
+			// set json data
+			$("#json_asignacion").val(JSON.stringify(documentos));
+
+			$("#form-guardar-asignacion").submit();
 		});
 	},
 
