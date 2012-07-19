@@ -1,16 +1,28 @@
 <?php
 
 	require_once("../../lib/librerias.php");
+
+	function guardarAsignacion($jsonAsignacion){
+
+		/* Eliminando diagonales y decodificando el JSON */
+		$resultado = json_decode(stripslashes($jsonAsignacion));
+
+		$idEmpleado = $_SESSION['idEmpleado'];
+
+		/* itera asignaciones */
+		for ($iteraAsignacion=0; $iteraAsignacion < count($resultado); $iteraAsignacion++) { 
+			$nombreEvidencia = $resultado[$iteraAsignacion]->{'nombre'};
+
+		}
+	}
 	
 	function consultaArchivosHtml(){
-		/* 
-			hardcode
-			NOTA: Borrar			
-		*/
-		$idEmpleado = "E704"; // sesion
-		$idPeriodos = "44, 45, 46"; // sesion
-		$anioEvaluacion = 2012 - 1; // sesion
+		/* datos desde la sesion */
+		$idEmpleado = $_SESSION['idEmpleado'];
+		$idPeriodos = $_SESSION['idPeriodos'];
+		$anioEvaluacion = $_SESSION['anioEvaluacion'];
 		
+		/* sql para obtener las evidencias del usuario */ 
 		$sqlArchivos = "SELECT evidencia, nombre FROM siin_trayectorias_docentes.traydoc_datos_logros WHERE fecha like '%".$anioEvaluacion."%' and idempleado = '".$idEmpleado."' AND evidencia != ''";
 		$sqlArchivos.= "UNION ";
 		$sqlArchivos.= "SELECT evidencia, nombre FROM siin_trayectorias_docentes.traydoc_datos_premios WHERE fecha like '%".$anioEvaluacion."%' and idempleado = '".$idEmpleado."'  AND evidencia != ''";
@@ -38,11 +50,10 @@
 		while($row = mysql_fetch_array($resultSetAsignacion)){
 			$plantillaElementoAsignacion .="<div class='span1 seccion1-3'>";
 			$plantillaElementoAsignacion .=		"<span class='seleccion-documento'>";
-			$plantillaElementoAsignacion .= 		"<input type='checkbox' title='{nombre: ".$row[0]."}'/>";
+			$plantillaElementoAsignacion .= 		"<input type='checkbox' data-nombre-archivo='".$row[0]."' />";
 			$plantillaElementoAsignacion .= 	"</span>";
 			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
 			$plantillaElementoAsignacion .= 		"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/7/".$row[0]."' class='pdf'>";
-			//$plantillaElementoAsignacion .=				$row[1];
 			$plantillaElementoAsignacion .= 		"</a>";
 			$plantillaElementoAsignacion .= 	"</div>";
 			$plantillaElementoAsignacion .= 	"<div class='span2 seccion3-2'>";
@@ -65,7 +76,8 @@
 	}
 	
 	function consultaDetalleIndicador($idIndicador){
-		//echo "este valor:".$idIndicador;
+		
+
 		$sqlConsultas = "";
 		$sqlConsultas.= "SELECT ";
 		$sqlConsultas.= 		"c.id_categoria, "; 
@@ -89,7 +101,6 @@
 		
 		$resultSetConsulta = mysql_query($sqlConsultas);
 		$rowIndicador = mysql_fetch_array($resultSetConsulta);
-		//echo $rowIndicador;		
 		
 		if(count($rowIndicador) > 0){
 			
