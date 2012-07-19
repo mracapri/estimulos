@@ -1,11 +1,5 @@
 <?php
 	include "asignaciondocumentos_lib.php";
-
-	$jsonAsignacion = $_POST['json_asignacion'];
-
-	if(!empty($jsonAsignacion)){
-		guardarAsignacion($jsonAsignacion);
-	}
 ?>
 <html>
 <head>
@@ -35,7 +29,6 @@
 	<script type='text/javascript' src='../../js/bootstrap-tooltip.js'></script>
 	<script type='text/javascript' src='../../js/bootstrap-dropdown.js'></script>
 	<script type='text/javascript' src='../../js/jquery-ui-1.8.16.custom.min.js'></script>	
-	<script type='text/javascript' src='../../js/json2.js'></script>
 
 
 	<!-- js application -->
@@ -59,7 +52,7 @@
 				    </li>
 
 					<li class="active">
-						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
+						<a id="nombre-persona" href="#">Ing. Mario </a>
 					</li>
 					<li class="brand">
 					<a href="#">Asignación de Documentos a Indicadores</a>
@@ -135,16 +128,58 @@
 					</ul>
 				
 				</div>
-				<div class="span2 seccion1-2" id="documentos-asignados">
-					<!-- documentos asgindos --> 
-					<?php echo consultaArchivosHtml(); ?>
-					<!-- termina documentos asignados --> 
+				<div class="span2 seccion1-2">
+					<div class="span1 seccion1-3" >
+						<span class="seleccion-documento"><input type="checkbox" /></span>
+						<div class="pdf2">
+							<a href='#' class='pdf'></a>
+						</div>
+						<div class="span2 seccion3-2">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+					</div>
+					</div>
+					<div class="span1 seccion1-3" >
+						<span class="seleccion-documento"><input type="checkbox" /></span>
+						<div class="pdf2">
+							<a href='#' class='pdf'></a>
+						</div>
+						<div class="span2 seccion3-2">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+					</div>
+					</div>
+					<div class="span1 seccion1-3" >
+						<span class="seleccion-documento"><input type="checkbox" /></span>
+						<div class="pdf2">
+							<a href='#' class='pdf'></a>
+						</div>
+						<div class="span2 seccion3-2">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+					</div>
+					</div>
+					<div class="span1 seccion1-3" >
+						<span class="seleccion-documento"><input type="checkbox" /></span>
+						<div class="pdf2">
+							<a href='#' class='pdf'></a>
+						</div>
+						<div class="span2 seccion3-2">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+					</div>
+					</div>
+					<div class="span1 seccion1-3" >
+						<span class="seleccion-documento"><input type="checkbox" /></span>
+						<div class="pdf2">
+							<a href='#' class='pdf'></a>
+						</div>
+						<div class="span2 seccion3-2">
+							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
+					</div>
+				</div>
 				</div>
 					<div class="row-fluid">
 						<div class="span6"></div>
 						<div class="span3"></div>
 					<div class="span2">
-						<button class="btn btn-danger" id="quitar-documento">Remover</button>
+						<button class="btn btn-danger">Remover</button>
 			</div>
 			</div>
 				
@@ -172,10 +207,8 @@
 			<div class="row-fluid">
 				<div class="span6"></div>
 				<div class="span4"></div>
-					<form id="form-guardar-asignacion" method="post">
-						<button id="guardar-cambios-asignacion" class="btn btn-primary" type="button">Guardar Cambios</button>
-						<input id="json_asignacion" name="json_asignacion" type="hidden"/>
-					</form>
+				
+			<button class="btn btn-primary dropdown-toggle">Guardar Cambios</button>
 				</div>
 			</div>
 		</div>	
