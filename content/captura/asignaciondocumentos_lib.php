@@ -4,6 +4,7 @@
 
 	function guardarAsignacion($jsonAsignacion){
 
+
 		/* Eliminando diagonales y decodificando el JSON */
 		$resultado = json_decode(stripslashes($jsonAsignacion));
 
@@ -17,7 +18,8 @@
 	}
 	
 	function consultaArchivosHtml(){
-		/* datos desde la sesion 
+		
+		/* datos desde la sesion */
 		$idEmpleado = $_SESSION['idEmpleado'];
 		$idPeriodos = $_SESSION['idPeriodos'];
 		$anioEvaluacion = $_SESSION['anioEvaluacion'];
