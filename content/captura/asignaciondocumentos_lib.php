@@ -38,7 +38,7 @@
 		while($row = mysql_fetch_array($resultSetAsignacion)){
 			$plantillaElementoAsignacion .="<div class='span1 seccion1-3'>";
 			$plantillaElementoAsignacion .=		"<span class='seleccion-documento'>";
-			$plantillaElementoAsignacion .= 		"<input type='checkbox'/>";
+			$plantillaElementoAsignacion .= 		"<input type='checkbox' title='{nombre: ".$row[0]."}'/>";
 			$plantillaElementoAsignacion .= 	"</span>";
 			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
 			$plantillaElementoAsignacion .= 		"<a href='#' class='pdf'>";
@@ -47,8 +47,12 @@
 			$plantillaElementoAsignacion .= 	"</div>";
 			$plantillaElementoAsignacion .= 	"<div class='span2 seccion3-2'>";
 			$plantillaElementoAsignacion .=			"<a href='#' rel='tooltip' title='".$row[1]."'>";
-			//if(){}
-			$plantillaElementoAsignacion .=				$row[1];
+			$nombreEvidencia = $row[1];
+			if(strlen($row[1]) > 10){
+				$plantillaElementoAsignacion .=	substr($nombreEvidencia, 0, 10)."...";
+			}else{
+				$plantillaElementoAsignacion .=	$nombreEvidencia;
+			}
 			$plantillaElementoAsignacion .=			"</a>";
 			$plantillaElementoAsignacion .=		"</div>";
 			$plantillaElementoAsignacion .= "</div>";

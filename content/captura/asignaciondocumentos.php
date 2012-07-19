@@ -28,7 +28,7 @@
 	<script type='text/javascript' src='../../js/bootstrap-modal.js'></script>
 	<script type='text/javascript' src='../../js/bootstrap-tooltip.js'></script>
 	<script type='text/javascript' src='../../js/bootstrap-dropdown.js'></script>
-	<script type='text/javascript' src='../../js/jquery-ui-1.8.21.custom.min.js'></script>	
+	<script type='text/javascript' src='../../js/jquery-ui-1.8.16.custom.min.js'></script>	
 
 
 	<!-- js application -->
@@ -191,7 +191,7 @@
 						<li>Seleccione los documentos</li>
 					</ul>
 				</div>
-				<div class="span2 seccion1-2" >
+				<div class="span2 seccion1-2" id="documentos-trayectorias">
 					<!-- documentos de trayectorias --> 
 					<?php echo consultaArchivosHtml(); ?>
 					<!-- termina documentos de trayectorias --> 
