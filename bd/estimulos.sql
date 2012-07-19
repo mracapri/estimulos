@@ -132,7 +132,7 @@ INSERT INTO `categoria_indicador` (`id_categoriaindicador`, `id_indicador`, `id_
 --
 
 CREATE TABLE IF NOT EXISTS `evaluacion` (
-  `anio` year(4) NOT NULL,
+  `anio` int(4) NOT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
   `fecha_captura` date DEFAULT NULL,
   `fecha_limite_captura` date DEFAULT NULL,
@@ -386,13 +386,16 @@ ALTER TABLE `porcentaje_indicador`
 
 /* PERMISOS ESPECIALES */
 
-CREATE TABLE IF NOT EXISTS `permisos_especiales` (
-  `rfc` varchar(10) DEFAULT NULL,
-  `anio` year(4) DEFAULT NULL,
-  PRIMARY KEY (`rfc`),
-  KEY `index_rfc` (`anio`),
-  KEY `index_anio5` (`anio`)
+CREATE TABLE IF NOT EXISTS permisos_especiales (
+  rfc varchar(10) NOT NULL,
+  anio int(4) NOT NULL,
+  INDEX rfc (rfc),
+  INDEX anio (anio),
+  PRIMARY KEY (rfc)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE permisos_especiales
+  ADD CONSTRAINT `fk_evaluacion_permisos` FOREIGN KEY (anio) REFERENCES evaluacion (anio) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /* REPORTES */
 
