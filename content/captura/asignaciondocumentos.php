@@ -192,59 +192,9 @@
 					</ul>
 				</div>
 				<div class="span2 seccion1-2" >
-					<div class="span1 seccion1-3" >
-						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="pdf2">
-							<a href='#' class='pdf'></a>
-						</div>
-						<div class="span2 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
-					</div>
-					</div>
-					<div class="span1 seccion1-3" >
-						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="pdf2">
-							<a href='#' class='pdf'></a>
-						</div>
-						<div class="span2 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
-					</div>
-					</div>
-					<div class="span1 seccion1-3" >
-						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="pdf2">
-							<a href='#' class='pdf'></a>
-						</div>
-						<div class="span2 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
-					</div>
-					</div>
-					<div class="span1 seccion1-3" >
-						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="pdf2">
-							<a href='#' class='pdf'></a>
-						</div>
-						<div class="span2 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
-					</div>
-					</div>
-					<div class="span1 seccion1-3" >
-						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="pdf2">
-							<a href='#' class='pdf'></a>
-						</div>
-						<div class="span2 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
-					</div>
-					</div>
-					<div class="span1 seccion1-3" >
-						<span class="seleccion-documento"><input type="checkbox" /></span>
-						<div class="pdf2">
-							<a href='#' class='pdf'></a>
-						</div>
-						<div class="span2 seccion3-2">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
-					</div>
+					<!-- documentos de trayectorias --> 
+					<?php echo consultaArchivosHtml(); ?>
+					<!-- termina documentos de trayectorias --> 
 				</div>
 				</div>
 				<div class="row-fluid">
