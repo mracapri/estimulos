@@ -146,6 +146,9 @@ CREATE TABLE IF NOT EXISTS `evaluacion` (
 -- Dumping data for table `evaluacion`
 --
 
+INSERT INTO `evaluacion` (`anio`, `descripcion`, `fecha_captura`, `fecha_limite_captura`, `fecha_evaluacion`, `fecha_limite_evaluacion`) VALUES
+(2010, 'Evaluacion 2012', '2012-01-12', '2012-01-12', '2012-01-12', '2012-01-12'),
+(2011, 'Evaluacion 2012', '2012-01-12', '2012-01-12', '2012-01-12', '2012-01-12');
 
 -- --------------------------------------------------------
 
@@ -194,6 +197,9 @@ CREATE TABLE IF NOT EXISTS `evaluador` (
 -- Dumping data for table `evaluador`
 --
 
+INSERT INTO `evaluador` (`RFC_evaluador`, `nombre`, `tipo`, `anio`) VALUES
+('RIAM821203', 'Mario Rivera Angeles', 'I', 2011),
+('TAAM801205', 'Jose Juan Martinez P', 'I', 2011);
 
 -- --------------------------------------------------------
 
@@ -271,39 +277,66 @@ CREATE TABLE IF NOT EXISTS `porcentaje_indicador` (
 --
 
 INSERT INTO `porcentaje_indicador` (`id_porcentajeindicador`, `id_categoriaindicador`, `porcentaje`, `descripcion`, `anio`) VALUES
-(1, 1, 3, NULL, NULL),
-(2, 2, 2, NULL, NULL),
-(3, 3, 2, NULL, NULL),
-(4, 4, 2, NULL, NULL),
-(5, 5, 5, NULL, NULL),
-(6, 6, 5, NULL, NULL),
-(7, 7, 5, NULL, NULL),
-(8, 8, 2, NULL, NULL),
-(9, 9, 2, NULL, NULL),
-(10, 10, 2, NULL, NULL),
-(11, 11, 5, NULL, NULL),
-(12, 12, 7, NULL, NULL),
-(13, 13, 5, NULL, NULL),
-(14, 14, 3, NULL, NULL),
-(15, 15, 5, NULL, NULL),
-(16, 16, 2, NULL, NULL),
-(17, 17, 3, NULL, NULL),
-(18, 18, 2, NULL, NULL),
-(19, 19, 3, NULL, NULL),
-(20, 20, 3, NULL, NULL),
-(21, 21, 2, NULL, NULL),
-(22, 20, 3, NULL, NULL),
-(23, 23, 3, NULL, NULL),
-(24, 24, 3, NULL, NULL),
-(25, 25, 3, NULL, NULL),
-(26, 26, 3, NULL, NULL),
-(27, 27, 3, NULL, NULL),
-(28, 28, 3, NULL, NULL),
-(29, 29, 3, NULL, NULL),
-(30, 30, 3, NULL, NULL),
-(31, 31, 3, NULL, NULL),
-(32, 32, 3, NULL, NULL),
-(33, 33, 3, NULL, NULL);
+(1, 1, 3, 'Puntuación máxima', NULL),
+(2, 2, 2, 'Puntuación máxima', NULL),
+(3, 3, 2, 'Puntuación máxima', NULL),
+(4, 4, 2, 'Puntuación máxima', NULL),
+(5, 5, 5, 'Aceptable', NULL),
+(6, 6, 5, 'Aceptable', NULL),
+(7, 7, 5, 'Aceptable', NULL),
+(8, 8, 2, 'Puntuación máxima', NULL),
+(9, 9, 2, 'Puntuación máxima', NULL),
+(10, 10, 2, 'Puntuación máxima', NULL),
+(11, 11, 5, 'Puntuación máxima', NULL),
+(12, 12, 7, 'Revista arbitrada y no arbitrada ', NULL),
+(13, 13, 5, 'Puntuación máxima', NULL),
+(14, 14, 3, 'Puntuación máxima', NULL),
+(15, 15, 5, 'Puntuación máxima', NULL),
+(16, 16, 2, 'Puntuación máxima', NULL),
+(17, 17, 3, 'Puntuación máxima', NULL),
+(18, 18, 2, 'Puntuación máxima', NULL),
+(19, 19, 3, 'Puntuación máxima', NULL),
+(20, 20, 3, 'Puntuación máxima', NULL),
+(21, 21, 2, 'Puntuación máxima', NULL),
+(22, 20, 3, 'Puntuación máxima', NULL),
+(23, 23, 3, 'Puntuación máxima', NULL),
+(24, 24, 3, 'Puntuación máxima', NULL),
+(25, 25, 3, 'Puntuación máxima', NULL),
+(26, 26, 3, 'Puntuación máxima', NULL),
+(27, 27, 3, 'Puntuación máxima', NULL),
+(28, 28, 3, 'Puntuación máxima', NULL),
+(29, 29, 3, 'Puntuación máxima', NULL),
+(30, 30, 3, 'Puntuación máxima', NULL),
+(31, 31, 3, 'Puntuación máxima', NULL),
+(32, 32, 3, 'Puntuación máxima', NULL),
+(33, 33, 3, 'Puntuación máxima', NULL),
+(34, 5, 4, 'Satisfactorio', NULL),
+(35, 6, 4, 'Satisfactorio', NULL),
+(36, 7, 4, 'Satisfactorio', NULL),
+(37, 12, 2, 'Revista no arbitrada ', NULL),
+(38, 12, 5, 'Revista no arbitrada', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reportes`
+--
+
+CREATE TABLE IF NOT EXISTS `reportes` (
+  `id_reporte` int(11) NOT NULL DEFAULT '0',
+  `nombre` varchar(100) DEFAULT NULL,
+  `path` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id_reporte`),
+  KEY `index_rfc` (`id_reporte`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reportes`
+--
+
+INSERT INTO `reportes` (`id_reporte`, `nombre`, `path`) VALUES
+(1, 'Reporte 1', 'reporte1.php'),
+(2, 'Reporte 2', 'reporte2.php');
 
 --
 -- Constraints for dumped tables
