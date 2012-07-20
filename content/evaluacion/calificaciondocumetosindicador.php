@@ -192,6 +192,12 @@
 							<label class="checkbox">Incorrecto
 								<input type="checkbox" name="incorrecto"/>
 							</label>
+							<select id="select01">
+								<option>Elegir</option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+							</select>
 							<textarea class="span4 text-area" placeholder="Comentario"></textarea>								
 							</form>
 						</div>
