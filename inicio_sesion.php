@@ -48,9 +48,7 @@
 					<li class="active">
 						<a id="nombre-persona" href="#">Inicio de Sesion</a>
 					</li>
-					<li class="brand">
-						<a href="#">BIENVENIDO</a>
-					</li>
+					<a class="brand" href="#">BIENVENIDO</a>
 				</ul>
 		    </div>
 	    </div>
