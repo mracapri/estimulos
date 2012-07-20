@@ -60,7 +60,6 @@
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
 							<i class="icon-user"></i>
 								Username
-						
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Perfil</a></li>

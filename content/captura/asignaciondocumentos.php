@@ -61,7 +61,20 @@
 					<li class="active">
 						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
-					<a class="brand" href="#">Asignación de Documentos a Indicadores</a>
+					<li class="brand">
+					<a href="#">Asignación de Documentos a Indicadores</a>
+					</li>
+					<div class="btn-group pull-right open">
+						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
+							<i class="icon-user"></i>
+								Username
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Perfil</a></li>
+							<li><a href="#">Settings</a></li>
+							<li><a href="#">Out</a></li>
+						</ul>
+					</div>
 				</ul>
 		    </div>
 	    </div>

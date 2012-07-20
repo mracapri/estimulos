@@ -56,6 +56,17 @@
 						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
 					<a class="brand" href="#">Elegir Docente a Evaluar</a>
+					<div class="btn-group pull-right open">
+						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
+							<i class="icon-user"></i>
+								Username
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Perfil</a></li>
+							<li><a href="#">Settings</a></li>
+							<li><a href="#">Out</a></li>
+						</ul>
+					</div>
 				</ul>
 		    </div>
 	    </div>
