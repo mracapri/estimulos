@@ -49,8 +49,9 @@
 				    </li>
 
 					<li class="active">
-						<a id="nombre-persona" href="#">Mario Rivera Angeles</a>
+						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
+					<a class="brand" href="#">Evaluación</a>
 				</ul>
 		    </div>
 	    </div>

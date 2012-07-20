@@ -1,5 +1,6 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
- "http://www.w3.org/TR/html4/strict.dtd">
+<?php
+	include "../../lib/librerias.php";
+?>
 <html>
 <head>
 
@@ -52,11 +53,9 @@
 				    </li>
 
 					<li class="active">
-						<a id="nombre-persona" href="#">Mtra. Margarita Nuñez Zamudio</a>
+						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
-					<li class="brand">
-					<a href="#">Elegir Docente a Evaluar </a>
-					</li>
+					<a class="brand" href="#">Elegir Docente a Evaluar</a>
 				</ul>
 		    </div>
 	    </div>

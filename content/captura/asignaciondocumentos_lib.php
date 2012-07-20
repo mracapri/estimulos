@@ -3,7 +3,7 @@
 	require_once("../../lib/librerias.php");
 
 	function guardarAsignacion($jsonAsignacion){
-
+	if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario
 
 		/* Eliminando diagonales y decodificando el JSON */
 		$resultado = json_decode(stripslashes($jsonAsignacion));
@@ -18,7 +18,7 @@
 	}
 	
 	function consultaArchivosHtml(){
-		
+	if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario	
 		/* datos desde la sesion */
 		$idEmpleado = $_SESSION['idEmpleado'];
 		$idPeriodos = $_SESSION['idPeriodos'];
@@ -79,7 +79,7 @@
 	}
 	
 	function consultaDetalleIndicador($idIndicador){
-		
+	if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario	
 
 		$sqlConsultas = "";
 		$sqlConsultas.= "SELECT ";

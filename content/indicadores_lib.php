@@ -2,6 +2,7 @@
 	include "lib/librerias.php";
 	
 	function generaIndicadoresHtml(){
+	if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario
 		/* SQL */
 		$sqlCategorias = "";
 		$sqlCategorias.= "SELECT ";

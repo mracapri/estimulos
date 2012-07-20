@@ -53,11 +53,9 @@
 				    </li>
 
 					<li class="active">
-						<a id="nombre-persona" href="#">Mtra. Margarita Nuñez Zamudio</a>
+						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
-					<li class="brand">
-					<a href="#">Evaluación Documentos Indicador</a>
-					</li>
+					<a class="brand" href="#">Evaluación Documentos Indicador</a>
 					<div class="btn-group pull-right open">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
 							<i class="icon-user"></i>

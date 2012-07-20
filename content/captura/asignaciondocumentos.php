@@ -61,9 +61,7 @@
 					<li class="active">
 						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
-					<li class="brand">
-					<a href="#">Asignación de Documentos a Indicadores</a>
-					</li>
+					<a class="brand" href="#">Asignación de Documentos a Indicadores</a>
 				</ul>
 		    </div>
 	    </div>

@@ -1,7 +1,8 @@
 <?php
-	include "../../lib/mysql.php";
+	include "../../lib/librerias.php";
 	
 	function generaIndicadoresHtml(){
+	if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario
 		/* SQL */
 		$sqlCategorias = "";
 		$sqlCategorias.= "SELECT ";
@@ -95,8 +96,5 @@
 		
 		return $plantillaElemento;
 	}
-	/* Funcion para mandar mensajes al log del navegador*/
-	function log_($mensaje){
-		error_log("\n".$mensaje."\n", 3, "/errors-estimulos.log");
-	 }
+	
 ?>
