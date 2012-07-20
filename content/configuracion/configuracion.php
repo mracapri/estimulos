@@ -55,6 +55,8 @@
 						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
 					<a class="brand" href="#">Mantenimiento</a>
+					<div class="span6">
+					</div>
 					<div class="btn-group pull-right open">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
 							<i class="icon-user"></i>
