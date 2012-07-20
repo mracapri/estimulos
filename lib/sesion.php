@@ -48,10 +48,11 @@
 
 		// store session data
 		$_SESSION['idEmpleado'] = "E704";
+		$_SESSION['rfcDocente'] = "CALN871110";
 		$_SESSION['idPeriodos'] = "44, 45, 46";
-		$_SESSION['anioEvaluacion'] = (2012-1);
+		$_SESSION['anioEvaluacion'] = 2012;
 		$_SESSION['usuarioFirmado'] = "1";
-		$_SESSION['nombreUsuario'] = "Mario Rivera Angeles";
+		$_SESSION['nombreUsuario'] = "Noe Abelino Cano Leon";
 	}
 
 	/* Terminar sesion */

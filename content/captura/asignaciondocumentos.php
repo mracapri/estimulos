@@ -1,10 +1,11 @@
 <?php
 	include "asignaciondocumentos_lib.php";
 
-	$jsonAsignacion = $_POST['json_asignacion'];
+	$jsonAsignacion = $_POST['json_asignacion'];	
+	$categoriaIndicador = $_GET['categoria_indicador'];	
 
 	if(!empty($jsonAsignacion)){
-		guardarAsignacion($jsonAsignacion);
+		guardarAsignacion($jsonAsignacion, $categoriaIndicador);
 	}
 ?>
 <html>
@@ -148,7 +149,7 @@
 				</div>
 				<div class="span2 seccion1-2" id="documentos-asignados">
 					<!-- documentos asgindos --> 
-					<?php echo consultaArchivosHtml(); ?>
+					<?php //echo consultaArchivosHtml(); ?>
 					<!-- termina documentos asignados --> 
 				</div>
 					<div class="row-fluid">
@@ -186,6 +187,7 @@
 					<form id="form-guardar-asignacion" method="post">
 						<button id="guardar-cambios-asignacion" class="btn btn-primary" type="button">Guardar Cambios</button>
 						<input id="json_asignacion" name="json_asignacion" type="hidden"/>
+						<input id="categoia_indicador" name="categoria_indicador" type="hidden" value="<?php echo $categoriaIndicador; ?>"/>
 					</form>
 				</div>
 			</div>
