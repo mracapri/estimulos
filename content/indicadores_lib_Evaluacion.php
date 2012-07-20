@@ -31,7 +31,7 @@
 			$sql.= 		"c.descripcion  as descripcion_categoria, ";
 			$sql.= 		"i.id_indicador, "; 
 			$sql.= 		"i.descripcion as descripcion_indicador, ";
-			$sql.= 		"ci.id_categoriaindicador, "; 
+			$sql.= 		"ci.id_categoriaindicador as categoria_indicador, "; 
 			$sql.= 		"pi.id_porcentajeindicador, "; 
 			$sql.= 		"pi.porcentaje ";
 			$sql.= 	"FROM "; 
@@ -82,7 +82,7 @@
 				$plantillaElemento .=		"[OBSERVACION]";
 				$plantillaElemento .=	"</div>";
 				$plantillaElemento .=	"<div class='span1 categorias'>";
-				$plantillaElemento .=		"<a href='calificaciondocumetosindicador.php?id_indicador=".$row[id_indicador]."' class='ver'></a>";
+				$plantillaElemento .=		"<a href='calificaciondocumetosindicador.php?id_indicador=".$row[id_indicador]."&categoria_indicador=".$row['categoria_indicador']."' class='ver'></a>";
 				$plantillaElemento .=	"</div>";
 				$plantillaElemento .="</div>";
 			
