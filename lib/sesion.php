@@ -47,8 +47,8 @@
 		//session_start();
 
 		// store session data
-		$_SESSION['idEmpleado'] = "E704";
-		$_SESSION['rfcDocente'] = "CALN871110";
+		$_SESSION['idEmpleado'] = "E195";
+		$_SESSION['rfcDocente'] = "SAZL700719";
 		$_SESSION['idPeriodos'] = "44, 45, 46";
 		$_SESSION['anioEvaluacion'] = 2012;
 		$_SESSION['usuarioFirmado'] = "1";

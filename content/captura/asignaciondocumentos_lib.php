@@ -7,6 +7,7 @@
 
 		// variables de sesion
 		$idEmpleado = $_SESSION['idEmpleado'];
+		$rfcDocente = $_SESSION['rfcDocente'];
 
 		/* Eliminando diagonales y decodificando el JSON */
 		$resultado = json_decode(stripslashes($jsonAsignacion));
@@ -16,7 +17,7 @@
 
 
 		/* elimina asignaciones para agregar las nuevas */
-		$sqlDelete = "delete from asignacion_indicador where id_categoriaindicador = ".$categoriaIndicador;
+		$sqlDelete = "delete from asignacion_indicador where rfc_docente = '".$rfcDocente."' and id_categoriaindicador = ".$categoriaIndicador;
 		mysql_query($sqlDelete,$conexion);
 
 
@@ -92,7 +93,7 @@
 		$sqlArchivos.= "SELECT urlCertificado, 'CERTIFICADO' as nombre FROM siin_trayectorias_docentes.traydoc_formacion_profesional WHERE  idempleado = '".$idEmpleado."' AND urlCertificado != ''";
 		$sqlArchivos.= "UNION ";
 		$sqlArchivos.= "SELECT documentoPromep, 'PROMEP' as nombre FROM  siin_trayectorias_docentes.traydoc_datos_complementarios WHERE idperiodo in (".$idPeriodos.") and idempleado = '".$idEmpleado."' AND documentoPromep != '' ";
-	
+
 		/* conexion a base de datos */
 		$conexion = getConnection();
 		
@@ -163,5 +164,59 @@
 		}
 	}
 
+
+	function consultaArchivosAsignadosHtml($idCategoriaIndicador){
+		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario	
+
+		/* datos desde la sesion */
+		$rfcDocente = $_SESSION['rfcDocente'];
+		$idPeriodos = $_SESSION['idPeriodos'];
+		$anioEvaluacion = $_SESSION['anioEvaluacion'];
+		
+		/* sql para obtener las evidencias del usuario */ 
+		$sqlArchivos = "";
+		$sqlArchivos .= "select doc_evidencia ";
+		$sqlArchivos .= "from asignacion_indicador ";
+		$sqlArchivos .= "where id_categoriaindicador = ".$idCategoriaIndicador." and rfc_docente = '".$rfcDocente."'";
 	
+		/* conexion a base de datos */
+		$conexion = getConnection();
+		
+		/* ejecucion del query en el manejador de base datos */
+		$resultSetAsignados = mysql_query($sqlArchivos);
+		echo mysql_error();
+		
+		/* barre consulta para generar html */
+		while($row = mysql_fetch_array($resultSetAsignados)){
+			$plantillaElementoAsignacion .="<div class='span1 seccion1-3'>";
+			$plantillaElementoAsignacion .=		"<span class='seleccion-documento'>";
+			$plantillaElementoAsignacion .= 		"<input type='checkbox' data-nombre-archivo='' />";
+			$plantillaElementoAsignacion .= 	"</span>";
+			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
+			$plantillaElementoAsignacion .= 		"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/7/".$row[0]."' class='pdf'>";
+			//$plantillaElementoAsignacion .=				$row[1];
+			$plantillaElementoAsignacion .= 		"</a>";
+			$plantillaElementoAsignacion .= 	"</div>";
+			$plantillaElementoAsignacion .= 	"<div class='span2 seccion3-2'>";
+			$plantillaElementoAsignacion .=			"<a href='#' rel='tooltip' title=''>";
+
+			/*
+			$nombreEvidencia = $row[1];
+			if(strlen($row[1]) > 10){
+				$plantillaElementoAsignacion .=	substr($nombreEvidencia, 0, 10)."...";
+			}else{
+				$plantillaElementoAsignacion .=	$nombreEvidencia;
+			}
+			*/
+
+			$plantillaElementoAsignacion .=			"</a>";
+			$plantillaElementoAsignacion .=		"</div>";
+			$plantillaElementoAsignacion .= "</div>";
+		}	
+		// cerrando conexion a base de datos
+		close($conexion);
+		
+		// retorna el resultado
+		return $plantillaElementoAsignacion;
+	}	
 ?>

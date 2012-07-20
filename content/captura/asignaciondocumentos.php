@@ -151,7 +151,7 @@
 				</div>
 				<div class="span2 seccion1-2" id="documentos-asignados">
 					<!-- documentos asgindos --> 
-					<?php //echo consultaArchivosHtml(); ?>
+					<?php echo consultaArchivosAsignadosHtml($categoriaIndicador); ?>
 					<!-- termina documentos asignados --> 
 				</div>
 					<div class="row-fluid">
