@@ -110,11 +110,11 @@
 								<label>Fecha captura</label>
 								<input name="input-fecha-captura" type="text" class="span12" value="<?php echo $inputFechaCaptura; ?>">
 								<label>Fecha limite captura</label>
-								<input name="input-fecha-limite-captura" type="text" class="span12" value="<? echo $inputFechaLimiteCaptura; ?>">
+								<input name="input-fecha-limite-captura" type="text" class="span12" value="<?php echo $inputFechaLimiteCaptura; ?>">
 								<label>Fecha evaluacion</label>
 								<input name="input-fecha-evaluacion" type="text" class="span12" value="<?php echo $inputFechaEvaluacion; ?>">
 								<label>Fecha limite evaluacion</label>
-								<input name="input-fecha-limite-evaluacion" type="text" class="span12" value="<? echo $inputFechaLimiteEvaluacion; ?>">
+								<input name="input-fecha-limite-evaluacion" type="text" class="span12" value="<?php echo $inputFechaLimiteEvaluacion; ?>">
 
 								<!-- botonos del formulario -->
 								<button type="button" class="btn btn-info" id="btn-guardar">Guardar</button>
