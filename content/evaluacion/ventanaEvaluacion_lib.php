@@ -1,5 +1,5 @@
 <?php
-	include "lib/librerias.php";
+	require_once("../../lib/librerias.php");
 	
 	function generaIndicadoresHtml(){
 	if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario
@@ -29,12 +29,13 @@
 			$sql.= "SELECT ";
 			$sql.= 		"c.id_categoria as id_categoria, ";
 			$sql.= 		"c.descripcion  as descripcion_categoria, ";
-			$sql.= 		"i.id_indicador as id_indicador, "; 
+			$sql.= 		"i.id_indicador, "; 
 			$sql.= 		"i.descripcion as descripcion_indicador, ";
 			$sql.= 		"ci.id_categoriaindicador as categoria_indicador, "; 
 			$sql.= 		"pi.id_porcentajeindicador, "; 
 			$sql.= 		"pi.porcentaje, ";
-			$sql.= 		"(select COALESCE(max(id_categoriaindicador),0)  from asignacion_indicador where id_categoriaindicador = ci.id_categoriaindicador) as estatus ";
+			$sql.= 		"(select COALESCE(max(id_categoriaindicador),0)  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador) as estatus, ";
+			$sql.= 		"(select motivo  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador) as observacion ";
 			$sql.= 	"FROM "; 
 			$sql.= 		"categoria As c, indicador As i, categoria_indicador As ci, porcentaje_indicador As pi ";
 			$sql.= 	"WHERE "; 
@@ -42,21 +43,22 @@
 			$sql.= 		"c.id_categoria = ci.id_categoria and ";
 			$sql.= 		"i.id_indicador = ci.id_indicador and ";
 			$sql.= 		"pi.id_categoriaindicador = ci.id_categoriaindicador ";		
-			
 
-			$resultSet = mysql_query($sql);
+
+			
+			$resultSet = mysql_query($sql);		
+			
 			
 			/* separador de plantilla */
 			$separador = "<div class='navbar-separador'></div>";
 			
 			/* barre consulta para generar html */
-
+			log_($indicadorHtml);
 			$contador = 1;
 			$sumaPorcentaje = 0;
 			while($row = mysql_fetch_array($resultSet)){			
-
 				$plantillaElemento .="<div class='row-fluid'>";
-				$plantillaElemento .=	"<div class='span3 categorias'>";
+				$plantillaElemento .=	"<div class='span2 categorias'>";
 				if($contador == 1){
 					$plantillaElemento .=		$row['descripcion_categoria'];	
 				}
@@ -68,10 +70,8 @@
 				if($contador == 1){
 					$plantillaElemento .=		"[PORCENTAJE_CATEGORIA]";	
 				}
-				
-				
 				$plantillaElemento .=	"</div>";
-				$plantillaElemento .=	"<div class='span4 categorias'>";
+				$plantillaElemento .=	"<div class='span3 categoria'>";
 				$plantillaElemento .=		$row['descripcion_indicador'];
 				$plantillaElemento .=	"</div>";
 				$plantillaElemento .=	"<div  class='span1 categorias'>";
@@ -80,14 +80,17 @@
 				$plantillaElemento .=	"<div  class='span2 categorias'>";
 
 				if($row['estatus'] > 0){
-					$plantillaElemento .=		"CAPTURADO";
+					$plantillaElemento .=		"EVALUADO";
 				}else{
 					$plantillaElemento .=		".........";
 				}
 
 				$plantillaElemento .=	"</div>";
+				$plantillaElemento .=	"<div  class='span2 categoria'>";
+				$plantillaElemento .=		$row['observacion'];
+				$plantillaElemento .=	"</div>";
 				$plantillaElemento .=	"<div class='span1 categorias'>";
-				$plantillaElemento .=		"<a href='content/captura/asignaciondocumentos.php?id_indicador=".$row[id_indicador]."&categoria_indicador=".$row['categoria_indicador']."' class='ver'></a>";
+				$plantillaElemento .=		"<a href='calificaciondocumetosindicador.php?id_indicador=".$row[id_indicador]."&categoria_indicador=".$row['categoria_indicador']."' class='ver'></a>";
 				$plantillaElemento .=	"</div>";
 				$plantillaElemento .="</div>";
 			
@@ -98,10 +101,8 @@
 			$plantillaElemento = str_replace("[PORCENTAJE_CATEGORIA]", $sumaPorcentaje, $plantillaElemento);
 		}
 		
-		// cerrando conexion a base de datos
-		close($conexion);
 		
 		return $plantillaElemento;
 	}
-
+	
 ?>

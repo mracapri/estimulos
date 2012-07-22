@@ -1,5 +1,5 @@
 <?php
-	include "asignaciondocumentos_lib.php";
+	require_once("asignaciondocumentos_lib.php");
 
 	$jsonAsignacion = $_POST['json_asignacion'];	
 	$categoriaIndicador = $_GET['categoria_indicador'];	

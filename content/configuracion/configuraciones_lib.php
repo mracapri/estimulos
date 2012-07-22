@@ -1,5 +1,5 @@
 <?php
-	include "../../lib/librerias.php";
+	require_once("../../lib/librerias.php");
 
 
 
