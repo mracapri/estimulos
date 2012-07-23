@@ -11,7 +11,7 @@
 	<meta name="robots" content="all" />	
 	
 	<!-- Titulo del documento -->		
-	<title>Programa de Estimulos</title>
+	<title>Calificación de documentos</title>
 
 	<!-- css bootstrap framework -->
 	<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css">
@@ -57,18 +57,18 @@
 					<li class="active">
 						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
-					<a class="brand" href="#">Evaluación Documentos Indicador</a>
+					<a class="brand" href="#">Evaluación documentos indicador</a>
 					<div class="span3">
 					</div>
 					<div class="btn-group pull-right open">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
 							<i class="icon-user"></i>
-								Username
+								<?php echo $_SESSION['rfcDocente']; ?>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Perfil</a></li>
-							<li><a href="#">Settings</a></li>
-							<li><a href="#">Out</a></li>
+							<li><a href="ventanaEvaluacion.php">Inicio</a></li>
+							<li><a href="elegirDocenteAEvaluar.php">Elegir docente</a></li>
+							<li><a href="#">Salir</a></li>
 				</ul>
 					</div>
 				</ul>
@@ -87,7 +87,7 @@
 					</a>
 					<ul class="dropdown-menu">
 					    <li>
-								<a href="#">Guia</a>
+							<a href="../recursos/GuiaE_DPA_2010_3.pdf" target="_blank">Guia</a>
 						</li>
 					</ul>
 				</div>
@@ -106,7 +106,7 @@
 			</div>
 
 			<div class="span2">
-				<button class="btn btn-danger">Cerrar sesion</button>
+				
 			</div>
 		</div>
 
