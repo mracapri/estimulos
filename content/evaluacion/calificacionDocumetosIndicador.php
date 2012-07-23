@@ -1,7 +1,5 @@
-<?php
-	require_once("calificacionDocumetosIndicador_lib.php");
-	require_once("../captura/asignaciondocumentos_lib.php");
-?>
+<?php session_start(); ?>
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -27,10 +25,7 @@
 	<script type='text/javascript' src='../../js/jquery-1.7.2.min.js'></script> <!-- esta libreria siempre tiene que ir al inicio -->
 	<script type='text/javascript' src='../../js/bootstrap.js'></script>
 	<script type='text/javascript' src='../../js/bootstrap-modal.js'></script>
-	<script type='text/javascript' src='../../js/bootstrap-dropdown.js'></script>
-	<script type='text/javascript' src='../../js/jquery-ui-1.8.21.custom.min.js'></script>
-	<script type='text/javascript' src='../../js/jquery-ui-1.8.21.custom.min.js'></script>
-	
+	<script type='text/javascript' src='../../js/bootstrap-dropdown.js'></script>	
 
 
 	<!-- js application -->
@@ -39,6 +34,12 @@
 	<!-- YUI -->
 	<script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
 
+	<?php
+		require_once("calificacionDocumetosIndicador_lib.php");
+		require_once("../captura/asignaciondocumentos_lib.php");
+
+		$categoriaIndicador = $_GET['categoria_indicador'];	
+	?>
 </head>
 
 <body>
@@ -145,38 +146,9 @@
 				
 				</div>
 				<div class="span2 seccion1-2">
-					<div class="span1 seccion1-3">
-						<div class="pdf">
-							<a href='#' class='pdf'></a>
-					</div>
-						<div class="span2 seccion3-2-1">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
-						</div>
-					</div>
-					<div class="span1 seccion1-3">
-						<div class="pdf">
-							<a href='#' class='pdf'></a>
-						</div>
-						<div class="span2 seccion3-2-1">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
-						</div>
-					</div>
-					<div class="span1 seccion1-3">
-						<div class="pdf">
-							<a href='#' class='pdf'></a>
-						</div>
-						<div class="span2 seccion3-2-1">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
-						</div>
-					</div>
-					<div class="span1 seccion1-3">
-						<div class="pdf">
-							<a href='#' class='pdf'></a>
-						</div>
-						<div class="span2 seccion3-2-1">
-							<a href="#" rel="tooltip" title="first tooltip">hover over me</a>
-						</div>
-					</div>
+					<?php 
+						echo consultaArchivosAsignadosHtml($categoriaIndicador); 
+					?>
 				</div>
 			</div>
 			<div class="span6 seccion2">
@@ -188,18 +160,14 @@
 				</div>
 				<div class="span6 seccion1-2 " >
 					<form class="well">
-							<input class="span4" type="text" placeholder="Porcentaje" name="porcentaje" />
-							<input class="span4" type="text" placeholder="Calificación" name="calificacion" />
-							<select id="select01">
-								<option>Elegir</option>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-							</select>
+							<label>Elija la calificacion</label>
+							<?php 
+								echo presentaCalificacion($categoriaIndicador);
+							?>
 							<label class="checkbox">Incorrecto
-								<input type="checkbox" name="incorrecto"/>
+								<input type="checkbox" id="incorrecto" name="incorrecto"/>
 							</label>
-							<textarea class="span4 text-area" placeholder="Comentario"></textarea>								
+							<textarea class="span4 text-area" placeholder="Comentario" id="input-comentario"></textarea>								
 							</form>
 						</div>
 				<div class="span4" id="boton">
@@ -207,12 +175,15 @@
 						<div class="span6"></div>
 						<div class="span4"></div>	
 					<div class="span1">
-					<button class="btn btn-danger">Guardar</button>
+					<button class="btn btn-danger" id="guardar-evaluacion">Guardar</button>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
+		<form method="post">
+			<input type="hidden" name="json-evaluacion" id="json-evaluacion"/>
+		</form>	
 	</div>
 
 </body>

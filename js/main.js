@@ -85,6 +85,42 @@ var UTVM = {
 
 			$("#form-guardar-asignacion").submit();
 		});
+
+		$("#input-calificacion").keyup(function(){
+			var calificacionMaxima = parseInt($(this).attr("title"));
+			var calificacionCapturada = parseInt($(this).val());
+			if(!isNaN(calificacionCapturada)){
+				if(!(calificacionCapturada >= 0 && calificacionCapturada <= calificacionMaxima) ){
+					$(this).val($(this).attr("title"));
+				}
+			}
+		});
+
+		$("#guardar-evaluacion").click(function(){
+
+			var multiPorcentaje = $("#input-calificacion option:selected").size();
+			var idPorcentajeindicador = 0;
+			if(multiPorcentaje > 0){
+				idPorcentajeindicador = $("#input-calificacion option:selected").attr("data-id-porcentajeindicador");	
+			}else{
+				idPorcentajeindicador = $("#input-calificacion").attr("data-id-porcentajeindicador");
+			}
+
+			var evaluacionIncorrecta = true;
+			if($("#incorrecto:checked").size() == 0 ){
+				evaluacionIncorrecta = false;
+			}
+
+			var evaluacion = {
+				idPorcentajeindicador: idPorcentajeindicador,
+				calificacion: $("#input-calificacion").val(),
+				comentario: $("#input-comentario").val(),
+				estado: evaluacionIncorrecta
+			};
+
+			$("#json-evaluacion").val(JSON.stringify(evaluacion));
+
+		});
 	},
 
 	/* funcion principal */

@@ -1,8 +1,10 @@
 <?php
-	include "lib/librerias.php";
+	include "../../lib/librerias.php";
 	
 	function generaIndicadoresHtml(){
-	if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario
+		
+		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario
+
 		/* SQL */
 		$sqlCategorias = "";
 		$sqlCategorias.= "SELECT ";
@@ -87,7 +89,7 @@
 
 				$plantillaElemento .=	"</div>";
 				$plantillaElemento .=	"<div class='span1 categorias'>";
-				$plantillaElemento .=		"<a href='content/captura/asignaciondocumentos.php?id_indicador=".$row[id_indicador]."&categoria_indicador=".$row['categoria_indicador']."' class='ver'></a>";
+				$plantillaElemento .=		"<a href='asignaciondocumentos.php?id_indicador=".$row[id_indicador]."&categoria_indicador=".$row['categoria_indicador']."' class='ver'></a>";
 				$plantillaElemento .=	"</div>";
 				$plantillaElemento .="</div>";
 			

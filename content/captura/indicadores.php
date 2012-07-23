@@ -32,10 +32,11 @@
 
 	<!-- YUI -->
 	<script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
-	
+
 	<?php
-		require_once("ventanaEvaluacion_lib.php");
+		require_once("indicadores_lib.php");
 	?>
+
 </head>
 
 <body>
@@ -47,14 +48,14 @@
 				<a class="brand" href="#">Programa de Estimulos</a>
 				<ul class="nav">
 				    <li>
-				    	<a href="#">Evaluador</a>
+				    	<a href="#">Docente</a>
 				    </li>
 
 					<li class="active">
 						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
-					<a class="brand" href="#">Evaluación</a>
-					<div class="span6">
+					<a class="brand" href="#">Asignación de evidencias </a>
+					<div class="span4">
 					</div>
 					<div class="btn-group pull-right open">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
@@ -74,7 +75,12 @@
 
 	<!-- contenedor principal -->
 	<div class="container">
+
+	
+		
+	
 		<div class="row-fluid">
+
 			    <div class="span2 categorias">
 					<div class="btn-group">
 					    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -88,15 +94,21 @@
 					    </ul>
 					 </div>
 				</div>
+
 			    <div class="span2 categorias">
 				   	<a href="#">Estado de la captura</a>
 				</div>
+
+
 				<div class="span6 categorias">
 					<div id="barra-estado" class="progress progress-striped active">
 						<div class="bar" style="width: <?php echo "20%"?> 	;">
 						</div>	
 					</div>
 				</div>
+
+
+
 				<div class="span2 categorias">
 				    <button class="btn btn-danger">Cerrar sesion</button>
 			   	</div>
@@ -108,23 +120,20 @@
 			<div id="indicadores" class="container">
 				<!--Linea de encabezado-->
 					<div class="row-fluid" id="indicadores-headers">
-						<div class="span2" id="encabezado">
+						<div class="span3" id="encabezado">
 							Categorias
 						</div>
 						<div class="span1" id="encabezado">	
 							Porcentaje Categoria
 						</div>
-						<div class="span3" id="encabezado">
+						<div class="span4" id="encabezado">
 							Indicador
 						</div>
 						<div  class="span1" id="encabezado">
 							Porcentaje Indicador
 						</div>
-						<div  class="span2" id="encabezados">
+						<div  class="span2" id="encabezado">
 							Estado
-						</div>
-						<div class="span2" id="encabezado">
-							Observacion
 						</div>
 						<div class="span1" id="encabezado">
 							Ver
@@ -138,19 +147,37 @@
 					</div>
 					
 				<?php echo generaIndicadoresHtml(); ?>
-			</div>
-			<br/>	
-			
-			<!--Botones -->
+
+				
+					<!--Botones -->
 				<div class="row-fluid show-grid">
 					<div class="span2 categorias"></div>
 					
-					<div class="span12 categorias">
+					<div class="span2 categorias">
 						<button class="btn btn-danger">Imprimir Reporte</button>
 					</div>
 					
+					<div class="span1 categorias"></div>
+					
+					
+					<div class="span2 categorias">
+						<button class="btn btn-danger">Enviar al Evaluador</button>
+					</div>
+					
+					<div class="span1 categorias"></div>
+					
+					<div class="span2 categorias">
+						<button class="btn btn-danger">Imprimir Acuse</button>
+					</div>
+					<div class="span2 categorias"></div>
 					
 				</div>
+						
+			</div>
+			<br/>	
 	</div>
+	
+
+
 </body>
 </html>

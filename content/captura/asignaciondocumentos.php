@@ -1,13 +1,5 @@
-<?php
-	require_once("asignaciondocumentos_lib.php");
-
-	$jsonAsignacion = $_POST['json_asignacion'];	
-	$categoriaIndicador = $_GET['categoria_indicador'];	
-
-	if(!empty($jsonAsignacion)){
-		guardarAsignacion($jsonAsignacion, $categoriaIndicador);
-	}
-?>
+<?php session_start(); ?>
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -45,6 +37,16 @@
 	<!-- YUI -->
 	<script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
 
+	<?php
+		require_once("asignaciondocumentos_lib.php");
+
+		$jsonAsignacion = $_POST['json_asignacion'];	
+		$categoriaIndicador = $_GET['categoria_indicador'];	
+
+		if(!empty($jsonAsignacion)){
+			guardarAsignacion($jsonAsignacion, $categoriaIndicador);
+		}
+	?>
 </head>
 
 <body>

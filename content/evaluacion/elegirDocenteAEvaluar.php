@@ -1,6 +1,5 @@
-<?php
-	require_once("../../lib/librerias.php");
-?>
+<?php session_start(); ?>
+<!DOCTYPE html>
 <html>
 <head>
 
@@ -27,10 +26,6 @@
 	<script type='text/javascript' src='../../js/bootstrap.js'></script>
 	<script type='text/javascript' src='../../js/bootstrap-modal.js'></script>
 	<script type='text/javascript' src='../../js/bootstrap-dropdown.js'></script>
-	<script type='text/javascript' src='../../js/jquery-ui-1.8.21.custom.min.js'></script>
-	<script type='text/javascript' src='../../js/jquery-ui-1.8.21.custom.min.js'></script>
-	
-
 
 	<!-- js application -->
 	<script type='text/javascript' src='../../js/main.js'></script>
@@ -38,6 +33,9 @@
 	<!-- YUI -->
 	<script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
 
+	<?php
+		require_once("../../lib/librerias.php");
+	?>
 </head>
 
 <body>

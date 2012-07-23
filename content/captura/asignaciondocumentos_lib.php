@@ -134,7 +134,7 @@
 	}
 	
 	function consultaDetalleIndicador($idIndicador){
-	if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario	
+		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario	
 
 		$sqlConsultas = "";
 		$sqlConsultas.= "SELECT ";
