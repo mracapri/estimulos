@@ -108,6 +108,10 @@
 
 		<div id="captura-indicadores" class="container">
 			<!-- diseno fluido con bootstrap -->
+			
+			<?php
+				require_once("elegirDocenteAEvaluar_lib.php");
+			?>
 			<div class="span12 seccion3">
 				<div class="span2 secciontext">
 					<ul>
@@ -120,144 +124,11 @@
 					</ul>
 				</div>
 				<div class="span11 seccion3-1">
-					<div class="span1 seccion1-3">
-						<span class="label label-info" "seleccion-documento">Evaluado</span>
-						<div class="usuario">
-							<a href='http://localhost/estimulos/content/evaluacion/VentanaEvaluacion.php' class='usuario'></a>
-						</div>
-						<div class="span1 seccion3-3">
-							<a href="#">Nombredocente</a>
-					</div>
-					</div>
-					<div class="span1 seccion1-3">
-						<span class="label label-important" "seleccion-documento">Sin evaluar</span>
-						<div class="usuario">
-							<a href='#' class='usuario'></a>
-						</div>
-						<div class="span1 seccion3-3">
-							<a href="#">Nombredocente</a>
-					</div>
-					</div>
-					<div class="span1 seccion1-3">
-						<span class="label label-info" "seleccion-documento">Evaluado</span>
-						<div class="usuario">
-							<a href='#' class='usuario'></a>
-						</div>
-						<div class="span1 seccion3-3">
-							<a href="#">Nombredocente</a>
-					</div>
-					</div>
-					<div class="span1 seccion1-3">
-						<span class="label label-info" "seleccion-documento">Evaluado</span>
-						<div class="usuario">
-							<a href='#' class='usuario'></a>
-						</div>
-						<div class="span1 seccion3-3">
-							<a href="#">Nombredocente</a>
-					</div>
-					</div>
-					<div class="span1 seccion1-3">
-						<span class="label label-info" "seleccion-documento">Evaluado</span>
-						<div class="usuario">
-							<a href='#' class='usuario'></a>
-						</div>
-						<div class="span1 seccion3-3">
-							<a href="#">Nombredocente</a>
-					</div>
-					</div>
-					<div class="span1 seccion1-3">
-						<span class="label label-info" "seleccion-documento">Evaluado</span>
-						<div class="usuario">
-							<a href='#' class='usuario'></a>
-						</div>
-						<div class="span1 seccion3-3">
-							<a href="#">Nombredocente</a>
-					</div>
-					</div>
-					<div class="span1 seccion1-3">
-						<span class="label label-info" "seleccion-documento">Evaluado</span>
-						<div class="usuario">
-							<a href='#' class='usuario'></a>
-						</div>
-						<div class="span1 seccion3-3">
-							<a href="#">Nombredocente</a>
-					</div>
-					</div>
-					<div class="span1 seccion1-3">
-						<span class="label label-info" "seleccion-documento">Evaluado</span>
-						<div class="usuario">
-							<a href='#' class='usuario'></a>
-						</div>
-						<div class="span1 seccion3-3">
-							<a href="#">Nombredocente</a>
-					</div>
-					</div>
-					<div class="span1 seccion1-3">
-						<span class="label label-info" "seleccion-documento">Evaluado</span>
-						<div class="usuario">
-							<a href='#' class='usuario'></a>
-						</div>
-						<div class="span1 seccion3-3">
-							<a href="#">Nombredocente</a>
-					</div>
-					</div>
-					<div class="span1 seccion1-3">
-						<span class="label label-info" "seleccion-documento">Evaluado</span>
-						<div class="usuario">
-							<a href='#' class='usuario'></a>
-						</div>
-						<div class="span1 seccion3-3">
-							<a href="#">Nombredocente</a>
-					</div>
-					</div>
-					<div class="span1 seccion1-3">
-						<span class="label label-info" "seleccion-documento">Evaluado</span>
-						<div class="usuario">
-							<a href='#' class='usuario'></a>
-						</div>
-						<div class="span1 seccion3-3">
-							<a href="#">Nombredocente</a>
-					</div>
-						</div>
-					<div class="span1 seccion1-3">
-						<span class="label label-important" "seleccion-documento">Sin evaluar</span>
-						<div class="usuario">
-							<a href='#' class='usuario'></a>
-					</div>
-						<div class="span1 seccion3-3">
-							<a href="#">Nombredocente</a>
+				<?php	
+					echo elegirDocenteEvaluar();
+				?>
 						</div>
 					</div>
-					<div class="span1 seccion1-3">
-						<span class="label label-important" "seleccion-documento">Sin evaluar</span>
-						<div class="usuario">
-							<a href='#' class='usuario'></a>
-						</div>
-						<div class="span1 seccion3-3">
-							<a href="#">Nombredocente</a>
 					</div>
-						</div>
-					<div class="span1 seccion1-3">
-						<span class="label label-important" "seleccion-documento">Sin evaluar</span>
-						<div class="usuario">
-							<a href='#' class='usuario'></a>
-					</div>
-						<div class="span1 seccion3-3">
-							<a href="#">Nombredocente</a>
-						</div>
-					</div>
-					<div class="span1 seccion1-3">
-						<span class="label label-important" "seleccion-documento">Sin evaluar</span>
-						<div class="usuario">
-							<a href='#' class='usuario'></a>
-						</div>
-						<div class="span1 seccion3-3">
-							<a href="#">Nombredocente</a>
-						</div>
-					</div>
-			</div>
-		</div>	
-	</div>
-
 </body>
 </html>

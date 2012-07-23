@@ -58,6 +58,14 @@ ul {
     margin: 13pt 13px;
     width: 100px;
 }
+.seccion1-3-1 {
+    border-radius: 0px 15px 15px 15px;
+    border: 1px solid gray;
+    float: left;
+    height: 100px;
+    margin: 50px 50px 50px 50px;
+    width: 100px;
+}
 
 .seccion1-4 {
     border: 1px solid;
@@ -92,7 +100,7 @@ ul {
 .seccion3-3 {
     border: 1px solid white;
     height: 10%;
-    margin: 90% -5% 2% 6%;
+    margin: 85% -5% 2% 6%;
     position: relative;
 }
 
