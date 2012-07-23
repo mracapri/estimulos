@@ -67,8 +67,7 @@
 					
 					<a href="#" class="brand">Asignación de documentos a indicadores</a>
 					
-					<div class="span3">
-					</div>
+					<div class="span2position">
 					<div class="btn-group pull-right open">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
 							<i class="icon-user"></i>
