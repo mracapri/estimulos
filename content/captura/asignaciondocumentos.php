@@ -65,9 +65,9 @@
 						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
 					
-					<a href="#" class="brand">Asignación de documentos a indicadores</a>
+						<a href="#" class="brand-2">Asignación de documentos a indicadores</a>
 					
-					<div class="span2position">
+					<div class="span2 position">
 					<div class="btn-group pull-right open">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
 							<i class="icon-user"></i>
@@ -78,6 +78,7 @@
 							<li><a href="#">Cerrar Sesión</a></li>
 							<li><a href="#"></a></li>
 						</ul>
+						</div>
 					</div>
 				</ul>
 		    </div>

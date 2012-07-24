@@ -50,15 +50,14 @@
 				<a class="brand" href="#">Programa de Estimulos</a>
 				<ul class="nav">
 				    <li>
-				    	<a href="#">Docente</a>
+				    	<a href="#">Admin.</a>
 				    </li>
 
 					<li class="active">
 						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
-					<a class="brand" href="#">Mantenimiento</a>
-					<div class="span6">
-					</div>
+					<a class="brand-2" href="#">Mantenimiento</a>
+					<div class="span2 position">
 					<div class="btn-group pull-right open">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
 							<i class="icon-user"></i>
@@ -69,6 +68,7 @@
 							<li><a href="#">Cerrar Sesión</a></li>
 							<li><a href="#"></a></li>
 				</ul>
+						</div>
 					</div>
 				</ul>
 		    </div>

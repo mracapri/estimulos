@@ -57,9 +57,8 @@
 					<li class="active">
 						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
-					<a class="brand" href="#">Evaluación</a>
-					<div class="span6">
-					</div>
+					<a class="brand-2" href="#">Evaluación</a>
+					<div class="span2 position">
 					<div class="btn-group pull-right open">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
 							<i class="icon-user"></i>
@@ -70,6 +69,7 @@
 							<li><a href="elegirDocenteAEvaluar.php">Elegir docente</a></li>
 							<li><a href="#">Cerrar Sesión</a></li>
 						</ul>
+					</div>
 					</div>
 				</ul>
 		    </div>

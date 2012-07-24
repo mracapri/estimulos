@@ -64,9 +64,10 @@
 				<a class="brand" href="#">Programa de Estimulos</a>
 				<ul class="nav">
 					<li class="active">
-						<a id="nombre-persona" href="#"></a>
+						<a id="nombre-persona" href="#">B i e n v e n i d o</a>
 					</li>
-					<a class="brand" href="#">BIENVENIDO</a>
+					<a class="brand-2" href="#"></a>
+					
 				</ul>
 		    </div>
 	    </div>
