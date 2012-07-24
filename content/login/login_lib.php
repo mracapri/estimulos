@@ -54,6 +54,7 @@
 			$_SESSION['idEmpleado'] = $row['idempleado'];	
 			$_SESSION['nombreUsuario'] = $row['nombreEmpleado'];
 			$_SESSION['rfcDocente'] = $usuario;
+			$_SESSION['rfcEvaluador'] = $usuario;
 			$_SESSION['anioEvaluacion'] = 2012 - 1;
 			$_SESSION['usuarioFirmado'] = "1";
 

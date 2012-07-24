@@ -102,7 +102,7 @@
 
 				<div class="span6 categorias">
 					<div id="barra-estado" class="progress progress-striped active">
-						<div class="bar" style="width: <?php echo "20%"?> 	;">
+						<div class="bar" style="width: <?php echo obtenerPorcentajeDeCaptura($_SESSION['rfcDocente'])."%"; ?> 	;">
 						</div>	
 					</div>
 				</div>

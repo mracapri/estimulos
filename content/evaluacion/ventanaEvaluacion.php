@@ -37,7 +37,7 @@
 		require_once("ventanaEvaluacion_lib.php");
 
 		// mantiene en sesion el rfc del docente a evaluar
-		$_SESSION['rfcDocenteAEvaluar'] = "SAZL700719";
+		$_SESSION['rfcDocenteAEvaluar'] = $_GET["rfc"];
 
 	?>
 </head>
@@ -93,11 +93,11 @@
 					 </div>
 				</div>
 			    <div class="span2 categorias">
-				   	<a href="#">Estado de la captura</a>
+				   	<a href="#">Estado de la evaluacion</a>
 				</div>
 				<div class="span6 categorias">
 					<div id="barra-estado" class="progress progress-striped active">
-						<div class="bar" style="width: <?php echo "20%"?> 	;">
+						<div class="bar" style="width: <?php echo obtenerPorcentajeDeEvaluacion($_SESSION['rfcDocenteAEvaluar'])."%"?> 	;">
 						</div>	
 					</div>
 				</div>

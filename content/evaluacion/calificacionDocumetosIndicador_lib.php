@@ -1,5 +1,50 @@
 <?php
 	require_once("../../lib/librerias.php");
+
+	function guardaCalificacion($jsonEvaluacion, $categoriaIndicador){
+		$resultado = json_decode(stripslashes($jsonEvaluacion));		
+		if(!empty($resultado)){
+			$idPorcentajeIndicador = $resultado->{'idPorcentajeindicador'};
+			$calificacion = $resultado->{'calificacion'};
+			$comentario = $resultado->{'comentario'};
+			$estado = $resultado->{'false'};
+			$rfcEvaluador = $_SESSION['rfcEvaluador'];
+
+			/* conexion a base de datos */
+			$conexion = getConnection();
+
+			$sqlGetFolio = "select COALESCE(max(id_evaluacionindicador),0)+1 as folio from evaluacion_indicador";
+
+			/* ejecucion del query en el manejador de base datos */
+			$resultSetGetFolio = mysql_query($sqlGetFolio, $conexion);			
+
+			if(mysql_num_rows($resultSetGetFolio) > 0	){
+				$row = mysql_fetch_array($resultSetGetFolio);
+				$folioNuevo = $row['folio'];
+
+				//insert into evaluacion_indicador (id_evaluacionindicador, id_categoriaindicador, RFC_docente, id_porcentajeindicador, cal_porcentaje, RFC_evaluador, estado, motivo)
+				
+				$sqlInsertEvaluacion = "";
+				$sqlInsertEvaluacion .= "insert into evaluacion_indicador ";
+				$sqlInsertEvaluacion .= "(id_evaluacionindicador, id_categoriaindicador, RFC_docente, id_porcentajeindicador, cal_porcentaje, RFC_evaluador, estado, motivo) ";
+				$sqlInsertEvaluacion .= "values ";
+				$sqlInsertEvaluacion .= "(";
+				$sqlInsertEvaluacion .= 	$folioNuevo.", ";
+				$sqlInsertEvaluacion .= 	$categoriaIndicador.", ";
+				$sqlInsertEvaluacion .= 	$_SESSION['rfcDocenteAEvaluar'].", ";				
+				$sqlInsertEvaluacion .= 	$idPorcentajeIndicador.", ";
+				$sqlInsertEvaluacion .= 	$calificacion.", ";
+				$sqlInsertEvaluacion .= 	$rfcEvaluador.", ";
+				$sqlInsertEvaluacion .= 	"1 , ";
+				$sqlInsertEvaluacion .= 	$comentario."";
+				$sqlInsertEvaluacion .= ") ";
+
+				echo "<br>".$sqlInsertEvaluacion."<br>";
+			}
+			// cerrando conexion a base de datos
+			close($conexion);
+		}
+	}
 	
 	function presentaCalificacion($idCategoriaindicador){
 

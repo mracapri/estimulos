@@ -1,5 +1,49 @@
 <?php
 	include "../../lib/librerias.php";
+
+	function obtenerPorcentajeDeCaptura($rfcDocente){
+
+		$porcentaje = 0;
+
+		/* conexion a base de datos */
+		$conexion = getConnection();
+
+
+		$sqlGetNumeroIndicadores = "";
+		$sqlGetNumeroIndicadores .= "SELECT ";
+		$sqlGetNumeroIndicadores .= 	"count(i.id_indicador) as numeroIndicadores ";
+		$sqlGetNumeroIndicadores .= "FROM ";
+		$sqlGetNumeroIndicadores .= 	"categoria As c, ";
+		$sqlGetNumeroIndicadores .= 	"indicador As i, ";
+		$sqlGetNumeroIndicadores .= 	"categoria_indicador As ci ";
+		$sqlGetNumeroIndicadores .= "WHERE ";
+		$sqlGetNumeroIndicadores .= 	"c.id_categoria = ci.id_categoria ";
+		$sqlGetNumeroIndicadores .= 	"and i.id_indicador = ci.id_indicador ";
+
+		/* ejecucion del query en el manejador de base datos */
+		$resultSetGetNumeroIndicadores = mysql_query($sqlGetNumeroIndicadores);
+		$row = mysql_fetch_array($resultSetGetNumeroIndicadores);
+
+		if(mysql_num_rows($resultSetGetNumeroIndicadores) > 0){
+			$sqlIndicadoresCapturados = "";
+			$sqlIndicadoresCapturados .= "select ai.id_categoriaindicador ";
+			$sqlIndicadoresCapturados .= "from asignacion_indicador ai, categoria_indicador ci ";
+			$sqlIndicadoresCapturados .= "where ai.RFC_docente = '".$rfcDocente."' and ai.id_categoriaindicador = ci.id_categoriaindicador group by 1";
+
+			/* ejecucion del query en el manejador de base datos */
+			$resultSetIndicadoresCapturados = mysql_query($sqlIndicadoresCapturados);
+			$indicadoresCapturados = mysql_num_rows($resultSetIndicadoresCapturados);
+
+			$numeroIndicadores = $row['numeroIndicadores'];
+			$porcentaje = round(($indicadoresCapturados / $numeroIndicadores)*100);
+			
+		}
+
+		// cerrando conexion a base de datos
+		close($conexion);
+
+		return $porcentaje;
+	}
 	
 	function generaIndicadoresHtml(){
 		
@@ -34,20 +78,17 @@
 			$sql.= 		"i.id_indicador as id_indicador, "; 
 			$sql.= 		"i.descripcion as descripcion_indicador, ";
 			$sql.= 		"ci.id_categoriaindicador as categoria_indicador, "; 
-			$sql.= 		"pi.id_porcentajeindicador, "; 
-			$sql.= 		"pi.porcentaje, ";
+			$sql.= 		"(select max(porcentaje) from porcentaje_indicador where id_categoriaindicador = ci.id_categoriaindicador) as porcentaje, ";
 			$sql.= 		"(select COALESCE(max(id_categoriaindicador),0)  from asignacion_indicador where id_categoriaindicador = ci.id_categoriaindicador) as estatus ";
 			$sql.= 	"FROM "; 
-			$sql.= 		"categoria As c, indicador As i, categoria_indicador As ci, porcentaje_indicador As pi ";
+			$sql.= 		"categoria As c, indicador As i, categoria_indicador As ci ";
 			$sql.= 	"WHERE "; 
-			$sql.= 		"ci.id_categoria = ".$idCategoria." and ";
-			$sql.= 		"c.id_categoria = ci.id_categoria and ";
-			$sql.= 		"i.id_indicador = ci.id_indicador and ";
-			$sql.= 		"pi.id_categoriaindicador = ci.id_categoriaindicador ";		
-			
+			$sql.= 		"ci.id_categoria = ".$idCategoria." ";
+			$sql.= 		"and c.id_categoria = ci.id_categoria ";
+			$sql.= 		"and i.id_indicador = ci.id_indicador ";
 
-			$resultSet = mysql_query($sql);
-			
+			$resultSet = mysql_query($sql);	
+
 			/* separador de plantilla */
 			$separador = "<div class='navbar-separador'></div>";
 			

@@ -120,6 +120,7 @@ var UTVM = {
 
 			$("#json-evaluacion").val(JSON.stringify(evaluacion));
 
+			$("#form-calificacion").submit();
 		});
 	},
 

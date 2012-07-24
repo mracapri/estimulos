@@ -1,6 +1,52 @@
 <?php
 	require_once("../../lib/librerias.php");
 	
+	function obtenerPorcentajeDeEvaluacion($rfcDocente){
+
+		$porcentaje = 0;
+
+		/* conexion a base de datos */
+		$conexion = getConnection();
+
+
+		$sqlGetNumeroIndicadores = "";
+		$sqlGetNumeroIndicadores .= "SELECT ";
+		$sqlGetNumeroIndicadores .= 	"count(i.id_indicador) as numeroIndicadores ";
+		$sqlGetNumeroIndicadores .= "FROM ";
+		$sqlGetNumeroIndicadores .= 	"categoria As c, ";
+		$sqlGetNumeroIndicadores .= 	"indicador As i, ";
+		$sqlGetNumeroIndicadores .= 	"categoria_indicador As ci ";
+		$sqlGetNumeroIndicadores .= "WHERE ";
+		$sqlGetNumeroIndicadores .= 	"c.id_categoria = ci.id_categoria ";
+		$sqlGetNumeroIndicadores .= 	"and i.id_indicador = ci.id_indicador ";
+
+		/* ejecucion del query en el manejador de base datos */
+		$resultSetGetNumeroIndicadores = mysql_query($sqlGetNumeroIndicadores);
+		$row = mysql_fetch_array($resultSetGetNumeroIndicadores);
+
+		if(mysql_num_rows($resultSetGetNumeroIndicadores) > 0){
+
+
+			$sqlIndicadoresEvaluados = "";
+			$sqlIndicadoresEvaluados .= "select ei.id_categoriaindicador  ";
+			$sqlIndicadoresEvaluados .= "from evaluacion_indicador ei, categoria_indicador ci ";
+			$sqlIndicadoresEvaluados .= "where ei.RFC_docente = '".$rfcDocente."' and ei.id_categoriaindicador = ci.id_categoriaindicador group by 1";
+
+			/* ejecucion del query en el manejador de base datos */
+			$resultSetIndicadoresEvaluados = mysql_query($sqlIndicadoresEvaluados);
+			$indicadoresEvaluados = mysql_num_rows($resultSetIndicadoresEvaluados);
+
+			$numeroIndicadores = $row['numeroIndicadores'];
+			$porcentaje = round(($indicadoresEvaluados / $numeroIndicadores)*100);
+			
+		}
+
+		// cerrando conexion a base de datos
+		close($conexion);
+
+		return $porcentaje;
+	}
+
 	function generaIndicadoresHtml(){
 	if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario
 		/* SQL */

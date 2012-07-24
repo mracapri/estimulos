@@ -9,7 +9,7 @@
 		if($tipo == 0){
 			header('Location: content/captura/indicadores.php');
 		}else{
-			header('Location: content/evaluacion/ventanaEvaluacion.php');
+			header('Location: content/evaluacion/elegirDocenteAEvaluar.php');
 		}
 	}
  ?>

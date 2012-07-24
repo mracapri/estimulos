@@ -91,14 +91,11 @@
 			
 
 			<div class="span2">
-				 <a href="#">Estado de la captura</a>
+
 			</div>
 
 			<div class="span5">
-				<div id="barra-estado" class="progress progress-striped active">
-					<div class="bar" style="width: 80%;">
-					</div>
-				</div>
+
 			</div>
 
 			<div class="span2">
@@ -124,11 +121,9 @@
 					</ul>
 				</div>
 				<div class="span11 seccion3-1">
-				<?php	
-					echo elegirDocenteEvaluar();
-				?>
-						</div>
-					</div>
-					</div>
+					<?php echo consultaDocentesAEvaluar(); ?>
+				</div>
+			</div>
+		</div>
 </body>
 </html>
