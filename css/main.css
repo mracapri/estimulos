@@ -328,10 +328,35 @@ a.opera {
     height: 0%;
     margin: -1% 0 0 1%;
 }
-terminar david
-.posicion
-{
-	border: 1px solid black;
-	left: 160px;
 
+.position {
+    position:relative;
+    margin-left: 115px;
+}
+
+.active
+{
+    background-color: #0088CC;
+    color: #FFFFFF;
+    text-decoration: none;
+	
+	width:325px;
+}
+.brand-2{
+    color: #999999;
+    display: block;
+    float: left;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 1;
+    margin-left: -20px;
+    padding: 8px 20px 12px;
+	width:350px;
+	text-decoration: none;  
+	
+}
+a.brand-2:hover
+{
+text-decoration: none; 
+color: white;
 }
