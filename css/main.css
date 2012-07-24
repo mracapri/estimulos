@@ -116,6 +116,13 @@ ul {
     border: 1px solid;
     margin: 7px;
 }
+.formato2 {
+	font-family: "Arial";
+    font-size: 1em;
+    font-weight: bold;
+	color:red;
+	
+	}
 .formato {
 	font-family: "Arial";
     font-size: 1em;
@@ -321,7 +328,7 @@ a.opera {
     height: 0%;
     margin: -1% 0 0 1%;
 }
-/*terminar david
+terminar david
 .posicion
 {
 	border: 1px solid black;
