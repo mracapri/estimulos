@@ -35,6 +35,10 @@
 	
 	<?php
 		require_once("ventanaEvaluacion_lib.php");
+
+		// mantiene en sesion el rfc del docente a evaluar
+		$_SESSION['rfcDocenteAEvaluar'] = "SAZL700719";
+
 	?>
 </head>
 

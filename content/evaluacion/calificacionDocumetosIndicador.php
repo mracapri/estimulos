@@ -39,6 +39,10 @@
 		require_once("../captura/asignaciondocumentos_lib.php");
 
 		$categoriaIndicador = $_GET['categoria_indicador'];	
+		$jsonEvaluacion = $_POST['json-evaluacion'];
+		if(!empty($jsonEvaluacion)){
+			guardaCalificacion($jsonEvaluacion, $categoriaIndicador);
+		}		
 	?>
 </head>
 
@@ -181,7 +185,7 @@
 				</div>
 			</div>
 		</div>
-		<form method="post">
+		<form id="form-calificacion" method="post">
 			<input type="hidden" name="json-evaluacion" id="json-evaluacion"/>
 		</form>	
 	</div>
