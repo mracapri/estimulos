@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 17, 2012 at 10:02 a.m.
+-- Generation Time: Jul 24, 2012 at 04:04 p.m.
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -43,6 +43,14 @@ CREATE TABLE IF NOT EXISTS `asignacion_indicador` (
 -- Dumping data for table `asignacion_indicador`
 --
 
+INSERT INTO `asignacion_indicador` (`id_asignacionindicador`, `id_categoriaindicador`, `RFC_docente`, `fecha`, `anio`, `doc_evidencia`) VALUES
+(1, 1, 'SAZL700719', '2012-07-23', 2011, 'E195_20120502_660.pdf'),
+(2, 2, 'SAZL700719', '2012-07-23', 2011, 'E195_20120426_95024.pdf'),
+(3, 2, 'SAZL700719', '2012-07-23', 2011, 'E195_20120426_95024.pdf'),
+(4, 3, 'SAZL700719', '2012-07-23', 2011, 'E195_20120426_95024.pdf'),
+(5, 3, 'SAZL700719', '2012-07-23', 2011, 'E195_20120426_95024.pdf'),
+(6, 4, 'SAZL700719', '2012-07-23', 2011, 'E195_20120426_95024.pdf'),
+(7, 4, 'SAZL700719', '2012-07-23', 2011, 'E195_20120426_95024.pdf');
 
 -- --------------------------------------------------------
 
@@ -258,6 +266,46 @@ INSERT INTO `indicador` (`id_indicador`, `descripcion`, `anio`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `participantes`
+--
+
+CREATE TABLE IF NOT EXISTS `participantes` (
+  `RFC` varchar(10) NOT NULL DEFAULT '',
+  `fecha` date DEFAULT NULL,
+  `estado` enum('0','1') NOT NULL,
+  `anio` int(4) DEFAULT NULL,
+  PRIMARY KEY (`RFC`),
+  KEY `RFC` (`RFC`),
+  KEY `anio` (`anio`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `participantes`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permisos_especiales`
+--
+
+CREATE TABLE IF NOT EXISTS `permisos_especiales` (
+  `RFC` varchar(10) NOT NULL DEFAULT '',
+  `anio` int(4) DEFAULT NULL,
+  PRIMARY KEY (`RFC`),
+  KEY `RFC` (`RFC`),
+  KEY `anio` (`anio`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `permisos_especiales`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `porcentaje_indicador`
 --
 
@@ -384,9 +432,16 @@ ALTER TABLE `indicador`
   ADD CONSTRAINT `fk_anio2` FOREIGN KEY (`anio`) REFERENCES `evaluacion` (`anio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `modificaciones`
+-- Constraints for table `participantes`
 --
+ALTER TABLE `participantes`
+  ADD CONSTRAINT `fk_evaluacion_participantes` FOREIGN KEY (`anio`) REFERENCES `evaluacion` (`anio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
+--
+-- Constraints for table `permisos_especiales`
+--
+ALTER TABLE `permisos_especiales`
+  ADD CONSTRAINT `fk_evaluacion_permisos` FOREIGN KEY (`anio`) REFERENCES `evaluacion` (`anio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `porcentaje_indicador`
@@ -398,27 +453,3 @@ ALTER TABLE `porcentaje_indicador`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-/* PERMISOS ESPECIALES */
-
-CREATE TABLE IF NOT EXISTS permisos_especiales (
-  `RFC` varchar(10) DEFAULT NULL,
-  `anio` int(4) DEFAULT NULL,
-  INDEX RFC (RFC),
-  INDEX anio (anio),
-  PRIMARY KEY (RFC)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-ALTER TABLE permisos_especiales
-  ADD CONSTRAINT `fk_evaluacion_permisos` FOREIGN KEY (anio) REFERENCES evaluacion (anio) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-/* REPORTES */
-
-CREATE TABLE IF NOT EXISTS `reportes` (
-  `id_reporte` integer DEFAULT NULL,
-  `nombre` varchar(100) DEFAULT NULL,
-  `path` varchar(250) DEFAULT NULL,
-  PRIMARY KEY (`id_reporte`),
-  KEY `index_rfc` (`id_reporte`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
