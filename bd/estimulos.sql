@@ -43,14 +43,6 @@ CREATE TABLE IF NOT EXISTS `asignacion_indicador` (
 -- Dumping data for table `asignacion_indicador`
 --
 
-INSERT INTO `asignacion_indicador` (`id_asignacionindicador`, `id_categoriaindicador`, `RFC_docente`, `fecha`, `anio`, `doc_evidencia`) VALUES
-(1, 1, 'SAZL700719', '2012-07-23', 2011, 'E195_20120502_660.pdf'),
-(2, 2, 'SAZL700719', '2012-07-23', 2011, 'E195_20120426_95024.pdf'),
-(3, 2, 'SAZL700719', '2012-07-23', 2011, 'E195_20120426_95024.pdf'),
-(4, 3, 'SAZL700719', '2012-07-23', 2011, 'E195_20120426_95024.pdf'),
-(5, 3, 'SAZL700719', '2012-07-23', 2011, 'E195_20120426_95024.pdf'),
-(6, 4, 'SAZL700719', '2012-07-23', 2011, 'E195_20120426_95024.pdf'),
-(7, 4, 'SAZL700719', '2012-07-23', 2011, 'E195_20120426_95024.pdf');
 
 -- --------------------------------------------------------
 
@@ -154,9 +146,6 @@ CREATE TABLE IF NOT EXISTS `evaluacion` (
 -- Dumping data for table `evaluacion`
 --
 
-INSERT INTO `evaluacion` (`anio`, `descripcion`, `fecha_captura`, `fecha_limite_captura`, `fecha_evaluacion`, `fecha_limite_evaluacion`) VALUES
-(2010, 'Evaluacion 2012', '2012-01-12', '2012-01-12', '2012-01-12', '2012-01-12'),
-(2011, 'Evaluacion 2012', '2012-01-12', '2012-01-12', '2012-01-12', '2012-01-12');
 
 -- --------------------------------------------------------
 
@@ -205,9 +194,6 @@ CREATE TABLE IF NOT EXISTS `evaluador` (
 -- Dumping data for table `evaluador`
 --
 
-INSERT INTO `evaluador` (`RFC_evaluador`, `nombre`, `tipo`, `anio`) VALUES
-('RIAM821203', 'Mario Rivera Angeles', 'I', 2011),
-('TAAM801205', 'Jose Juan Martinez P', 'I', 2011);
 
 -- --------------------------------------------------------
 
@@ -382,9 +368,6 @@ CREATE TABLE IF NOT EXISTS `reportes` (
 -- Dumping data for table `reportes`
 --
 
-INSERT INTO `reportes` (`id_reporte`, `nombre`, `path`) VALUES
-(1, 'Reporte 1', 'reporte1.php'),
-(2, 'Reporte 2', 'reporte2.php');
 
 --
 -- Constraints for dumped tables
