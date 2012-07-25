@@ -199,7 +199,7 @@
 			$plantillaElementoAsignacion .= 		"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/7/".$row[0]."' class='pdf'>";
 			$plantillaElementoAsignacion .= 		"</a>";
 			$plantillaElementoAsignacion .= 	"</div>";
-			$plantillaElementoAsignacion .= 	"<div class='span2 seccion3-2'>";
+			$plantillaElementoAsignacion .= 	"<div class='span1 seccion3-2'>";
 			$plantillaElementoAsignacion .=			"<a href='#' rel='tooltip' title=''>";
 			if(!empty($row['nombre'])){
 				$plantillaElementoAsignacion .=			$row['nombre'];	
