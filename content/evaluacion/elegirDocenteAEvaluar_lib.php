@@ -5,10 +5,11 @@
 	{
 
 		$sqlDocentes = "SELECT a.idempleado as idempleado, concat(b.nombre ,' ',  b.paterno, ' ',  b.materno) as nombre, b.rfc ";
-		$sqlDocentes .= "FROM siin_generales.gral_usuarios_adscripcion a, siin_generales.gral_usuarios b ";
+		$sqlDocentes .= "FROM siin_generales.gral_usuarios_adscripcion a, siin_generales.gral_usuarios b, participantes c ";
 		$sqlDocentes .= "WHERE a.idperiodo LIKE '48' "; // periodo actual?
 		$sqlDocentes .= "AND a.idempleado = b.idempleado ";
-		$sqlDocentes .= "AND a.idnivel IN ( 6, 7, 8, 9, 10 )";
+		$sqlDocentes .= "AND a.idnivel IN ( 6, 7, 8, 9, 10 ) ";
+		$sqlDocentes .= "AND b.rfc = c.rfc";
 
 		/* conexion a base de datos */
 		$conexion = getConnection();
