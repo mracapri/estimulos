@@ -106,7 +106,7 @@
 		
 		/* barre consulta para generar html */
 		while($row = mysql_fetch_array($resultSetAsignacion)){
-			$plantillaElementoAsignacion .="<div class='span1 seccion1-3-1'>";
+			$plantillaElementoAsignacion .="<div class='span1 seccion1-3'>";
 			$plantillaElementoAsignacion .=		"<span class='seleccion-documento'>";
 			$plantillaElementoAsignacion .= 		"<input type='checkbox' data-nombre-archivo='".$row[0]."' />";
 			$plantillaElementoAsignacion .= 	"</span>";
@@ -114,10 +114,7 @@
 			$plantillaElementoAsignacion .= 		"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/7/".$row[0]."' class='pdf'>";
 			$plantillaElementoAsignacion .= 		"</a>";
 			$plantillaElementoAsignacion .= 	"</div>";
-			$plantillaElementoAsignacion .= 	"<div class='span1 formato2 seccion3-2'> ";
-			$plantillaElementoAsignacion .=			"$row[0]" ;
-			$plantillaElementoAsignacion .=		"</div>";
-			$plantillaElementoAsignacion .= 	"<div class='span2 seccion3-2'>";
+			$plantillaElementoAsignacion .= 	"<div class='span1 seccion3-2'>";
 			$plantillaElementoAsignacion .=			"<a href='#' rel='tooltip' title='".$row[3]."'>";
 			$nombreEvidencia = $row[3];
 			if(strlen($row[1]) > 10){
