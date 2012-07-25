@@ -55,7 +55,7 @@ ul {
     border: 1px solid gray;
     float: left;
     height: 100px;
-    margin: 13pt 13px;
+    margin: 13pt 13px 50px;
     width: 100px;
 }
 .seccion1-3-1 {
@@ -93,7 +93,7 @@ ul {
 
 .seccion3-2 {
 	border: 1px solid white;
-    height: 10%;
+    height: 50px;
     margin: 13% 5% 2% 6%;
  
 }
@@ -159,6 +159,7 @@ a.usuario {
 }
 input.span4 {
     height: 26px;
+	width:100px;
 }
 
 /********************************************************************************
@@ -331,16 +332,16 @@ a.opera {
 
 .position {
     position:relative;
-    margin-left: 115px;
+    margin-left: 8px;
 }
+
 
 .active
 {
     background-color: #0088CC;
     color: #FFFFFF;
     text-decoration: none;
-	
-	width:325px;
+	width:400px;
 }
 .brand-2{
     color: #999999;
@@ -351,7 +352,7 @@ a.opera {
     line-height: 1;
     margin-left: -20px;
     padding: 8px 20px 12px;
-	width:350px;
+	width:358px;
 	text-decoration: none;  
 	
 }

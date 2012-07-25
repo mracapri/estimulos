@@ -105,7 +105,7 @@
 		
 		/* barre consulta para generar html */
 		while($row = mysql_fetch_array($resultSetAsignacion)){
-			$plantillaElementoAsignacion .="<div class='span1 seccion1-3-1'>";
+			$plantillaElementoAsignacion .="<div class='span1 seccion1-3'>";
 			$plantillaElementoAsignacion .=		"<span class='seleccion-documento'>";
 			$plantillaElementoAsignacion .= 		"<input type='checkbox' data-nombre-archivo='".$row[0]."' />";
 			$plantillaElementoAsignacion .= 	"</span>";
@@ -114,7 +114,7 @@
 			//$plantillaElementoAsignacion .=				$row[1];
 			$plantillaElementoAsignacion .= 		"</a>";
 			$plantillaElementoAsignacion .= 	"</div>";
-			$plantillaElementoAsignacion .= 	"<div class='span2 formato2 seccion3-2'> ";
+			$plantillaElementoAsignacion .= 	"<div class='span1 formato2 seccion3-2'> ";
 			$plantillaElementoAsignacion .=			"$row[0]" ;
 			$plantillaElementoAsignacion .=		"</div>";
 			$plantillaElementoAsignacion .= 	"<div class='span2 seccion3-2'>";
