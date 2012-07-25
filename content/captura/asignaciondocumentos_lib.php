@@ -78,21 +78,22 @@
 		$anioEvaluacion = $_SESSION['anioEvaluacion'];
 		
 		/* sql para obtener las evidencias del usuario */ 
-		$sqlArchivos = "SELECT evidencia, nombre, 'LOGROS' FROM siin_trayectorias_docentes.traydoc_datos_logros WHERE fecha like '%".$anioEvaluacion."%' and idempleado = '".$idEmpleado."' AND evidencia != '' ";
+		$sqlArchivos = "";
+		$sqlArchivos.= "SELECT a.evidencia, a.competencia, a.idempleado, b.nombre ";
+		$sqlArchivos.= "FROM siin_trayectorias_docentes.traydoc_portafolio a, siin_trayectorias_docentes.traydoc_portafolio_leyendas b ";
+		$sqlArchivos.= "WHERE a.idperiodo IN ( ".$idPeriodos." ) AND a.idempleado = '".$idEmpleado."' AND a.competencia = b.id ";
+		
 		$sqlArchivos.= "UNION ";
-		$sqlArchivos.= "SELECT evidencia, nombre, 'PREMIOS' FROM siin_trayectorias_docentes.traydoc_datos_premios WHERE fecha like '%".$anioEvaluacion."%' and idempleado = '".$idEmpleado."'  AND evidencia != '' ";
+		
+		$sqlArchivos.= "SELECT evidencia, '', idempleado, nombre ";
+		$sqlArchivos.= "FROM siin_trayectorias_docentes.traydoc_estimulos_preda ";
+		$sqlArchivos.= "WHERE anyo = '".($anioEvaluacion+1)."' AND idempleado = '".$idEmpleado."' and tipo = 'preda' ";
+		
 		$sqlArchivos.= "UNION ";
-		$sqlArchivos.= "SELECT evidencia, '' as nombre, 'FORMACION ACADEMICA' FROM  siin_trayectorias_docentes.traydoc_formacion_academica WHERE evidencia LIKE '%".$anioEvaluacion."%' AND idempleado = '".$idEmpleado."' AND evidencia != '' ";
-		$sqlArchivos.= "UNION ";
-		$sqlArchivos.= "SELECT evidencia, '' as nombre, 'PORTAFOLIO' FROM siin_trayectorias_docentes.traydoc_portafolio WHERE idperiodo IN ( ".$idPeriodos." ) AND idempleado = '".$idEmpleado."' AND evidencia != '' ";
-		$sqlArchivos.= "UNION ";
-		$sqlArchivos.= "SELECT urlTitulo, 'TITULO' as nombre, 'FORMACION PROFESIONAL' FROM siin_trayectorias_docentes.traydoc_formacion_profesional WHERE  idempleado = '".$idEmpleado."' AND urlTitulo != '' ";
-		$sqlArchivos.= "UNION ";
-		$sqlArchivos.= "SELECT urlCedula, 'CEDULA' as nombre, 'FORMACION PROFESIONAL' FROM siin_trayectorias_docentes.traydoc_formacion_profesional WHERE  idempleado = '".$idEmpleado."' AND urlCedula != '' ";
-		$sqlArchivos.= "UNION ";
-		$sqlArchivos.= "SELECT urlCertificado, 'CERTIFICADO' as nombre, 'FORMACION PROFESIONAL' FROM siin_trayectorias_docentes.traydoc_formacion_profesional WHERE  idempleado = '".$idEmpleado."' AND urlCertificado != '' ";
-		$sqlArchivos.= "UNION ";
-		$sqlArchivos.= "SELECT documentoPromep, 'PROMEP' as nombre, 'DATOS COMPLEMENTARIOS' FROM  siin_trayectorias_docentes.traydoc_datos_complementarios WHERE idperiodo in (".$idPeriodos.") and idempleado = '".$idEmpleado."' AND documentoPromep != '' ";
+		
+		$sqlArchivos.= "SELECT evidencia, '', idempleado, nombre ";
+		$sqlArchivos.= "FROM siin_trayectorias_docentes.traydoc_estimulos_preda ";
+		$sqlArchivos.= "WHERE anyo = '".($anioEvaluacion+1)."' AND idempleado = '".$idEmpleado."' and tipo = 'estimulo'";
 
 
 		/* conexion a base de datos */
@@ -105,21 +106,20 @@
 		
 		/* barre consulta para generar html */
 		while($row = mysql_fetch_array($resultSetAsignacion)){
-			$plantillaElementoAsignacion .="<div class='span1 seccion1-3'>";
+			$plantillaElementoAsignacion .="<div class='span1 seccion1-3-1'>";
 			$plantillaElementoAsignacion .=		"<span class='seleccion-documento'>";
 			$plantillaElementoAsignacion .= 		"<input type='checkbox' data-nombre-archivo='".$row[0]."' />";
 			$plantillaElementoAsignacion .= 	"</span>";
 			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
 			$plantillaElementoAsignacion .= 		"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/7/".$row[0]."' class='pdf'>";
-			//$plantillaElementoAsignacion .=				$row[1];
 			$plantillaElementoAsignacion .= 		"</a>";
 			$plantillaElementoAsignacion .= 	"</div>";
 			$plantillaElementoAsignacion .= 	"<div class='span1 formato2 seccion3-2'> ";
 			$plantillaElementoAsignacion .=			"$row[0]" ;
 			$plantillaElementoAsignacion .=		"</div>";
 			$plantillaElementoAsignacion .= 	"<div class='span2 seccion3-2'>";
-			$plantillaElementoAsignacion .=			"<a href='#' rel='tooltip' title='".$row[1]."'>";
-			$nombreEvidencia = $row[1];
+			$plantillaElementoAsignacion .=			"<a href='#' rel='tooltip' title='".$row[3]."'>";
+			$nombreEvidencia = $row[3];
 			if(strlen($row[1]) > 10){
 				$plantillaElementoAsignacion .=	substr($nombreEvidencia, 0, 10)."...";
 			}else{
@@ -180,10 +180,11 @@
 		
 		/* sql para obtener las evidencias del usuario */ 
 		$sqlArchivos = "";
-		$sqlArchivos .= "select doc_evidencia ";
+		$sqlArchivos .= "select doc_evidencia, ";
+		$sqlArchivos .= "(select coalesce((select nombre FROM siin_trayectorias_docentes.traydoc_portafolio_leyendas where id = competencia), 'SIN CLASIFICACION') from siin_trayectorias_docentes.traydoc_portafolio tp where tp.evidencia = doc_evidencia) as nombre ";
 		$sqlArchivos .= "from asignacion_indicador ";
 		$sqlArchivos .= "where id_categoriaindicador = ".$idCategoriaIndicador." and rfc_docente = '".$rfcDocente."'";
-	
+
 		/* conexion a base de datos */
 		$conexion = getConnection();
 		
@@ -195,25 +196,19 @@
 		while($row = mysql_fetch_array($resultSetAsignados)){
 			$plantillaElementoAsignacion .="<div class='span1 seccion1-3'>";
 			$plantillaElementoAsignacion .=		"<span class='seleccion-documento'>";
-			$plantillaElementoAsignacion .= 		"<input type='checkbox' data-nombre-archivo='' />";
+			$plantillaElementoAsignacion .= 		"<input type='checkbox' data-nombre-archivo='".$row[0]."' />";
 			$plantillaElementoAsignacion .= 	"</span>";
 			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
 			$plantillaElementoAsignacion .= 		"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/7/".$row[0]."' class='pdf'>";
-			//$plantillaElementoAsignacion .=				$row[1];
 			$plantillaElementoAsignacion .= 		"</a>";
 			$plantillaElementoAsignacion .= 	"</div>";
 			$plantillaElementoAsignacion .= 	"<div class='span2 seccion3-2'>";
 			$plantillaElementoAsignacion .=			"<a href='#' rel='tooltip' title=''>";
-
-			/*
-			$nombreEvidencia = $row[1];
-			if(strlen($row[1]) > 10){
-				$plantillaElementoAsignacion .=	substr($nombreEvidencia, 0, 10)."...";
+			if(!empty($row['nombre'])){
+				$plantillaElementoAsignacion .=			$row['nombre'];	
 			}else{
-				$plantillaElementoAsignacion .=	$nombreEvidencia;
+				$plantillaElementoAsignacion .=			$row['doc_evidencia'];	
 			}
-			*/
-
 			$plantillaElementoAsignacion .=			"</a>";
 			$plantillaElementoAsignacion .=		"</div>";
 			$plantillaElementoAsignacion .= "</div>";

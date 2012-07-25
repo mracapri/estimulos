@@ -70,19 +70,21 @@ var UTVM = {
 		});
 
 		$("#guardar-cambios-asignacion").click(function(){			
-			var documento ={
-				nombre: ""
-			};
 			var documentos = new Array();
 			$.each($("#documentos-asignados input[type=checkbox]"), function(key, value){
 				var nombreDocumento = $(value).attr('data-nombre-archivo');
+
+				var documento ={
+					nombre: ""
+				};				
 				documento.nombre = nombreDocumento;
+
+				// guardando objetos
 				documentos[key] = documento;
 			});
 
 			// set json data
 			$("#json_asignacion").val(JSON.stringify(documentos));
-
 			$("#form-guardar-asignacion").submit();
 		});
 
