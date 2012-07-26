@@ -1,17 +1,5 @@
 <?php 
-	session_start();
-
-	/* dummy para obtener el tipo de usuario (ToDo: traerlo por sesion) */
-	$tipo = $_GET['tipo'];
-
-	/* ruteo de paginas */
-	if(isset($_SESSION['usuarioFirmado'])){
-		if($tipo == 0){
-			header('Location: content/captura/indicadores.php');
-		}else{
-			header('Location: content/evaluacion/elegirDocenteAEvaluar.php');
-		}
-	}
+	session_start();	
  ?>
 <!DOCTYPE html>
 <html>
@@ -48,9 +36,9 @@
 	<!-- YUI -->
 	<script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
 
-
-	<?php
-		require_once("content/login/login_lib.php");
+	<?php 
+		require_once("lib/librerias.php");
+		logIn();
 	?>
 
 </head>
