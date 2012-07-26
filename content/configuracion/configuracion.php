@@ -65,7 +65,7 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="configuracion.php">Inicio</a></li>
-							<li><a href="#">Cerrar Sesión</a></li>
+							<li><a href="#" class="cerrar-sesion">Cerrar Sesión</a></li>
 							<li><a href="#"></a></li>
 				</ul>
 						</div>
