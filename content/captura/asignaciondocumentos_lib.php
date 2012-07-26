@@ -87,14 +87,13 @@
 		
 		$sqlArchivos.= "SELECT evidencia, '', idempleado, nombre ";
 		$sqlArchivos.= "FROM siin_trayectorias_docentes.traydoc_estimulos_preda ";
-		$sqlArchivos.= "WHERE anyo = '".($anioEvaluacion+1)."' AND idempleado = '".$idEmpleado."' and tipo = 'preda' ";
+		$sqlArchivos.= "WHERE anyo = '".($anioEvaluacion-1)."' AND idempleado = '".$idEmpleado."' and tipo = 'preda' ";
 		
 		$sqlArchivos.= "UNION ";
 		
 		$sqlArchivos.= "SELECT evidencia, '', idempleado, nombre ";
 		$sqlArchivos.= "FROM siin_trayectorias_docentes.traydoc_estimulos_preda ";
-		$sqlArchivos.= "WHERE anyo = '".($anioEvaluacion+1)."' AND idempleado = '".$idEmpleado."' and tipo = 'estimulo'";
-
+		$sqlArchivos.= "WHERE anyo = '".($anioEvaluacion-1)."' AND idempleado = '".$idEmpleado."' and tipo = 'estimulo'";
 
 		/* conexion a base de datos */
 		$conexion = getConnection();
@@ -111,14 +110,14 @@
 			$plantillaElementoAsignacion .= 		"<input type='checkbox' data-nombre-archivo='".$row[0]."' />";
 			$plantillaElementoAsignacion .= 	"</span>";
 			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
-			$plantillaElementoAsignacion .= 		"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/7/".$row[0]."' class='pdf'>";
+			$plantillaElementoAsignacion .= 		"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/".$_SESSION['idAdscripcion']."/".$row[0]."' class='pdf'>";
 			$plantillaElementoAsignacion .= 		"</a>";
 			$plantillaElementoAsignacion .= 	"</div>";
 			$plantillaElementoAsignacion .= 	"<div class='span1 seccion3-2'>";
 			$plantillaElementoAsignacion .=			"<a href='#' rel='tooltip' title='".$row[3]."'>";
 			$nombreEvidencia = $row[3];
-			if(strlen($row[1]) > 10){
-				$plantillaElementoAsignacion .=	substr($nombreEvidencia, 0, 10)."...";
+			if(strlen($row[3]) > 30){
+				$plantillaElementoAsignacion .=	substr($nombreEvidencia, 0, 30)."...";
 			}else{
 				$plantillaElementoAsignacion .=	$nombreEvidencia;
 			}
@@ -187,7 +186,6 @@
 		
 		/* ejecucion del query en el manejador de base datos */
 		$resultSetAsignados = mysql_query($sqlArchivos);
-		echo mysql_error();
 		
 		/* barre consulta para generar html */
 		while($row = mysql_fetch_array($resultSetAsignados)){
@@ -196,15 +194,25 @@
 			$plantillaElementoAsignacion .= 		"<input type='checkbox' data-nombre-archivo='".$row[0]."' />";
 			$plantillaElementoAsignacion .= 	"</span>";
 			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
-			$plantillaElementoAsignacion .= 		"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/7/".$row[0]."' class='pdf'>";
+			$plantillaElementoAsignacion .= 		"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/".$_SESSION['idAdscripcion']."/".$row[0]."' class='pdf'>";
 			$plantillaElementoAsignacion .= 		"</a>";
 			$plantillaElementoAsignacion .= 	"</div>";
 			$plantillaElementoAsignacion .= 	"<div class='span1 seccion3-2'>";
 			$plantillaElementoAsignacion .=			"<a href='#' rel='tooltip' title=''>";
 			if(!empty($row['nombre'])){
-				$plantillaElementoAsignacion .=			$row['nombre'];	
-			}else{
-				$plantillaElementoAsignacion .=			$row['doc_evidencia'];	
+				$nombre = $row['nombre'];	
+				if(strlen($nombre) > 30){
+					$plantillaElementoAsignacion .=	substr($nombre, 0, 30)."...";
+				}else{
+					$plantillaElementoAsignacion .=	$nombre;
+				}
+			}else{	
+				$nombre = $row['doc_evidencia'];
+				if(strlen($nombre) > 30){
+					$plantillaElementoAsignacion .=	substr($nombre, 0, 30)."...";
+				}else{
+					$plantillaElementoAsignacion .=	$nombre;
+				}
 			}
 			$plantillaElementoAsignacion .=			"</a>";
 			$plantillaElementoAsignacion .=		"</div>";

@@ -102,14 +102,11 @@
 				</div>
 			</div>
 			<div class="span2">
-				 <a href="#">Estado de la captura</a>
+
 			</div>
 
 			<div class="span5">
-				<div id="barra-estado" class="progress progress-striped active">
-					<div class="bar" style="width: 80%;">
-					</div>
-				</div>
+
 			</div>
 
 			<div class="span2">

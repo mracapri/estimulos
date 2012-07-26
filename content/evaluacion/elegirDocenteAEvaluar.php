@@ -58,11 +58,11 @@
 					<div class="btn-group pull-right open">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
 							<i class="icon-user"></i>
-								<?php echo $_SESSION['rfcDocente']; ?>
+								<?php echo $_SESSION['rfcEvaluador']; ?>
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="elegirDocenteAEvaluar.php">Inicio</a></li>
-							<li><a href="#">Cerrar Sesión</a></li>
+							<li><a href="elegirDocenteAEvaluar.php?killsession=1">Cerrar Sesión</a></li>
 							<li><a href="#"></a></li>
 						</ul>
 					</div>
