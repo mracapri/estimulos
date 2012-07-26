@@ -178,6 +178,13 @@ a.ver {
 	height:30px;
 	margin:auto;	
 }
+a.no-ver {
+    background: url("../img/inc.png") repeat scroll 322px 163px transparent;
+    display: block;
+    height: 32px;
+    margin: auto;
+    width: 34px;
+}
 div.navbar-separador
 {
 	min-height: 10px;
