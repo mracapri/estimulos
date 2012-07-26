@@ -107,6 +107,9 @@
 		// abriendo conexion a base de datos del siin
 		$conection = getConnection();
 
+		/* obteniendo el anio de evaluacion */			
+		$_SESSION['anioEvaluacion'] = 2012;
+			
 		// obteniendo el perfil del usuario
 		$sqlPerfilUsuario = "";
 		$sqlPerfilUsuario .= "SELECT ";
@@ -134,9 +137,6 @@
 			$_SESSION['nombreUsuario'] = $row['nombreEmpleado'];
 			$_SESSION['idEmpleado'] = $row['idempleado'];
 			$_SESSION['idAdscripcion'] = $row['idadscripcion'];
-
-			/* obteniendo el anio de evaluacion */			
-			$_SESSION['anioEvaluacion'] = 2012;
 
 			// obtenieno los periodos de evaluacion
 			$periodos = "";

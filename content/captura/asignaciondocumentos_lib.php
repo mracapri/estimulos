@@ -1,72 +1,75 @@
 <?php
 
 	require_once("../../lib/librerias.php");
+	require_once("indicadores_lib.php");
 
 	function guardarAsignacion($jsonAsignacion, $categoriaIndicador){
 		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario
+		if(obtenerEstadoDeLaEvaluacion() == 0){
+			// variables de sesion
+			$idEmpleado = $_SESSION['idEmpleado'];
+			$rfcDocente = $_SESSION['rfcDocente'];
 
-		// variables de sesion
-		$idEmpleado = $_SESSION['idEmpleado'];
-		$rfcDocente = $_SESSION['rfcDocente'];
-
-		/* Eliminando diagonales y decodificando el JSON */
-		$resultado = json_decode(stripslashes($jsonAsignacion));
-		
-		/* conexion a base de datos */
-		$conexion = getConnection();
-
-
-		/* elimina asignaciones para agregar las nuevas */
-		$sqlDelete = "delete from asignacion_indicador where rfc_docente = '".$rfcDocente."' and id_categoriaindicador = ".$categoriaIndicador;
-		mysql_query($sqlDelete,$conexion);
-
-
-		/* itera asignaciones */
-		for ($iteraAsignacion=0; $iteraAsignacion < count($resultado); $iteraAsignacion++) { 
-			$nombreEvidencia = $resultado[$iteraAsignacion]->{'nombre'};
-
-
-			$sqlGetLlave = "SELECT coalesce(MAX(id_asignacionindicador),0)+1 as llave from asignacion_indicador";
+			/* Eliminando diagonales y decodificando el JSON */
+			$resultado = json_decode(stripslashes($jsonAsignacion));
 			
-			/* ejecucion del query en el manejador de base datos */
-			$resultGetLlave = mysql_query($sqlGetLlave);
-
-			/* obteniendo llave */
-			$idLlave = 0;
-			$row = mysql_fetch_array($resultGetLlave);
-			if(count($row) > 0){
-				$idLlave = $row['llave'];
-			}
+			/* conexion a base de datos */
+			$conexion = getConnection();
 
 
-			$sqlInsert = "";
-			$sqlInsert .= "INSERT INTO ";
-			$sqlInsert .=		"asignacion_indicador (id_asignacionindicador, id_categoriaindicador, RFC_docente, fecha, anio, doc_evidencia) ";
-			$sqlInsert .= "VALUES ";
-			$sqlInsert .=	"(";
-			$sqlInsert .=		"".$idLlave.", ";
-			$sqlInsert .=		"".$categoriaIndicador.", ";
-			$sqlInsert .=		"'".$_SESSION['rfcDocente']."', ";
-			$sqlInsert .=		"now(), ";
-			$sqlInsert .=		"".$_SESSION['anioEvaluacion'].", ";
-			$sqlInsert .=		"'".$nombreEvidencia."'";
-			$sqlInsert .=	")";
+			/* elimina asignaciones para agregar las nuevas */
+			$sqlDelete = "delete from asignacion_indicador where rfc_docente = '".$rfcDocente."' and id_categoriaindicador = ".$categoriaIndicador;
+			mysql_query($sqlDelete,$conexion);
 
-			// ejecutano insert sql
-			if (!mysql_query($sqlInsert,$conexion)){
-				$errorCode = mysql_errno();
-				if(!empty($errorCode)){
-					if($errorCode == 1062){ // registro duplicado
-						// mandar un error a la vista en html
-						$resultado = "Ya existe una evulacion con el mismo anio";
+
+			/* itera asignaciones */
+			for ($iteraAsignacion=0; $iteraAsignacion < count($resultado); $iteraAsignacion++) { 
+				$nombreEvidencia = $resultado[$iteraAsignacion]->{'nombre'};
+
+
+				$sqlGetLlave = "SELECT coalesce(MAX(id_asignacionindicador),0)+1 as llave from asignacion_indicador";
+				
+				/* ejecucion del query en el manejador de base datos */
+				$resultGetLlave = mysql_query($sqlGetLlave);
+
+				/* obteniendo llave */
+				$idLlave = 0;
+				$row = mysql_fetch_array($resultGetLlave);
+				if(count($row) > 0){
+					$idLlave = $row['llave'];
+				}
+
+
+				$sqlInsert = "";
+				$sqlInsert .= "INSERT INTO ";
+				$sqlInsert .=		"asignacion_indicador (id_asignacionindicador, id_categoriaindicador, RFC_docente, fecha, anio, doc_evidencia) ";
+				$sqlInsert .= "VALUES ";
+				$sqlInsert .=	"(";
+				$sqlInsert .=		"".$idLlave.", ";
+				$sqlInsert .=		"".$categoriaIndicador.", ";
+				$sqlInsert .=		"'".$_SESSION['rfcDocente']."', ";
+				$sqlInsert .=		"now(), ";
+				$sqlInsert .=		"".$_SESSION['anioEvaluacion'].", ";
+				$sqlInsert .=		"'".$nombreEvidencia."'";
+				$sqlInsert .=	")";
+
+				// ejecutano insert sql
+				if (!mysql_query($sqlInsert,$conexion)){
+					$errorCode = mysql_errno();
+					if(!empty($errorCode)){
+						if($errorCode == 1062){ // registro duplicado
+							// mandar un error a la vista en html
+							$resultado = "Ya existe una evulacion con el mismo anio";
+						}
 					}
 				}
-			}
 
+			}
+			
+			// cerrando conexion a base de datos
+			close($conexion);
 		}
 
-		// cerrando conexion a base de datos
-		close($conexion);
 	}
 	
 	function consultaArchivosHtml(){
@@ -149,7 +152,7 @@
 		$sqlConsultas.=		"ci.id_indicador = ".$idIndicador." and ";
 		$sqlConsultas.=		"i.id_indicador = ci.id_indicador and ";
 		$sqlConsultas.=		"pi.id_categoriaindicador = ci.id_categoriaindicador ";	
-	
+
 		log_($sqlConsultas);
 		/* conexion a base de datos */
 		$conexion = getConnection();

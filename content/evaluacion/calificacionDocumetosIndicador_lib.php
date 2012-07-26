@@ -9,38 +9,54 @@
 			$comentario = $resultado->{'comentario'};
 			$estado = $resultado->{'false'};
 			$rfcEvaluador = $_SESSION['rfcEvaluador'];
+			$rfcDocente = $_SESSION['rfcDocente'];
+			$anioEvaluacion = $_SESSION['anioEvaluacion'];
 
 			/* conexion a base de datos */
 			$conexion = getConnection();
 
-			$sqlGetFolio = "select COALESCE(max(id_evaluacionindicador),0)+1 as folio from evaluacion_indicador";
+			$sqlGetRegistroCalificado = "select * from evaluacion_indicador where id_categoriaindicador = ".$categoriaIndicador ;
 
 			/* ejecucion del query en el manejador de base datos */
-			$resultSetGetFolio = mysql_query($sqlGetFolio, $conexion);			
+			$resultSetGetFolio = mysql_query($sqlGetRegistroCalificado, $conexion);
 
-			if(mysql_num_rows($resultSetGetFolio) > 0	){
-				$row = mysql_fetch_array($resultSetGetFolio);
-				$folioNuevo = $row['folio'];
+			if(mysql_num_rows($resultSetGetFolio) > 0){
+				$rowRegistroCalificado = mysql_fetch_array($resultSetGetFolio);
+				$sqlUpdateRegistro = "UPDATE evaluacion_indicador set cal_porcentaje = ".$calificacion." and estado = ".$estado." and motivo = '".$comentario."' ";
+				$sqlUpdateRegistro = "where RFC_evaluador = '".$rfcEvaluador."' and RFC_docente = '".$rfcDocente."' and anio = ".$anioEvaluacion;
+			}else{
+				$sqlGetFolio = "select COALESCE(max(id_evaluacionindicador),0)+1 as folio from evaluacion_indicador";
 
-				//insert into evaluacion_indicador (id_evaluacionindicador, id_categoriaindicador, RFC_docente, id_porcentajeindicador, cal_porcentaje, RFC_evaluador, estado, motivo)
-				
-				$sqlInsertEvaluacion = "";
-				$sqlInsertEvaluacion .= "insert into evaluacion_indicador ";
-				$sqlInsertEvaluacion .= "(id_evaluacionindicador, id_categoriaindicador, RFC_docente, id_porcentajeindicador, cal_porcentaje, RFC_evaluador, estado, motivo) ";
-				$sqlInsertEvaluacion .= "values ";
-				$sqlInsertEvaluacion .= "(";
-				$sqlInsertEvaluacion .= 	$folioNuevo.", ";
-				$sqlInsertEvaluacion .= 	$categoriaIndicador.", ";
-				$sqlInsertEvaluacion .= 	$_SESSION['rfcDocenteAEvaluar'].", ";				
-				$sqlInsertEvaluacion .= 	$idPorcentajeIndicador.", ";
-				$sqlInsertEvaluacion .= 	$calificacion.", ";
-				$sqlInsertEvaluacion .= 	$rfcEvaluador.", ";
-				$sqlInsertEvaluacion .= 	"1 , ";
-				$sqlInsertEvaluacion .= 	$comentario."";
-				$sqlInsertEvaluacion .= ") ";
+				/* ejecucion del query en el manejador de base datos */
+				$resultSetGetFolio = mysql_query($sqlGetFolio, $conexion);			
 
-				echo "<br>".$sqlInsertEvaluacion."<br>";
+				if(mysql_num_rows($resultSetGetFolio) > 0	){
+					$row = mysql_fetch_array($resultSetGetFolio);
+					$folioNuevo = $row['folio'];
+					
+					$sqlInsertEvaluacion = "";
+					$sqlInsertEvaluacion .= "insert into evaluacion_indicador ";
+					$sqlInsertEvaluacion .= "(id_evaluacionindicador, id_categoriaindicador, RFC_docente, id_porcentajeindicador, cal_porcentaje, RFC_evaluador, estado, motivo, anio) ";
+					$sqlInsertEvaluacion .= "values ";
+					$sqlInsertEvaluacion .= "(";
+					$sqlInsertEvaluacion .= 	$folioNuevo.", ";
+					$sqlInsertEvaluacion .= 	$categoriaIndicador.", ";
+					$sqlInsertEvaluacion .= 	"'".$rfcDocente."', ";				
+					$sqlInsertEvaluacion .= 	$idPorcentajeIndicador.", ";
+					$sqlInsertEvaluacion .= 	$calificacion.", ";
+					$sqlInsertEvaluacion .= 	"'".$rfcEvaluador."', ";
+					$sqlInsertEvaluacion .= 	"1 , ";
+					$sqlInsertEvaluacion .= 	"'".$comentario."', ";
+					$sqlInsertEvaluacion .= 	$anioEvaluacion;					
+					$sqlInsertEvaluacion .= ") ";
+					
+					mysql_query($sqlInsertEvaluacion);
+
+				}
 			}
+
+
+
 			// cerrando conexion a base de datos
 			close($conexion);
 		}

@@ -157,7 +157,7 @@
 						<div class="span6"></div>
 						<div class="span3"></div>
 					<div class="span2">
-						<button class="btn btn-danger" id="quitar-documento">Remover</button>
+						<button class="btn btn-danger" id="quitar-documento" <?php  if(obtenerEstadoDeLaEvaluacion() == 1){ echo "disabled"; } ?>>Remover</button>
 			</div>
 			</div>
 				
@@ -178,7 +178,7 @@
 					<div class="span6"></div>
 					<div class="span3"></div>	
 					<div class="span1">
-						<button class="btn btn-primary" id="agregar-documento">Agregar</button>
+						<button class="btn btn-primary" id="agregar-documento" <?php  if(obtenerEstadoDeLaEvaluacion() == 1){ echo "disabled"; } ?>>Agregar</button>
 					</div>
 				</div>
 			</div>
@@ -186,7 +186,7 @@
 				<div class="span6"></div>
 				<div class="span4"></div>
 					<form id="form-guardar-asignacion" method="post">
-						<button id="guardar-cambios-asignacion" class="btn btn-primary" type="button">Guardar Cambios</button>
+						<button id="guardar-cambios-asignacion" class="btn btn-primary" type="button" <?php  if(obtenerEstadoDeLaEvaluacion() == 1){ echo "disabled"; } ?> >Guardar Cambios</button>
 						<input id="json_asignacion" name="json_asignacion" type="hidden"/>
 						<input id="categoia_indicador" name="categoria_indicador" type="hidden" value="<?php echo $categoriaIndicador; ?>"/>
 					</form>
