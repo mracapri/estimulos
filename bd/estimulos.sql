@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 24, 2012 at 04:04 p.m.
+-- Generation Time: Jul 26, 2012 at 11:28 a.m.
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -21,6 +21,30 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 DROP DATABASE estimulos;
 CREATE DATABASE IF NOT EXISTS estimulos;
 USE estimulos;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `acuse`
+--
+
+CREATE TABLE IF NOT EXISTS `acuse` (
+  `folio` int(10) NOT NULL,
+  `fecha` datetime DEFAULT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `RFC` varchar(10) NOT NULL DEFAULT '',
+  `idempleado` varchar(6) DEFAULT NULL,
+  `programa_educativo` varchar(255) DEFAULT NULL,
+  `anio` int(4) DEFAULT NULL,
+  PRIMARY KEY (`folio`),
+  KEY `RFC` (`RFC`),
+  KEY `anio` (`anio`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `acuse`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -372,6 +396,12 @@ CREATE TABLE IF NOT EXISTS `reportes` (
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `acuse`
+--
+ALTER TABLE `acuse`
+  ADD CONSTRAINT `fk_acuse_participantes` FOREIGN KEY (`anio`) REFERENCES `participantes` (`anio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `asignacion_indicador`
