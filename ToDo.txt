@@ -1,0 +1,4 @@
+POR HACER:
+
+* Obtener el periodo actual desde el perfil del usuario, para la pantalla de elegirDocenteAEvaluar_lib.php
+
