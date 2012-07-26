@@ -37,7 +37,7 @@
 		require_once("indicadores_lib.php");
 
 		$evaluacionEnviada = $_POST['evaluacion-eviada'];
-		if(empty($_POST['evaluacion-eviada'])){
+		if(!empty($_POST['evaluacion-eviada'])){
 			// Enviar y cerrar evaluacion
 			enviarEvaluacion();
 		}

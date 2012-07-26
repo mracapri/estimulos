@@ -7,18 +7,7 @@
 
 		/* conexion a base de datos */
 		$conexion = getConnection();
-
-
-		$sqlGetNumeroIndicadores = "";
-		$sqlGetNumeroIndicadores .= "SELECT ";
-		$sqlGetNumeroIndicadores .= 	"count(i.id_indicador) as numeroIndicadores ";
-		$sqlGetNumeroIndicadores .= "FROM ";
-		$sqlGetNumeroIndicadores .= 	"categoria As c, ";
-		$sqlGetNumeroIndicadores .= 	"indicador As i, ";
-		$sqlGetNumeroIndicadores .= 	"categoria_indicador As ci ";
-		$sqlGetNumeroIndicadores .= "WHERE ";
-		$sqlGetNumeroIndicadores .= 	"c.id_categoria = ci.id_categoria ";
-		$sqlGetNumeroIndicadores .= 	"and i.id_indicador = ci.id_indicador ";
+		$sqlGetNumeroIndicadores = "select distinct id_categoriaindicador from asignacion_indicador where RFC_docente = '".$rfcDocente."' ";
 
 		/* ejecucion del query en el manejador de base datos */
 		$resultSetGetNumeroIndicadores = mysql_query($sqlGetNumeroIndicadores);
@@ -48,7 +37,7 @@
 	}
 
 	function generaIndicadoresHtml(){
-	if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario
+		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario
 		/* SQL */
 		$sqlCategorias = "";
 		$sqlCategorias.= "SELECT ";
@@ -81,16 +70,15 @@
 			$sql.= 		"pi.id_porcentajeindicador, "; 
 			$sql.= 		"pi.porcentaje, ";
 			$sql.= 		"(select COALESCE(max(id_categoriaindicador),0)  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador) as estatus, ";
-			$sql.= 		"(select motivo  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador) as observacion ";
+			$sql.= 		"(select motivo  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador) as observacion, ";
+			$sql.= 		"(select COALESCE(max(id_categoriaindicador),0) from asignacion_indicador where id_categoriaindicador = ci.id_categoriaindicador) as estatusCaptura ";
 			$sql.= 	"FROM "; 
 			$sql.= 		"categoria As c, indicador As i, categoria_indicador As ci, porcentaje_indicador As pi ";
 			$sql.= 	"WHERE "; 
 			$sql.= 		"ci.id_categoria = ".$idCategoria." and ";
 			$sql.= 		"c.id_categoria = ci.id_categoria and ";
 			$sql.= 		"i.id_indicador = ci.id_indicador and ";
-			$sql.= 		"pi.id_categoriaindicador = ci.id_categoriaindicador ";		
-
-
+			$sql.= 		"pi.id_categoriaindicador = ci.id_categoriaindicador ";
 			
 			$resultSet = mysql_query($sql);		
 			
@@ -136,7 +124,13 @@
 				$plantillaElemento .=		$row['observacion'];
 				$plantillaElemento .=	"</div>";
 				$plantillaElemento .=	"<div class='span1 categorias'>";
-				$plantillaElemento .=		"<a href='calificaciondocumetosindicador.php?id_indicador=".$row[id_indicador]."&categoria_indicador=".$row['categoria_indicador']."' class='ver'></a>";
+
+				if($row['estatusCaptura'] > 0){
+					$plantillaElemento .=		"<a href='calificaciondocumetosindicador.php?id_indicador=".$row[id_indicador]."&categoria_indicador=".$row['categoria_indicador']."' class='ver'></a>";
+				}else{
+					$plantillaElemento .=		"<a href='#' class='no-ver'></a>";
+				}
+
 				$plantillaElemento .=	"</div>";
 				$plantillaElemento .="</div>";
 			

@@ -24,7 +24,8 @@
 	}
 
 	function enviarEvaluacion(){		
-		$sql = "UPDATE participantes SET ESTADO = 1, FECHA = NOW() WHERE rfc = '".$_SESSION['rfcDocente']."'";	
+		$sql = "UPDATE participantes SET ESTADO = '1', FECHA = NOW() WHERE rfc = '".$_SESSION['rfcDocente']."' and anio = ".$_SESSION['anioEvaluacion'];
+		echo $sql;
 		/* conexion a base de datos */
 		$conexion = getConnection();
 
