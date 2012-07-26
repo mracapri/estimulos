@@ -119,7 +119,7 @@ var UTVM = {
 				idPorcentajeindicador: idPorcentajeindicador,
 				calificacion: $("#input-calificacion").val(),
 				comentario: $("#input-comentario").val(),
-				estado: evaluacionIncorrecta
+				estado: "" + evaluacionIncorrecta + ""
 			};
 
 			$("#json-evaluacion").val(JSON.stringify(evaluacion));

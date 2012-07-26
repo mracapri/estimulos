@@ -7,8 +7,7 @@
 
 		/* conexion a base de datos */
 		$conexion = getConnection();
-		$sqlGetNumeroIndicadores = "select distinct id_categoriaindicador from asignacion_indicador where RFC_docente = '".$rfcDocente."' ";
-
+		$sqlGetNumeroIndicadores = "select distinct id_categoriaindicador from asignacion_indicador where RFC_docente = '".$rfcDocente."' and anio = ".$_SESSION['anioEvaluacion'];
 		/* ejecucion del query en el manejador de base datos */
 		$resultSetGetNumeroIndicadores = mysql_query($sqlGetNumeroIndicadores);
 		$row = mysql_fetch_array($resultSetGetNumeroIndicadores);
@@ -24,10 +23,9 @@
 			/* ejecucion del query en el manejador de base datos */
 			$resultSetIndicadoresEvaluados = mysql_query($sqlIndicadoresEvaluados);
 			$indicadoresEvaluados = mysql_num_rows($resultSetIndicadoresEvaluados);
+			$numeroIndicadores = mysql_num_rows($resultSetGetNumeroIndicadores);
 
-			$numeroIndicadores = $row['numeroIndicadores'];
 			$porcentaje = round(($indicadoresEvaluados / $numeroIndicadores)*100);
-			
 		}
 
 		// cerrando conexion a base de datos
@@ -67,18 +65,17 @@
 			$sql.= 		"i.id_indicador, "; 
 			$sql.= 		"i.descripcion as descripcion_indicador, ";
 			$sql.= 		"ci.id_categoriaindicador as categoria_indicador, "; 
-			$sql.= 		"pi.id_porcentajeindicador, "; 
-			$sql.= 		"pi.porcentaje, ";
+			$sql.= 		"(select max(porcentaje) from porcentaje_indicador where id_categoriaindicador = ci.id_categoriaindicador) as porcentaje, ";
 			$sql.= 		"(select COALESCE(max(id_categoriaindicador),0)  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador) as estatus, ";
 			$sql.= 		"(select motivo  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador) as observacion, ";
 			$sql.= 		"(select COALESCE(max(id_categoriaindicador),0) from asignacion_indicador where id_categoriaindicador = ci.id_categoriaindicador) as estatusCaptura ";
 			$sql.= 	"FROM "; 
-			$sql.= 		"categoria As c, indicador As i, categoria_indicador As ci, porcentaje_indicador As pi ";
+			$sql.= 		"categoria As c, indicador As i, categoria_indicador As ci ";
 			$sql.= 	"WHERE "; 
 			$sql.= 		"ci.id_categoria = ".$idCategoria." and ";
 			$sql.= 		"c.id_categoria = ci.id_categoria and ";
-			$sql.= 		"i.id_indicador = ci.id_indicador and ";
-			$sql.= 		"pi.id_categoriaindicador = ci.id_categoriaindicador ";
+			$sql.= 		"i.id_indicador = ci.id_indicador ";
+
 			
 			$resultSet = mysql_query($sql);		
 			

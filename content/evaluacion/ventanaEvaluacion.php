@@ -62,7 +62,7 @@
 					<div class="btn-group pull-right open">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
 							<i class="icon-user"></i>
-								<?php echo $_SESSION['rfcDocente']; ?>
+								<?php echo $_SESSION['rfcEvaluador']; ?>
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="ventanaEvaluacion.php">Inicio</a></li>
@@ -97,7 +97,7 @@
 				</div>
 				<div class="span6 categorias">
 					<div id="barra-estado" class="progress progress-striped active">
-						<div class="bar" style="width: <?php echo obtenerPorcentajeDeEvaluacion($_SESSION['rfcDocenteAEvaluar'])."%"?> 	;">
+						<div class="bar" style="width: <?php echo obtenerPorcentajeDeEvaluacion($_SESSION['rfcDocente'])."%"; ?> 	;">
 						</div>	
 					</div>
 				</div>

@@ -1,6 +1,30 @@
 <?php
 	require_once("../../lib/librerias.php");
 
+	function obtieneRegistroEvaluado($categoriaIndicador){
+
+		$rfcEvaluador = $_SESSION['rfcEvaluador'];
+		$rfcDocente = $_SESSION['rfcDocente'];
+		$anioEvaluacion = $_SESSION['anioEvaluacion'];
+
+		/* conexion a base de datos */
+		$conexion = getConnection();
+
+		$sqlGetRegistroCalificado = "select * from evaluacion_indicador where id_categoriaindicador = ".$categoriaIndicador." and rfc_evaluador = '".$rfcEvaluador."' " ;
+		$sqlGetRegistroCalificado .= "and rfc_docente = '".$rfcDocente."' and anio = ".$anioEvaluacion ;
+
+		/* ejecucion del query en el manejador de base datos */
+		$resultSetGetRegistro = mysql_query($sqlGetRegistroCalificado, $conexion);
+		if(mysql_num_rows($resultSetGetRegistro) > 0){
+			$row = mysql_fetch_array($resultSetGetRegistro);
+		}
+
+		// cerrando conexion a base de datos
+		close($conexion);
+
+		return $row;
+	}
+
 	function guardaCalificacion($jsonEvaluacion, $categoriaIndicador){
 		$resultado = json_decode(stripslashes($jsonEvaluacion));		
 		if(!empty($resultado)){
@@ -12,25 +36,30 @@
 			$rfcDocente = $_SESSION['rfcDocente'];
 			$anioEvaluacion = $_SESSION['anioEvaluacion'];
 
+			if($estado == "true"){
+				$estado = 1;
+			}else{
+				$estado = 0;
+			}
+
+			/* ejecucion del query en el manejador de base datos */
+			$registro = obtieneRegistroEvaluado($categoriaIndicador);
+
+
 			/* conexion a base de datos */
 			$conexion = getConnection();
 
-			$sqlGetRegistroCalificado = "select * from evaluacion_indicador where id_categoriaindicador = ".$categoriaIndicador ;
-
-			/* ejecucion del query en el manejador de base datos */
-			$resultSetGetFolio = mysql_query($sqlGetRegistroCalificado, $conexion);
-
-			if(mysql_num_rows($resultSetGetFolio) > 0){
-				$rowRegistroCalificado = mysql_fetch_array($resultSetGetFolio);
-				$sqlUpdateRegistro = "UPDATE evaluacion_indicador set cal_porcentaje = ".$calificacion." and estado = ".$estado." and motivo = '".$comentario."' ";
-				$sqlUpdateRegistro = "where RFC_evaluador = '".$rfcEvaluador."' and RFC_docente = '".$rfcDocente."' and anio = ".$anioEvaluacion;
+			if(!empty($registro)){
+				$sqlUpdateRegistro .= "UPDATE evaluacion_indicador set cal_porcentaje = ".$calificacion.", estado = ".$estado.", motivo = '".$comentario."' ";
+				$sqlUpdateRegistro .= "where RFC_evaluador = '".$rfcEvaluador."' and RFC_docente = '".$rfcDocente."' and anio = ".$anioEvaluacion." and id_categoriaindicador = ".$categoriaIndicador;
+				mysql_query($sqlUpdateRegistro);
 			}else{
 				$sqlGetFolio = "select COALESCE(max(id_evaluacionindicador),0)+1 as folio from evaluacion_indicador";
 
 				/* ejecucion del query en el manejador de base datos */
-				$resultSetGetFolio = mysql_query($sqlGetFolio, $conexion);			
+				$resultSetGetFolio = mysql_query($sqlGetFolio, $conexion);
 
-				if(mysql_num_rows($resultSetGetFolio) > 0	){
+				if(mysql_num_rows($resultSetGetFolio) > 0){
 					$row = mysql_fetch_array($resultSetGetFolio);
 					$folioNuevo = $row['folio'];
 					
@@ -62,7 +91,7 @@
 		}
 	}
 	
-	function presentaCalificacion($idCategoriaindicador){
+	function presentaCalificacion($idCategoriaindicador, $registro){
 
 		$elementoHtmlCalificacion = "";
 
@@ -76,6 +105,9 @@
 		echo mysql_error();
 
 		if(mysql_num_rows($resultSetCalificacion) > 1){
+
+			/*TODO: Presentar calificacion seleccionada por el usuario*/
+
 			$elementoHtmlCalificacion = "<select id='input-calificacion' name='input-calificacion'>";
 			while($row = mysql_fetch_array($resultSetCalificacion)){
 				$elementoHtmlCalificacion .= "<option value='".$row['porcentaje']."' data-id-porcentajeindicador='".$row['id_porcentajeindicador']."'>";

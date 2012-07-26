@@ -40,6 +40,7 @@
 
 		$categoriaIndicador = $_GET['categoria_indicador'];	
 		$jsonEvaluacion = $_POST['json-evaluacion'];
+		$registroEvaluado = obtieneRegistroEvaluado($categoriaIndicador);
 		if(!empty($jsonEvaluacion)){
 			guardaCalificacion($jsonEvaluacion, $categoriaIndicador);
 		}		
@@ -66,10 +67,10 @@
 					<div class="btn-group pull-right open">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
 							<i class="icon-user"></i>
-								<?php echo $_SESSION['rfcDocente']; ?>
+								<?php echo $_SESSION['rfcEvaluador']; ?>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="ventanaEvaluacion.php">Inicio</a></li>
+							<li><a href="ventanaEvaluacion.php?rfc=<?php echo $_SESSION['rfcDocente']; ?>">Inicio</a></li>
 							<li><a href="elegirDocenteAEvaluar.php">Elegir docente</a></li>
 							<li><a href="#" class="cerrar-sesion">Salir</a></li>
 				</ul>
@@ -99,14 +100,11 @@
 			
 
 			<div class="span2">
-				 <a href="#">Estado de la captura</a>
+				 
 			</div>
 
 			<div class="span5">
-				<div id="barra-estado" class="progress progress-striped active">
-					<div class="bar" style="width: 80%;">
-					</div>
-				</div>
+
 			</div>
 
 			<div class="span2">
@@ -165,8 +163,8 @@
 				<div class="span6 seccion1-2 " >
 					<form class="well">
 							<label>Elija la calificacion</label>
-							<?php 
-								echo presentaCalificacion($categoriaIndicador);
+							<?php 							
+								echo presentaCalificacion($categoriaIndicador, $registro);
 							?>
 							<label class="checkbox">Incorrecto
 								<input type="checkbox" id="incorrecto" name="incorrecto"/>
