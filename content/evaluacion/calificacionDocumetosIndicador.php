@@ -71,7 +71,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="ventanaEvaluacion.php">Inicio</a></li>
 							<li><a href="elegirDocenteAEvaluar.php">Elegir docente</a></li>
-							<li><a href="#">Salir</a></li>
+							<li><a href="#" class="cerrar-sesion">Salir</a></li>
 				</ul>
 					</div>
 					</div>
