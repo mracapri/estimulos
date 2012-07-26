@@ -2,7 +2,7 @@
 	
 	if($_GET['killsession'] == 1){
 		logOut();
-		echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/index.php">';
+		echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/index.php">';
 	}
 
 	function logIn(){
@@ -14,11 +14,11 @@
 				if(elUsuarioEsEvaluador($usuario)){
 					$_SESSION['rfcEvaluador'] = $usuario;
 					$_SESSION['usuarioFirmado'] = "1";
-					echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/content/evaluacion/elegirDocenteAEvaluar.php">';
+					echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/content/evaluacion/elegirDocenteAEvaluar.php">';
 				}else if(elUsuarioEsDocenteParticipante($usuario)){
 					$_SESSION['rfcDocente'] = $usuario;
 					$_SESSION['usuarioFirmado'] = "2";
-					echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/content/captura/indicadores.php">';
+					echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/content/captura/indicadores.php">';
 				}
 				obteniendoPerfil($usuario);
 			}else{					
@@ -28,9 +28,9 @@
 		}else{ 
 			// si el usuario ya esta logueado pues lo deja entrar
 			if($_SESSION['usuarioFirmado'] == 1){
-				echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/content/evaluacion/elegirDocenteAEvaluar.php">';
+				echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/content/evaluacion/elegirDocenteAEvaluar.php">';
 			}else if($_SESSION['usuarioFirmado'] == 2){
-				echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/content/captura/indicadores.php">';
+				echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/content/captura/indicadores.php">';
 			}else{
 				enviaMensajeAPantalla("Usuario o Clave incorrecta",  "form-section");
 			}
