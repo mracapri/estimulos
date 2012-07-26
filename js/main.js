@@ -124,6 +124,13 @@ var UTVM = {
 
 			$("#form-calificacion").submit();
 		});
+
+		$("#enviar-al-evaluador").click(function(){
+			$result = confirm("Esta seguro de enviar la evaluacion?");
+			if($result){
+				$("#form-enviar-al-evaluador").sbumit();
+			}
+		});
 	},
 
 	/* funcion principal */

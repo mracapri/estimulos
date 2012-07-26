@@ -35,6 +35,12 @@
 
 	<?php
 		require_once("indicadores_lib.php");
+
+		$evaluacionEnviada = $_POST['evaluacion-eviada'];
+		if(empty($_POST['evaluacion-eviada'])){
+			// Enviar y cerrar evaluacion
+			enviarEvaluacion();
+		}
 	?>
 
 </head>
@@ -154,23 +160,25 @@
 					<div class="span2 categorias"></div>
 					
 					<div class="span2 categorias">
-						<button class="btn btn-danger">Imprimir Reporte</button>
+						<button class="btn btn-danger">Imprimir reporte</button>
 					</div>
 					
 					<div class="span1 categorias"></div>
 					
 					
 					<div class="span2 categorias">
-						<button class="btn btn-danger">Enviar al Evaluador</button>
+						<form id="form-enviar-al-evaluador" method="post">
+							<button class="btn btn-danger" id="enviar-al-evaluador" <?php if(obtenerEstadoDeLaEvaluacion() == 1){ echo "disabled"; }?>>Enviar al evaluador</button>
+							<input name="evaluacion-eviada" value="1" type="hidden"/>
+						</form>
 					</div>
 					
 					<div class="span1 categorias"></div>
 					
 					<div class="span2 categorias">
-						<button class="btn btn-danger">Imprimir Acuse</button>
+						<button class="btn btn-danger" <?php if(obtenerEstadoDeLaEvaluacion() == 0){ echo "disabled"; }?>>Imprimir acuse</button>
 					</div>
 					<div class="span2 categorias"></div>
-					
 				</div>
 						
 			</div>

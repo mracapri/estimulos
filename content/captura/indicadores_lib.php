@@ -1,6 +1,47 @@
 <?php
 	include "../../lib/librerias.php";
 
+	function obtenerEstadoDeLaEvaluacion(){
+		$result = 0;
+		/* conexion a base de datos */
+		$conexion = getConnection();
+
+		$sql = "SELECT COALESCE(estado,0) as estado FROM participantes where rfc = '".$_SESSION['rfcDocente']."'";
+
+		$resultSet = mysql_query($sql,$conexion);
+
+		if(mysql_num_rows($resultSet) > 0){
+			$row = mysql_fetch_array($resultSet);
+			if($row['estado'] == 1){
+				$result = 1;
+			}
+		}
+
+		// cerrando conexion a base de datos
+		close($conexion);
+
+		return $result;
+	}
+
+	function enviarEvaluacion(){		
+		$sql = "UPDATE participantes SET ESTADO = 1, FECHA = NOW() WHERE rfc = '".$_SESSION['rfcDocente']."'";	
+		/* conexion a base de datos */
+		$conexion = getConnection();
+
+		/* ejecucion del query en el manejador de base datos */
+		if (!mysql_query($sql,$conexion)){
+			$errorCode = mysql_errno();
+			// Error al actualizar
+			if(!empty($errorCode)){				
+				echo "Error: ".$errorCode;
+				/* TODO: Incluir mensaje para la vista */
+			}
+		}
+
+		// cerrando conexion a base de datos
+		close($conexion);
+	}
+
 	function obtenerPorcentajeDeCaptura($rfcDocente){
 
 		$porcentaje = 0;
