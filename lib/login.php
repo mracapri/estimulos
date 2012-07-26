@@ -2,7 +2,7 @@
 	
 	if($_GET['killsession'] == 1){
 		logOut();
-		echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/index.php">';
+		//echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/index.php">';
 	}
 
 	function logIn(){

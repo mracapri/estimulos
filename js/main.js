@@ -4,9 +4,11 @@ var UTVM = {
 	/* funcion que permite enviar mensajes a la consola del navegador */
 	log: function(message){
 		$this = this;
+		/*
 		YUI().use('console', function (Y) {
 			Y.log(message, "info",  $this.appName);
 		});
+		*/
 	},
 
 	/* funcion de inicio de la aplicacion */
@@ -131,6 +133,11 @@ var UTVM = {
 				$("#form-enviar-al-evaluador").sbumit();
 			}
 		});
+
+		// configura todos los botones para cerrar la sesion
+		console.log($(".cerrar-sesion"));
+		$(".cerrar-sesion").attr("href", "/estimulos/lib/logout.php?killsession=1");
+		console.log($(".cerrar-sesion"));
 	},
 
 	/* funcion principal */
