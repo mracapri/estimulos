@@ -66,9 +66,9 @@
 			$sql.= 		"i.descripcion as descripcion_indicador, ";
 			$sql.= 		"ci.id_categoriaindicador as categoria_indicador, "; 
 			$sql.= 		"(select max(porcentaje) from porcentaje_indicador where id_categoriaindicador = ci.id_categoriaindicador) as porcentaje, ";
-			$sql.= 		"(select COALESCE(max(id_categoriaindicador),0)  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador) as estatus, ";
-			$sql.= 		"(select motivo  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador) as observacion, ";
-			$sql.= 		"(select COALESCE(max(id_categoriaindicador),0) from asignacion_indicador where id_categoriaindicador = ci.id_categoriaindicador) as estatusCaptura ";
+			$sql.= 		"(select COALESCE(max(id_categoriaindicador),0)  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador and rfc_docente = '".$_SESSION['rfcDocente']."' and rfc_evaluador = '".$_SESSION['rfcEvaluador']."') as estatus, ";
+			$sql.= 		"(select motivo  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador and rfc_docente = '".$_SESSION['rfcDocente']."' and rfc_evaluador = '".$_SESSION['rfcEvaluador']."') as observacion , ";
+			$sql.= 		"(select COALESCE(max(id_categoriaindicador),0) from asignacion_indicador where id_categoriaindicador = ci.id_categoriaindicador and rfc_docente = '".$_SESSION['rfcDocente']."') as estatusCaptura ";
 			$sql.= 	"FROM "; 
 			$sql.= 		"categoria As c, indicador As i, categoria_indicador As ci ";
 			$sql.= 	"WHERE "; 
