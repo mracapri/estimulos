@@ -5,6 +5,18 @@
 ********************************************************************************/
 
 
+#protesta {
+    text-align: justify;
+    font-weight: bold;
+}
+
+#articulo-133 > h1 {
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+#articulo-133 > p {
+    text-align: justify;
+}
 
 /********************************************************************************
 	CSS Estilos

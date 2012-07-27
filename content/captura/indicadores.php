@@ -184,8 +184,30 @@
 			</div>
 			<br/>	
 	</div>
-	
 
+    <div class="modal hide" id="protesta-modal">
+    	<div class="modal-header">
+    		<button type="button" class="close" data-dismiss="modal">×</button>
+    		<h3>Importante</h3>
+    	</div>
+    	<div class="modal-body">
+    		<p id="protesta">
+				Se firma bajo protesta de decir verdad que la información  rendida es 
+				cierta en todas y cada una de las partes que contiene para mi persona 
+				el “Programa de Estímulos” de la Universidad Tecnológica del Valle del 
+				Mezquital. 
+
+				Por lo que a la vez, se les hace del conocimiento el contenido del 
+				Artículo 313 del Código Penal para el Estado de Hidalgo, que establece 
+				las sanciones penales cuando se emita información falsa ante autoridad 
+				que actúa en función de sus atribuciones legales, textualmente: 
+				<a href="../recursos/articulo-313.html" target="_blank">Articulo 133</a>
+    		</p>
+    	</div>
+    	<div class="modal-footer">
+    		<a href="#" class="btn" data-dismiss="modal">Aceptar</a>
+    	</div>
+    </div>
 
 </body>
 </html>

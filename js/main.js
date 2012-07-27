@@ -135,9 +135,10 @@ var UTVM = {
 		});
 
 		// configura todos los botones para cerrar la sesion
-		console.log($(".cerrar-sesion"));
 		$(".cerrar-sesion").attr("href", "/estimulos/lib/logout.php?killsession=1");
-		console.log($(".cerrar-sesion"));
+
+
+		$('#protesta-modal').modal('show');
 	},
 
 	/* funcion principal */
