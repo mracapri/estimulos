@@ -68,7 +68,7 @@
 						<a href="#" class="brand-2">Asignación de documentos a indicadores</a>
 					
 					<div class="span2 position">
-					<div class="btn-group pull-right open">
+					<div class="btn-group pull-right">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
 							<i class="icon-user"></i>
 								<?php echo $_SESSION['rfcDocente']; ?>
