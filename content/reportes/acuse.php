@@ -14,6 +14,53 @@ function reporteRegulares($rfcDocente)
 		//Cabecera de página
 		function Header()
 			{
+			
+				// obtener el nuevo folio del acuse 
+				mysql_query("SET NAMES UTF8");
+				
+				$conexion = getConnection();
+				$NoFolio = ("SELECT(max(coalesce(folio, 0))+1) as folio FROM acuse");
+				
+				/* ejecucion del query en el manejador de base datos */
+				$resultfolio = mysql_query($NoFolio);
+
+				/* obteniendo Folio */
+				$idfolio = 0;
+				$row = mysql_fetch_array($resultfolio);
+				if(count($row) > 0){
+					$idfolio = $row['Folio'];
+				}
+				
+				
+				
+				$sqlInsert .= "INSERT INTO ";
+				$sqlInsert .=		"acuse (folio, fecha , nombre , RFC, idempleado, programa_educativo, anio) ";
+				$sqlInsert .= "VALUES ";
+				$sqlInsert .=	"(";
+				$sqlInsert .=		"".$idfolio.", ";
+				$sqlInsert .=		"now(), ";
+				$sqlInsert .=		"'".$_SESSION['nombreUsuario']."', ";
+				$sqlInsert .=		"'".$_SESSION['rfcDocente']."', ";
+				$sqlInsert .=		"'".$_SESSION['idEmpleado']."', ";
+				$sqlInsert .=		"'".$_SESSION['adscripcion']."', ";
+				$sqlInsert .=		"'".$_SESSION['anioEvaluacion']."', ";
+				$sqlInsert .=	")";
+				
+				// ejecutano insert sql
+				if (!mysql_query($sqlInsert,$conexion)){
+					$errorCode = mysql_errno();
+					if(!empty($errorCode)){
+						if($errorCode == 1062){ // registro duplicado
+							// mandar un error a la vista en html
+							$resultado = "Ya existe una evulacion con el mismo anio";
+						}
+					}
+				}
+				
+				
+				
+		
+			
 				//Logo
 				$this->Image('../../img/logo.jpg',10,8,33);
 				//Arial bold 15
@@ -21,7 +68,7 @@ function reporteRegulares($rfcDocente)
 				//Movernos a la derecha
 				$this->Cell(85);
 				//Título
-				$this->Cell(35,10,'Universidad Tecnológica del Valle del Mezquital.-'.$rfcDocente,0,0,'C');
+				$this->Cell(35,10,'Universidad Tecnológica del Valle del Mezquital.'.$rfcDocente,0,0,'C');
 				$this->Ln(8);
 				$this->SetFont('Arial','B',12);
 				$this->Cell(80);
@@ -34,26 +81,26 @@ function reporteRegulares($rfcDocente)
 				$mes = array('','Enero','Febrero','Marzo','Aril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
 				$this->Cell(32,3,'Fecha de Impresión:',0,0,'LR',0,'L');
 				
-				mysql_query("SET NAMES UTF8");
-				$datos = mysql_fetch_array(mysql_query("SELECT `folio`,`nombre`,`RFC`,`idempleado`,`programa_educativo` FROM `acuse` WHERE `idempleado` LIKE 'E999'"));
+				
+				//$datos = mysql_fetch_array(mysql_query("SELECT `folio`,`nombre`,`RFC`,`idempleado`,`programa_educativo` FROM `acuse` WHERE `idempleado` LIKE 'E999'"));
 				
 
 				$this->Cell(40,3,utf8_decode(date('d')." de ".$mes[$mesnum]." del ".date('Y')),0,0,'L');
 				$this->Ln(4);
 				$this->Cell(32,3,'Folio:',0,0,'l');
-				$this->Cell(32,3,utf8_decode($datos[0]),0,0,'l');
+				$this->Cell(32,3,utf8_decode($sqlInsert[0]),0,0,'l');
 				$this->Ln(4);
 				$this->Cell(32,3,'Docente:',0,0,'l');
-				$this->Cell(120,3,utf8_decode($datos[1]),0,0,'l');
+				$this->Cell(120,3,utf8_decode($sqlInsert[2]),0,0,'l');
 				$this->Ln(4);
 				$this->Cell(32,3,'RFC:',0,0,'l');
-				$this->Cell(32,3,utf8_decode($datos[2]),0,0,'l');
+				$this->Cell(32,3,utf8_decode($sqlInsert[3]),0,0,'l');
 				$this->Ln(4);
 				$this->Cell(32,3,'No. Empleado:',0,0,'l');
-				$this->Cell(32,3,utf8_decode($datos[3]),0,0,'l');
+				$this->Cell(32,3,utf8_decode($sqlInsert[4]),0,0,'l');
 				$this->Ln(4);
 				$this->Cell(32,3,'Programa E.:',0,0,'l');
-				$this->Cell(150,3,utf8_decode($datos[4]),0,0,'l');
+				$this->Cell(150,3,utf8_decode($sqlInsert[5]),0,0,'l');
 				
 				//Salto de línea
 				$this->Ln(8);
@@ -75,7 +122,7 @@ function reporteRegulares($rfcDocente)
 		function body($rfcDocente)
 			{
 			mysql_query("SET NAMES UTF8");
-			$datos = mysql_fetch_array(mysql_query("SELECT `nombre`FROM `acuse` WHERE `idempleado` LIKE 'E999'"));
+			//$datos = mysql_fetch_array(mysql_query("SELECT nombre FROM acuse WHERE rfc = ".$_SESSION['rfcDocente']));
 				
 				
 					$this->SetX(10);
@@ -93,7 +140,7 @@ El texto puede ser alineado, centrado o justificado. El bloque de celda puede se
 					$this->Cell(205,5,'Firma del docente',0,0,'C',false);
 					$this->Ln(5);
 					$this->SetFont('Arial','',10);
-					$this->Cell(205,5,utf8_decode($datos[0]),0,0,'C',false);
+					$this->Cell(205,5,utf8_decode($datos[2]),0,0,'C',false);
 					$this->Ln(5);
 												
 			}

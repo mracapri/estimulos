@@ -115,7 +115,7 @@
 		$sqlPerfilUsuario .= "SELECT ";
 		$sqlPerfilUsuario .= 	"a.idempleado as idempleado, ";
 		$sqlPerfilUsuario .= 	"concat(a.profesion,' ',a.nombre,' ',a.paterno,' ',a.materno)as nombreEmpleado, ";
-		$sqlPerfilUsuario .= 	"c.adscripcion, ";
+		$sqlPerfilUsuario .= 	"c.adscripcion as adscripcion, ";
 		$sqlPerfilUsuario .= 	"c.idadscripcion as idadscripcion ";
 		$sqlPerfilUsuario .= "FROM ";
 		$sqlPerfilUsuario .= 	"siin_generales.gral_usuarios a, ";
@@ -137,6 +137,7 @@
 			$_SESSION['nombreUsuario'] = $row['nombreEmpleado'];
 			$_SESSION['idEmpleado'] = $row['idempleado'];
 			$_SESSION['idAdscripcion'] = $row['idadscripcion'];
+			$_SESSION['adscripcion'] = $row['adscripcion'];
 
 			// obtenieno los periodos de evaluacion
 			$periodos = "";
