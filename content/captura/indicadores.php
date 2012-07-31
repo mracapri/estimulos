@@ -60,7 +60,7 @@
 					<li class="active">
 						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
-					<a class="brand-2" href="#">Asignación de evidencias </a>
+					<a class="brand-2" href="#">Asignaci&oacute;n de evidencias </a>
 					<div class="span2 position">
 					<div class="btn-group pull-right">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
@@ -69,7 +69,7 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="indicadores.php">Inicio</a></li>
-							<li><a href="#" class="cerrar-sesion">Cerrar Sesión</a></li>
+							<li><a href="#" class="cerrar-sesion">Cerrar Sesi&oacute;n</a></li>
 							<li><a href="#"></a></li>
 						</ul>
 					</div>
@@ -197,15 +197,15 @@
     	</div>
     	<div class="modal-body">
     		<p id="protesta">
-				Se firma bajo protesta de decir verdad que la información  rendida es 
+				Se firma bajo protesta de decir verdad que la informaci&oacute;n  rendida es 
 				cierta en todas y cada una de las partes que contiene para mi persona 
-				el “Programa de Estímulos” de la Universidad Tecnológica del Valle del 
+				el “Programa de Est&iacute;mulos” de la Universidad Tecnol&oacute;gica del Valle del 
 				Mezquital. 
 
 				Por lo que a la vez, se les hace del conocimiento el contenido del 
-				Artículo 313 del Código Penal para el Estado de Hidalgo, que establece 
-				las sanciones penales cuando se emita información falsa ante autoridad 
-				que actúa en función de sus atribuciones legales, textualmente: 
+				Art&iacute;culo 313 del C&oacute;digo Penal para el Estado de Hidalgo, que establece 
+				las sanciones penales cuando se emita informaci&oacute;n falsa ante autoridad 
+				que act&uacute;a en funci&oacute;n de sus atribuciones legales, textualmente: 
 				<a href="../recursos/articulo-313.html" target="_blank">Articulo 133</a>
     		</p>
     	</div>

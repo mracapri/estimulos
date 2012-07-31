@@ -68,7 +68,7 @@
 				<form class="seccionconter">
 				</form>
 				<div class="seccionlarge ">
-					<span class="label label-info" "seleccion-documento"="">Importante: Esta aplicación solo es compatible con los siguientes navegadores.</span>	<br/><br/>
+					<span class="label label-info" "seleccion-documento"="">Importante: Esta aplicaci&oacute;n solo es compatible con los siguientes navegadores.</span>	<br/><br/>
 						
 						<div class="span2 ">
 							<a class="firefox" href="http://www.mozilla.org/es-MX/firefox/new/" target="_blank"></a>

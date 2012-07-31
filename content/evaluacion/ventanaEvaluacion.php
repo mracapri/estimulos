@@ -57,7 +57,7 @@
 					<li class="active">
 						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
-					<a class="brand-2" href="#">Evaluación</a>
+					<a class="brand-2" href="#">Evaluaci&oacute;n</a>
 					<div class="span2 position">
 					<div class="btn-group pull-right">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
@@ -67,7 +67,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="ventanaEvaluacion.php">Inicio</a></li>
 							<li><a href="elegirDocenteAEvaluar.php">Elegir docente</a></li>
-							<li><a href="#" class="cerrar-sesion">Cerrar Sesión</a></li>
+							<li><a href="#" class="cerrar-sesion">Cerrar Sesi&oacute;n</a></li>
 						</ul>
 					</div>
 					</div>
@@ -93,7 +93,7 @@
 					 </div>
 				</div>
 			    <div class="span2 categorias">
-				   	<a href="#">Estado de la evaluacion</a>
+				   	<a href="#">Estado de la evaluaci&oacute;n</a>
 				</div>
 				<div class="span6 categorias">
 					<div id="barra-estado" class="progress progress-striped active">
@@ -116,7 +116,7 @@
 							Categorias
 						</div>
 						<div class="span1" id="encabezado">	
-							Porcentaje Categoria
+							Porcentaje Categor&iacute;a
 						</div>
 						<div class="span3" id="encabezado">
 							Indicador
@@ -147,13 +147,94 @@
 			
 			<!--Botones -->
 				<div class="row-fluid show-grid">
-					<div class="span2 categorias"></div>
-					
-					<div class="span12 categorias">
+					<div class="span2 categorias">
 						<button class="btn btn-danger">Imprimir Reporte</button>
 					</div>
-					
-					
+					<div class="span4 categorias"></div>
+					<div class="span4 categorias"></div>
+					<div class="span2 categorias">
+						<button class="btn btn-danger" id="terminar-evaluacion">Terminar Evaluaci&oacute;n</button>
+					</div>
+				</div>
+	</div>
+	
+	<div class="modal hide" id="informacion">
+    	<div class="modal-header">
+    		<button type="button" class="close" data-dismiss="modal">×</button>
+    		<p>Estimado Evaluador, el usuario evaluado, captur&oacute; el 80% de los indicadores y el 20%, que son los no capturados, se muestran a continuaci&oacute;n:</p>
+    	</div>
+    	<div class="modal-body">
+			<div class="contenedor-tablas">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Categoria</th>
+						<th>Indicador</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>Categoria1</td>
+						<td>Indicador1 </td>
+					</tr>
+					<tr></tr>
+					<tr>
+						<td>1</td>
+						<td>Categoria1</td>
+						<td>Indicador1 </td>
+					</tr>
+					<tr></tr>
+					<tr>
+						<td>1</td>
+						<td>Categoria1</td>
+						<td>Indicador1 </td>
+					</tr>
+					<tr></tr>
+					<tr>
+						<td>1</td>
+						<td>Categoria1</td>
+						<td>Indicador1 </td>
+					</tr>
+					<tr></tr>
+					<tr>
+						<td>1</td>
+						<td>Categoria1</td>
+						<td>Indicador1 </td>
+					</tr>
+					<tr></tr>
+					<tr>
+						<td>1</td>
+						<td>Categoria1</td>
+						<td>Indicador1 </td>
+					</tr>
+					<tr></tr>
+					<tr>
+						<td>1</td>
+						<td>Categoria1</td>
+						<td>Indicador1 </td>
+					</tr>
+					<tr></tr>
+					<tr>
+						<td>1</td>
+						<td>Categoria1</td>
+						<td>Indicador1 </td>
+					</tr>
+					<tr></tr>
+					<tr>
+						<td>1</td>
+						<td>Categoria1</td>
+						<td>Indicador1 </td>
+					</tr>
+					<tr></tr>
+				</tbody>	
+			</table>
+			</div>
+			<textarea id="input-comentario" class="span4 text-area" placeholder="Comentario final" style="width: 500px; height: 96px;"></textarea>
+    	</div>
+    	<div class="modal-footer">
+    		<a href="#" class="btn" data-dismiss="modal">Terminar</a>
 				</div>
 	</div>
 </body>

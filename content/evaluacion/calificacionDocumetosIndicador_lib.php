@@ -117,7 +117,7 @@
 			$elementoHtmlCalificacion .= "</select>";
 		}else{
 			$row = mysql_fetch_array($resultSetCalificacion);
-			$elementoHtmlCalificacion = "<input class='span4' type='text' placeholder='Calificación' id='input-calificacion' name='input-calificacion' value='".$row['porcentaje']."' title='".$row['porcentaje']."' data-id-porcentajeindicador='".$row['id_porcentajeindicador']."'/>";
+			$elementoHtmlCalificacion = "<input class='span4' type='text' placeholder='Calificaci&oacute;n' id='input-calificacion' name='input-calificacion' value='".$row['porcentaje']."' title='".$row['porcentaje']."' data-id-porcentajeindicador='".$row['id_porcentajeindicador']."'/>";
 		}
 
 		// cerrando conexion a base de datos

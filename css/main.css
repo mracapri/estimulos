@@ -177,6 +177,21 @@ input.span4 {
 	width:100px;
 }
 
+#informacion{
+    text-align: justify;
+    font-weight: bold;
+}
+.contenedor-tablas
+{
+	
+	border: 1px solid white;
+	height: 100px;
+	overflow-y: auto;
+	
+}
+
+
+
 /********************************************************************************
 	CSS Estilos
 	Nombre: Estado de la captura

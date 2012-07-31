@@ -139,6 +139,10 @@ var UTVM = {
 
 
 		$('#protesta-modal').modal('show');
+		
+		$("#terminar-evaluacion").click(function(){
+			$('#informacion').modal('show');
+		});
 	},
 
 	/* funcion principal */

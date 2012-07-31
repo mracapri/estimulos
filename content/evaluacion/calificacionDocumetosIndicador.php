@@ -11,7 +11,7 @@
 	<meta name="robots" content="all" />	
 	
 	<!-- Titulo del documento -->		
-	<title>Calificación de documentos</title>
+	<title>Calificaci&oacute;n de documentos</title>
 
 	<!-- css bootstrap framework -->
 	<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css">
@@ -62,7 +62,7 @@
 					<li class="active">
 						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
-					<a class="brand-2" href="#">Evaluación documentos indicador</a>
+					<a class="brand-2" href="#">Evaluaci&oacute;n documentos indicador</a>
 					<div class="span2 position">
 					<div class="btn-group pull-right">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
@@ -124,7 +124,7 @@
 					<ul>
 						<li>
 						
-							Categoría:
+							Categor&iacute;a:
 							<a href="#"><?php echo $detalle[1]; ?></a>
 	
 						</li>
@@ -134,7 +134,7 @@
 	
 						</li>
 						<li>
-							Descripción:
+							Descripci&oacute;n:
 							<a href="#"><?php echo $detalle[3]; ?></a>
 	
 						</li>
@@ -156,8 +156,8 @@
 			<div class="span6 seccion2">
 				<div class="span2 seccion1-1" >
 					<ul>
-						<li>Evaluación</li>
-						<li><a href="#">Verifique las evidencias y asigne la calificación</a></li>
+						<li>Evaluaci&oacute;n</li>
+						<li><a href="#">Verifique las evidencias y asigne la calificaci&oacute;n</a></li>
 					</ul>
 				</div>
 				<div class="span6 seccion1-2 " >

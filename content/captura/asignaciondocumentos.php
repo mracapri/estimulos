@@ -62,10 +62,10 @@
 				    </li>
 
 					<li class="active">
-						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuc  ario']; ?></a>
+						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
 					
-						<a href="#" class="brand-2">Asignación de documentos a indicadores</a>
+						<a href="#" class="brand-2">Asignaci&oacute;n de documentos a indicadores</a>
 					
 					<div class="span2 position">
 					<div class="btn-group pull-right">
@@ -75,7 +75,7 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="indicadores.php">Inicio</a></li>
-							<li><a href="#" class="cerrar-sesion">Cerrar Sesión</a></li>
+							<li><a href="#" class="cerrar-sesion">Cerrar Sesi&oacute;n</a></li>
 							<li><a href="#"></a></li>
 						</ul>
 						</div>
@@ -126,7 +126,7 @@
 					<ul>
 						<li>
 						
-							Categoría:
+							Categor&iacute;a:
 							<a href="#"><?php echo $detalle[1]; ?></a>
 	
 						</li>
@@ -136,12 +136,12 @@
 	
 						</li>
 						<li>
-							Descripción:
+							Descripci&oacute;n:
 							<a href="#"><?php echo $detalle[3]; ?></a>
 	
 						</li>
 						<li>
-							Puntuación máxima a obtener: 
+							Puntuaci&oacute;n m&aacute;xima a obtener: 
 							<a href="#"><?php echo $detalle[4]; ?></a>
 						</li>
 						
