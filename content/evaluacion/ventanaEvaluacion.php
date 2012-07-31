@@ -148,7 +148,7 @@
 			<!--Botones -->
 				<div class="row-fluid show-grid">
 					<div class="span2 categorias">
-						<button class="btn btn-danger">Imprimir Reporte</button>
+						<a href="../reportes/reportedeevaluacion.php" target="_blank" class="btn btn-danger">Imprimir Reporte</a>
 					</div>
 					<div class="span4 categorias"></div>
 					<div class="span4 categorias"></div>

@@ -160,7 +160,7 @@
 					<div class="span2 categorias"></div>
 					
 					<div class="span2 categorias">
-						<button class="btn btn-danger">Imprimir reporte</button>
+						<a href="../reportes/reporteestado.php" target="_blank" class="btn btn-danger">Imprimir reporte</a>
 					</div>
 					
 					<div class="span1 categorias"></div>
@@ -176,7 +176,7 @@
 					<div class="span1 categorias"></div>
 					
 					<div class="span2 categorias">
-						<button class="btn btn-danger" <?php if(obtenerEstadoDeLaEvaluacion() == 0){ echo "disabled"; }?>>Imprimir acuse</button>
+						<a href="../reportes/acuse.php" target="_blank" class="btn btn-danger" <?php if(obtenerEstadoDeLaEvaluacion() == 0){ echo "disabled"; }?>>Imprimir acuse</a>
 					</div>
 					<div class="span2 categorias"></div>
 				</div>
