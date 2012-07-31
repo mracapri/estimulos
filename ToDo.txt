@@ -18,6 +18,15 @@ POR HACER:
 
 * Agregar el campo del comentario final en la tabla de participantes tipo BLOB - DAVID
 
+* Cambiar la guia para la evaluacion (PDF) del sitio - NOEMI
+
+* Cambiar los indiadores con los nuevos agregados en la nueva guia que generó la Mtra - NOEMI
+
+* Agregar formatos en la seccion de documentos
+
+* Encabezado cambiar el encabezado del reporte para PREDA
+
+* Comentarios finales obligatorios
 
 DUDAS:
 
