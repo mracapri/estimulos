@@ -1,4 +1,31 @@
 POR HACER:
 
-* Obtener el periodo actual desde el perfil del usuario, para la pantalla de elegirDocenteAEvaluar_lib.php
+* Obtener el periodo actual desde el perfil del usuario, para la pantalla de elegirDocenteAEvaluar_lib.php - MARIO
+
+* Agregar el porcentaje en el aviso del docente, antes de enviar al evaluador - MARIO
+
+* Terminar funcionalidad despues de evaluar al participante, etiquetarlo como evaluado - MARIO
+
+* Agregar la información de PREDA en la pantalla de login - NOEMI
+
+* Reporte de excel "Reporte final PREDA" - NOEMI
+ 
+* Reporte en PDF del resultado final de los participantes - DAVID
+
+* En el acuse insertar los datos - DAVID
+
+* En la pantalla de Evaluacion - Informar al usuario, que persona esta evaluandoa travez de una etiqueta  - NOEMI
+
+* Agregar el campo del comentario final en la tabla de participantes tipo BLOB - DAVID
+
+
+DUDAS:
+
+* El comentario final, en que reporte dará informe de este dato? - DAVID
+
+* Que informacion vendra en la ventan de inicio? - NOEMI
+
+NUNCA OLVIDAR:
+
+* Subir cambios - NOEMI
 
