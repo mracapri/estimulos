@@ -11,7 +11,7 @@
 	<meta name="robots" content="all" />	
 	
 	<!-- Titulo del documento -->		
-	<title>Asignaci髇 de documentos</title>
+	<title>Asignaci贸n de documentos</title>
 
 	<!-- css bootstrap framework -->
 	<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css">
@@ -62,10 +62,10 @@
 				    </li>
 
 					<li class="active">
-						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
+						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuc  ario']; ?></a>
 					</li>
 					
-						<a href="#" class="brand-2">Asignaci髇 de documentos a indicadores</a>
+						<a href="#" class="brand-2">Asignaci贸n de documentos a indicadores</a>
 					
 					<div class="span2 position">
 					<div class="btn-group pull-right">
@@ -75,7 +75,7 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li><a href="indicadores.php">Inicio</a></li>
-							<li><a href="#" class="cerrar-sesion">Cerrar Sesi髇</a></li>
+							<li><a href="#" class="cerrar-sesion">Cerrar Sesi贸n</a></li>
 							<li><a href="#"></a></li>
 						</ul>
 						</div>
@@ -126,7 +126,7 @@
 					<ul>
 						<li>
 						
-							Categor韆:
+							Categor铆a:
 							<a href="#"><?php echo $detalle[1]; ?></a>
 	
 						</li>
@@ -136,12 +136,12 @@
 	
 						</li>
 						<li>
-							Descripci髇:
+							Descripci贸n:
 							<a href="#"><?php echo $detalle[3]; ?></a>
 	
 						</li>
 						<li>
-							Puntuaci髇 m醲ima a obtener: 
+							Puntuaci贸n m谩xima a obtener: 
 							<a href="#"><?php echo $detalle[4]; ?></a>
 						</li>
 						

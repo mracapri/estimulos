@@ -185,6 +185,11 @@
 			<br/>	
 	</div>
 
+	<?php 
+		if($_SESSION['mensajeLegal'] == 0){ 
+			$_SESSION['mensajeLegal'] = 1;
+	?>
+
     <div class="modal hide" id="protesta-modal">
     	<div class="modal-header">
     		<button type="button" class="close" data-dismiss="modal">×</button>
@@ -208,6 +213,10 @@
     		<a href="#" class="btn" data-dismiss="modal">Aceptar</a>
     	</div>
     </div>
+
+    <?php 
+		} 
+    ?>
 
 </body>
 </html>
