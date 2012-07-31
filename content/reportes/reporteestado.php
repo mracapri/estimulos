@@ -85,9 +85,9 @@ function reporteRegulares($rfcDocente)
 				{
 				//Consulta
 				mysql_query("SET NAMES UTF8");
-						$indicador = ("SELECT c.descripcion  as descripcion_categoria,i.descripcion as descripcion_indicador,(select max(porcentaje) from porcentaje_indicador where id_categoriaindicador = ci.id_categoriaindicador) as porcentaje, (select COALESCE(max(id_categoriaindicador),0) from asignacion_indicador where id_categoriaindicador = ci.id_categoriaindicador) as estatus FROM 	categoria As c, indicador As i, categoria_indicador As ci WHERE ci.id_categoria = ".$idCategoria." and c.id_categoria = ci.id_categoria and i.id_indicador = ci.id_indicador") or die('error');
+						$indicador = ("SELECT c.id_categoria as id_categoria, c.descripcion  as descripcion_categoria, i.descripcion as descripcion_indicador, ci.id_categoriaindicador as categoria_indicador, (select max(porcentaje) from porcentaje_indicador where id_categoriaindicador = ci.id_categoriaindicador) as porcentaje, (select COALESCE(max(id_categoriaindicador),0)  from asignacion_indicador where id_categoriaindicador = ci.id_categoriaindicador and rfc_docente = '".$_SESSION['rfcDocente']."') as estatus FROM categoria As c, indicador As i, categoria_indicador As ci WHERE ci.id_categoria = ".$idCategoria." and c.id_categoria = ci.id_categoria and i.id_indicador = ci.id_indicador ") or die('error');
 						$resultindicador = mysql_query($indicador);		
-						
+						//echo $indicador;
 						$contador = 1;											//contador
 						$sumaPorcentaje = 0;							
 						
@@ -95,23 +95,20 @@ function reporteRegulares($rfcDocente)
 						
 					$this->SetLineWidth(.2);
 					$this->SetX(5);
-					
 					$this->SetFont('Helvetica','',8);
 						$this->SetTextColor(0,0,0);
-						$this->Cell(50,5,utf8_decode($indica[0]),0,0,'l');         //trae el nombre de la categoria
+						$this->Cell(50,5,utf8_decode($indica[1]),0,0,'l');         //trae el nombre de la categoria
 						
 						
 						$sumaPorcentaje = $sumaPorcentaje + $indica['porcentaje']; //procedimiento para la suma de los valores de una categoria
-						if($contador == 1){
-							$sumac=		$sumaPorcentaje;	
-						}
+						
 	
 						$this->Cell(20,5,utf8_decode($sumaPorcentaje),0,0,'C'); //trae el porcentaje de la categoria				
-						$this->MultiCell(90,5,utf8_decode($indica[1]),0,'J');	   //trae la descripcion del indicador					
+						$this->MultiCell(90,5,utf8_decode($indica[2]),0,'J');	   //trae la descripcion del indicador					
 						$y = $this->GetY();										   //regresa el salto de linea que Multicell realiza
 						$this->SetY($y-5);
 						$this->SetX(165);
-						$this->Cell(20,5,utf8_decode($indica[2]),0,0,'C');			//trae el porcentaje del indicador
+						$this->Cell(20,5,utf8_decode($indica[3]),0,0,'C');			//trae el porcentaje del indicador
 						if($indica['estatus'] > 0){									//Estado de captura de un indicador
 						$resul =		"CAPTURADO";
 						}else{

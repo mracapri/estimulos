@@ -34,7 +34,6 @@ function reporteRegulares($rfcDocente)
 				$mes = array('','Enero','Febrero','Marzo','Aril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
 				$this->Cell(32,3,'Fecha de Impresión:',0,0,'LR',0,'L');
 				$this->Cell(90,3,utf8_decode(date('d')." de ".$mes[$mesnum]." del ".date('Y')),0,0,'L');
-				
 				$this->Ln(4);
 				$this->SetFont('Arial','',8);
 				$this->Cell(32,3,'Evaluador:',0,0,'l');
@@ -42,7 +41,7 @@ function reporteRegulares($rfcDocente)
 				$this->Ln(4);
 				$this->SetFont('Arial','',8);
 				$this->Cell(32,3,'RFC:',0,0,'l');
-				$this->Cell(120,3,utf8_decode($_SESSION['rfcDocente']),0,0,'l');	//RFC del usuario
+				$this->Cell(120,3,utf8_decode($_SESSION['rfcEvaluador']),0,0,'l');	//RFC del usuario
 				$this->Ln(4);
 				$this->SetFont('Arial','',8);
 				$this->Cell(32,3,'No. Empleado:',0,0,'l');
@@ -54,7 +53,6 @@ function reporteRegulares($rfcDocente)
 				
 				//Salto de línea
 				$this->Ln(8);
-				
 				// encabezado de la tabla
 				
 				$this->SetX(5);
@@ -85,11 +83,9 @@ function reporteRegulares($rfcDocente)
 				{
 					//Consulta
 					mysql_query("SET NAMES UTF8");
-						
 						$indicador = "SELECT c.id_categoria as id_categoria, c.descripcion  as descripcion_categoria, i.id_indicador, i.descripcion as descripcion_indicador, ci.id_categoriaindicador as categoria_indicador, (select max(porcentaje) from porcentaje_indicador where id_categoriaindicador = ci.id_categoriaindicador) as porcentaje, (select COALESCE(max(id_categoriaindicador),0)  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador and rfc_docente = '".$_SESSION['rfcDocente']."' and rfc_evaluador = '".$_SESSION['rfcEvaluador']."') as estatus, (select motivo  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador and rfc_docente = '".$_SESSION['rfcDocente']."' and rfc_evaluador = '".$_SESSION['rfcEvaluador']."') as observacion , (select COALESCE(max(id_categoriaindicador),0) from asignacion_indicador where id_categoriaindicador = ci.id_categoriaindicador and rfc_docente = '".$_SESSION['rfcDocente']."') as estatusCaptura FROM categoria As c, indicador As i, categoria_indicador As ci WHERE ci.id_categoria = ".$idCategoria." and c.id_categoria = ci.id_categoria and i.id_indicador = ci.id_indicador ";
-
 						$resultindicador = mysql_query($indicador);		
-						
+						//echo $indicador;
 						$contador = 1;											//contador
 						$sumaPorcentaje = 0;							
 						
@@ -97,16 +93,13 @@ function reporteRegulares($rfcDocente)
 						
 						$this->SetLineWidth(.2);
 						$this->SetX(5);
-						
 						$this->SetFont('Helvetica','',8);
 						$this->SetTextColor(0,0,0);
 						$this->Cell(50,5,utf8_decode($indica[1]),0,0,'l');         //trae el nombre de la categoria
 						
 						
 						$sumaPorcentaje = $sumaPorcentaje + $indica['porcentaje']; //procedimiento para la suma de los valores de una categoria
-						if($contador == 1){
-							$sumac=		$sumaPorcentaje;	
-						}
+						
 	
 						$this->Cell(20,5,utf8_decode($sumaPorcentaje),0,0,'C'); //trae el porcentaje de la categoria				
 						$this->MultiCell(90,5,utf8_decode($indica[3]),0,'J');	   //trae la descripcion del indicador					
@@ -116,7 +109,8 @@ function reporteRegulares($rfcDocente)
 						$this->Cell(20,5,utf8_decode($indica[5]),0,0,'C');			//trae el porcentaje del indicador
 						if($indica['estatus'] > 0){									//Estado de captura de un indicador
 						$resul =		"EVALUADO";
-						}else{
+						}
+						else{
 						$resul=		".........";
 						}
 						$this->Cell(25,5,($resul),0,0,'C');							//trae el estado del indicador

@@ -28,26 +28,16 @@ function reporteRegulares($rfcDocente)
 				$idfolio = 0;
 				$row = mysql_fetch_array($resultfolio);
 				if(count($row) > 0){
-					$idfolio = $row['Folio'];
+					$idfolio = $row['Folio']+1;
 				}
 				
 				
 				
-				$sqlInsert .= "INSERT INTO ";
-				$sqlInsert .=		"acuse (folio, fecha , nombre , RFC, idempleado, programa_educativo, anio) ";
-				$sqlInsert .= "VALUES ";
-				$sqlInsert .=	"(";
-				$sqlInsert .=		"".$idfolio.", ";
-				$sqlInsert .=		"now(), ";
-				$sqlInsert .=		"'".$_SESSION['nombreUsuario']."', ";
-				$sqlInsert .=		"'".$_SESSION['rfcDocente']."', ";
-				$sqlInsert .=		"'".$_SESSION['idEmpleado']."', ";
-				$sqlInsert .=		"'".$_SESSION['adscripcion']."', ";
-				$sqlInsert .=		"'".$_SESSION['anioEvaluacion']."', ";
-				$sqlInsert .=	")";
+				$sqlInsert .= "INSERT INTO acuse (folio, fecha , nombre , RFC, idempleado, programa_educativo, anio) VALUES (".$idfolio.", now(), '".$_SESSION['nombreUsuario']."', '".$_SESSION['rfcDocente']."', '".$_SESSION['idEmpleado']."',  '".$_SESSION['adscripcion']."', '".$_SESSION['anioEvaluacion']."')";
+				$Insert = mysql_query($sqlInsert);
 				
 				// ejecutano insert sql
-				if (!mysql_query($sqlInsert,$conexion)){
+				if (!mysql_query($Insert,$conexion)){
 					$errorCode = mysql_errno();
 					if(!empty($errorCode)){
 						if($errorCode == 1062){ // registro duplicado
@@ -88,19 +78,19 @@ function reporteRegulares($rfcDocente)
 				$this->Cell(40,3,utf8_decode(date('d')." de ".$mes[$mesnum]." del ".date('Y')),0,0,'L');
 				$this->Ln(4);
 				$this->Cell(32,3,'Folio:',0,0,'l');
-				$this->Cell(32,3,utf8_decode($sqlInsert[0]),0,0,'l');
+				$this->Cell(32,3,utf8_decode($idfolio),0,0,'l');
 				$this->Ln(4);
 				$this->Cell(32,3,'Docente:',0,0,'l');
-				$this->Cell(120,3,utf8_decode($sqlInsert[2]),0,0,'l');
+				$this->Cell(120,3,utf8_decode($_SESSION['nombreUsuario']),0,0,'l');
 				$this->Ln(4);
 				$this->Cell(32,3,'RFC:',0,0,'l');
-				$this->Cell(32,3,utf8_decode($sqlInsert[3]),0,0,'l');
+				$this->Cell(32,3,utf8_decode($_SESSION['rfcDocente']),0,0,'l');
 				$this->Ln(4);
 				$this->Cell(32,3,'No. Empleado:',0,0,'l');
-				$this->Cell(32,3,utf8_decode($sqlInsert[4]),0,0,'l');
+				$this->Cell(32,3,utf8_decode($_SESSION['idEmpleado']),0,0,'l');
 				$this->Ln(4);
 				$this->Cell(32,3,'Programa E.:',0,0,'l');
-				$this->Cell(150,3,utf8_decode($sqlInsert[5]),0,0,'l');
+				$this->Cell(150,3,utf8_decode($_SESSION['adscripcion']),0,0,'l');
 				
 				//Salto de línea
 				$this->Ln(8);
@@ -116,7 +106,7 @@ function reporteRegulares($rfcDocente)
 				//Título
 				$this->Cell(205,5,'A C U S E',0,0,'C',true);
 				//Salto de línea
-				$this->Ln(10);
+				$this->Ln(15);
 				
 			}
 		function body($rfcDocente)
@@ -126,11 +116,8 @@ function reporteRegulares($rfcDocente)
 				
 				
 					$this->SetX(10);
-					$this->SetFont('Arial','',10);
-					$this->MultiCell(195,5,'Este método permite imprimir texto con saltos de línea. Estos pueden ser automáticos (tan pronto como el texto alcanza 
-el borde derecho de la celda) o explícito (via el carácter \n). Tantas celdas como sean necesarias son creadas,
-uno debajo de otra. 
-El texto puede ser alineado, centrado o justificado. El bloque de celda puede ser enmarcado y el fondo impreso.',0,'J',false);
+					$this->SetFont('Arial','',12);
+					$this->MultiCell(195,5,'Se firma bajo protesta de decir verdad que la información  rendida es cierta en todas y cada una de las partes que contiene para mi persona el “Programa de Estímulos” de la Universidad Tecnológica del Valle del Mezquital.',0,'J',false);
 											
 					$this->Ln(140);
 					
@@ -140,7 +127,7 @@ El texto puede ser alineado, centrado o justificado. El bloque de celda puede se
 					$this->Cell(205,5,'Firma del docente',0,0,'C',false);
 					$this->Ln(5);
 					$this->SetFont('Arial','',10);
-					$this->Cell(205,5,utf8_decode($datos[2]),0,0,'C',false);
+					$this->Cell(205,5,utf8_decode($_SESSION['nombreUsuario']),0,0,'C',false);
 					$this->Ln(5);
 												
 			}
