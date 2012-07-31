@@ -18,6 +18,7 @@
 				}else if(elUsuarioEsDocenteParticipante($usuario)){
 					$_SESSION['rfcDocente'] = $usuario;
 					$_SESSION['usuarioFirmado'] = "2";
+					$_SESSION['mensajeLegal'] = "0";
 					echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/content/captura/indicadores.php">';
 				}
 				obteniendoPerfil($usuario);
