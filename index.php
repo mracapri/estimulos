@@ -68,12 +68,12 @@
 				<div class="seccionconter">
 					<div class="textopreda container ">
 						<div class="preda " ></div>
-
+							<p id = "protesta">
 							<b>PROGRAMA DE RECONOCIMIENTO Y ESTÍMULO AL DESEMPEÑO DEL PERSONAL ACADÉMICO (PREDA).</b> El presente Programa de Reconocimiento y Estímulo al Desempeño del Personal Académico 
 							(PREDA) de la Universidad Tecnológica del Valle del Mezquital, pretende ser un instrumento que propicie la mejora continua y retribuya al personal docente su destacada actuación,
 							entrega,  compromiso, alto desempeño y participación; que coadyuve al logro de la misión institucional. Asimismo este documento establece el mecanismo de evaluación, los requisitos
 							y criterios requeridos para que un docente de tiempo completo o asignatura pueda participar en el mismo.
-						
+							</p>
 					</div>
 					
 					

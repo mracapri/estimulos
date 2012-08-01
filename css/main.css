@@ -409,7 +409,8 @@ div.preda {
 div.textopreda {
     height: 45%;
     margin-bottom: 0;
-    margin-left: 4%;
+    margin-left: 3%;
     margin-top: -1%;
     width: 94%;
+	text-align: justify;
 }
