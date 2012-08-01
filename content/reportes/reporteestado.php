@@ -22,11 +22,19 @@ function reporteRegulares($rfcDocente)
 				$this->Cell(85);
 				//Título
 				$this->Cell(35,10,'Universidad Tecnológica del Valle del Mezquital.',0,0,'C');
-				$this->Ln(8);
+				$this->Ln(5);
+				$this->Cell(85);
+				$this->SetFont('Arial','B',8);
+				$this->Cell(35,10,'Resultados del Programa de Reconocimiento y Estímulo al Desempeño del Personal Académico ',0,0,'C');
+				$this->Ln(5);
+				$this->Cell(85);
+				$this->SetFont('Arial','B',8);
+				$this->Cell(35,10,'(PREDA).',0,0,'C');
+				$this->Ln(5);
 				$this->SetFont('Arial','B',12);
-				$this->Cell(80);
+				$this->Cell(85);
 				$this->Cell(35,10,'Reporte de estado de captura del docente.',0,0,'C');
-				$this->Ln(15);
+				$this->Ln(10);
 				//Fecha de impresion del reporte
 				$this->SetX(10);
 				$this->SetFont('Arial','',9);
@@ -50,7 +58,7 @@ function reporteRegulares($rfcDocente)
 				$this->Ln(4);
 				$this->SetFont('Arial','',8);
 				$this->Cell(32,3,'Programa Educativo:',0,0,'l');
-				$this->Cell(32,3,utf8_decode($_SESSION['adscripcion']),0,0,'l');	// Adscripcion al que esta registrado el usuario
+				$this->Cell(32,3,($_SESSION['adscripcion']),0,0,'l');	// Adscripcion al que esta registrado el usuario
 				
 				//Salto de línea
 				$this->Ln(8);

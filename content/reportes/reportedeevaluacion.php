@@ -23,10 +23,18 @@ function reporteRegulares($rfcDocente)
 				//Título
 				$this->Cell(35,10,'Universidad Tecnológica del Valle del Mezquital.',0,0,'C');
 				$this->Ln(8);
+				$this->Cell(85);
+				$this->SetFont('Arial','B',8);
+				$this->Cell(35,10,'Resultados del Programa de Reconocimiento y Estímulo al Desempeño del Personal Académico ',0,0,'C');
+				$this->Ln(5);
+				$this->Cell(85);
+				$this->SetFont('Arial','B',8);
+				$this->Cell(35,10,'(PREDA).',0,0,'C');
+				$this->Ln(5);
 				$this->SetFont('Arial','B',12);
-				$this->Cell(80);
-				$this->Cell(35,10,'Reporte de estado de Evaluacion.',0,0,'C');
-				$this->Ln(15);
+				$this->Cell(85);
+				$this->Cell(35,10,'Reporte de estado de Evaluación.',0,0,'C');
+				$this->Ln(10);
 				//Fecha de impresion del reporte
 				$this->SetX(10);
 				$this->SetFont('Arial','',9);
@@ -42,14 +50,14 @@ function reporteRegulares($rfcDocente)
 				$this->SetFont('Arial','',8);
 				$this->Cell(32,3,'RFC:',0,0,'l');
 				$this->Cell(120,3,utf8_decode($_SESSION['rfcEvaluador']),0,0,'l');	//RFC del usuario
+				$this->Ln(8);
+				$this->SetFont('Arial','',8);
+				$this->Cell(32,3,'Evalua al Docente:',0,0,'l');
+				$this->Cell(32,3,utf8_decode($_SESSION['rfcDocente']),0,0,'l');		// Docente al que se esta evaluando
 				$this->Ln(4);
 				$this->SetFont('Arial','',8);
-				$this->Cell(32,3,'No. Empleado:',0,0,'l');
-				$this->Cell(32,3,utf8_decode($_SESSION['idEmpleado']),0,0,'l');		// Numero de empleado
-				$this->Ln(4);
-				$this->SetFont('Arial','',8);
-				$this->Cell(32,3,'Programa Educativo:',0,0,'l');
-				$this->Cell(32,3,utf8_decode($_SESSION['adscripcion']),0,0,'l');	// Adscripcion al que esta registrado el usuario
+				$this->Cell(32,3,'RFC:',0,0,'l');
+				$this->Cell(32,3,utf8_decode($_SESSION['Usuario']),0,0,'l');		// RFC del docente
 				
 				//Salto de línea
 				$this->Ln(8);

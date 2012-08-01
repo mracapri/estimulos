@@ -27,8 +27,8 @@ function reporteRegulares($rfcDocente)
 				/* obteniendo Folio */
 				$idfolio = 0;
 				$row = mysql_fetch_array($resultfolio);
-				if(count($row) > 1){
-					$idfolio = $row['folio'];
+				if(count($row) > 0){
+					$idfolio = $row['Folio']+1;
 				}
 				
 				
@@ -67,7 +67,11 @@ function reporteRegulares($rfcDocente)
 				$this->Cell(85);
 				$this->SetFont('Arial','B',8);
 				$this->Cell(35,10,'(PREDA).',0,0,'C');
-				$this->Ln(10);
+				$this->Ln(5);
+				$this->SetFont('Arial','B',12);
+				$this->Cell(85);
+				$this->Cell(35,10,'Reporte de resultados finales de la evaluación.',0,0,'C');
+				$this->Ln(15);
 				//Fecha de impresion del reporte
 				$this->SetX(10);
 				$this->SetFont('Arial','',9);
@@ -76,25 +80,14 @@ function reporteRegulares($rfcDocente)
 				$this->Cell(32,3,'Fecha de Impresión:',0,0,'LR',0,'L');
 				
 				
-				//$datos = mysql_fetch_array(mysql_query("SELECT `folio`,`nombre`,`RFC`,`idempleado`,`programa_educativo` FROM `acuse` WHERE `idempleado` LIKE 'E999'"));
+				//datos del que genera el reporte
 				
 
 				$this->Cell(40,3,utf8_decode(date('d')." de ".$mes[$mesnum]." del ".date('Y')),0,0,'L');
-				$this->Ln(4);
-				$this->Cell(32,3,'Folio:',0,0,'l');
-				$this->Cell(32,3,utf8_decode($idfolio),0,0,'l');
-				$this->Ln(4);
-				$this->Cell(32,3,'Docente:',0,0,'l');
-				$this->Cell(120,3,utf8_decode($_SESSION['nombreUsuario']),0,0,'l');
-				$this->Ln(4);
-				$this->Cell(32,3,'RFC:',0,0,'l');
-				$this->Cell(32,3,utf8_decode($_SESSION['rfcDocente']),0,0,'l');
-				$this->Ln(4);
-				$this->Cell(32,3,'No. Empleado:',0,0,'l');
-				$this->Cell(32,3,utf8_decode($_SESSION['idEmpleado']),0,0,'l');
-				$this->Ln(4);
-				$this->Cell(32,3,'Programa Educativo:',0,0,'l');
-				$this->Cell(150,3,($_SESSION['adscripcion']),0,0,'l');
+				$this->Ln(5);
+				$this->SetX(10);
+				$this->Cell(32,3,'Emitido por el Dto.:',0,0,'l');
+				$this->Cell(100,3,'Dirección de desarrollo académico y calidad educativa.',0,0,'l');
 				
 				//Salto de línea
 				$this->Ln(8);
@@ -102,37 +95,43 @@ function reporteRegulares($rfcDocente)
 			}
 		function tabla()
 			{
-				$this->SetX(5);
-				//Arial 12
-				$this->SetFont('Helvetica','B',12);
-				//Color de fondo
-				$this->SetFillColor(200,220,220);
-				//Título
-				$this->Cell(205,5,'A C U S E',0,0,'C',true);
-				//Salto de línea
-				$this->Ln(15);
+				//Construccion de la tabla
+				$this->SetX(10);
+				$this->SetFont('Helvetica','B',10);
+				$this->SetFillColor(204,204,204);
+				$this->SetTextColor(0,0,0);
+				$this->Cell(30,5,'No. Participante',0,0,'C',true);
+				$this->Cell(110,5,'Nombre del Participante',0,0,'C',true);
+				$this->Cell(50,5,'Porcentaje Obtenido (%)',0,0,'C',true);
+				$this->Ln(5);
+				$this->Sety(-60);
+				$this->SetX(10);	
+				
+				// query de los participantes
+
+				
+				/****************************************************/
 				
 			}
 		function body($rfcDocente)
 			{
-			mysql_query("SET NAMES UTF8");
-			//$datos = mysql_fetch_array(mysql_query("SELECT nombre FROM acuse WHERE rfc = ".$_SESSION['rfcDocente']));
+			
+			
+			
+			
+
 				
-				
-					$this->SetX(10);
-					$this->SetFont('Arial','',12);
-					$this->MultiCell(195,5,'Se firma bajo protesta de decir verdad que la información  rendida es cierta en todas y cada una de las partes que contiene para mi persona el “Programa de Estímulos” de la Universidad Tecnológica del Valle del Mezquital.',0,'J',false);
-											
-					$this->SetY(-50);
-					
-					$this->Cell(205,5,'______________________',0,0,'C',false);
-					$this->SetFont('Arial','B',10);
-					$this->Ln(5);
-					$this->Cell(205,5,'Firma del docente',0,0,'C',false);
-					$this->Ln(5);
-					$this->SetFont('Arial','',10);
-					$this->Cell(205,5,utf8_decode($_SESSION['nombreUsuario']),0,0,'C',false);
-					$this->Ln(5);
+				$this->SetFont('Arial','',10);
+				$this->SetTextColor(0,0,0);
+				$this->MultiCell(195,5,'En apego al  artículo 23 del CAPITULO IV. DEL PROCESO DE EVALUACIÓN Y PAGO DE ESTÍMULOS del Programa de Reconocimiento y Estímulo al desempeño del Personal Académico, la Dirección de Administración y Finanzas les notificará el día en que se realizará el pago.',0,'J',false);
+				$this->Ln(8);					
+				$this->SetFont('Arial','B',10);
+				$this->Ln(5);
+				$this->Cell(205,5,'Atentamente.',0,0,'C',false);
+				$this->Ln(5);
+				$this->SetFont('Arial','I',10);
+				$this->Cell(205,5,'“Aprender, Emprender, Transformar”',0,0,'C',false);
+				$this->Ln(5);
 												
 			}
 			
