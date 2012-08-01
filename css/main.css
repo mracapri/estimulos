@@ -398,3 +398,18 @@ a.brand-2:hover
 text-decoration: none; 
 color: white;
 }
+div.preda {
+    background: url("../img/logopreda.png") repeat scroll 0 0 transparent;
+    height: 241px;
+    margin-bottom: 3%;
+    margin-left: 14%;
+    width: 75%;
+  
+}
+div.textopreda {
+    height: 45%;
+    margin-bottom: 0;
+    margin-left: 4%;
+    margin-top: -1%;
+    width: 94%;
+}

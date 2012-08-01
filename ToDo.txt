@@ -1,17 +1,17 @@
 POR HACER:
 
 
-* Agregar la información de PREDA en la pantalla de login - NOEMI
+* Agregar la información de PREDA en la pantalla de login - NOEMI -------------------------------------------------------------------------------------TERMINADO(DAVID)
 
 * Reporte de excel "Reporte final PREDA" - NOEMI
  
 * Reporte en PDF del resultado final de los participantes - DAVID
 
-* En el acuse insertar los datos - DAVID
+* En el acuse insertar los datos - DAVID--------------------------------------------------------------------------------------------------------------------------------TERMINADO(DAVID)
 
 * En la pantalla de Evaluacion - Informar al usuario, que persona esta evaluandoa travez de una etiqueta  - NOEMI
 
-* Agregar el campo del comentario final en la tabla de participantes tipo BLOB - DAVID
+* Agregar el campo del comentario final en la tabla de participantes tipo BLOB - DAVID------  ------------------------------------------------TERMINADO(DAVID)
 
 * Cambiar la guia para la evaluacion (PDF) del sitio - NOEMI
 
@@ -19,7 +19,7 @@ POR HACER:
 
 * Agregar formatos en la seccion de documentos - PENDIENTE
 
-* Encabezado - cambiar el encabezado del reporte para PREDA - DAVID
+* Encabezado - cambiar el encabezado del reporte para PREDA - DAVID-------------------------------------------------------------------------------TERMINADO(DAVID)
 
 
 HECHO:

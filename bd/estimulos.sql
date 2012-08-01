@@ -285,6 +285,7 @@ CREATE TABLE IF NOT EXISTS `participantes` (
   `estado` enum('0','1','2') NOT NULL,
   `comentario` text NULL,
   `anio` int(4) DEFAULT NULL,
+  `comentario` blob NOT NULL,
   PRIMARY KEY (`RFC`),
   KEY `RFC` (`RFC`),
   KEY `anio` (`anio`)
