@@ -5,7 +5,7 @@
 
 	function guardarAsignacion($jsonAsignacion, $categoriaIndicador){
 		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario
-		if(obtenerEstadoDeLaEvaluacion() == 0){
+		if(obtenerEstadoDeLaCaptura() == 0){
 			// variables de sesion
 			$idEmpleado = $_SESSION['idEmpleado'];
 			$rfcDocente = $_SESSION['rfcDocente'];

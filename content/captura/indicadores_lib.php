@@ -1,7 +1,7 @@
 <?php
 	include "../../lib/librerias.php";
 
-	function obtenerEstadoDeLaEvaluacion(){
+	function obtenerEstadoDeLaCaptura(){
 		$result = 0;
 		/* conexion a base de datos */
 		$conexion = getConnection();
@@ -23,7 +23,7 @@
 		return $result;
 	}
 
-	function enviarEvaluacion(){		
+	function enviarCaptura(){		
 		$sql = "UPDATE participantes SET ESTADO = '1', FECHA = NOW() WHERE rfc = '".$_SESSION['rfcDocente']."' and anio = ".$_SESSION['anioEvaluacion'];
 		/* conexion a base de datos */
 		$conexion = getConnection();

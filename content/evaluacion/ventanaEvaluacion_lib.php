@@ -1,5 +1,98 @@
 <?php
 	require_once("../../lib/librerias.php");
+
+	function terminarEvaluacion($rfcDocente, $comentarioFinal){
+		/* conexion a base de datos */
+		$conexion = getConnection();		
+
+		$sql = "UPDATE participantes SET estado = '2', comentario = '".$comentarioFinal."' WHERE rfc = '".$rfcDocente."'";
+		mysql_query($sql);
+
+		// cerrando conexion a base de datos
+		close($conexion);
+	}
+
+	function obtieneIndicadoresNoEvaluados(){
+
+		$htmlPlantilla = "";
+
+		/* conexion a base de datos */
+		$conexion = getConnection();
+
+		$sql = "";
+		$sql .= "SELECT i.descripcion as descripcion_indicador, c.descripcion as descripcion_categoria ";
+		$sql .= "FROM categoria As c, indicador As i, categoria_indicador As ci ";
+		$sql .= "WHERE c.id_categoria = ci.id_categoria and i.id_indicador = ci.id_indicador ";
+		$sql .= "and not exists ( ";
+		$sql .= 	"select null ";
+		$sql .= 	"from asignacion_indicador ai ";
+		$sql .= 	"where ai.id_categoriaindicador = ci.id_categoriaindicador and ai.rfc_docente = '".$_SESSION['rfcDocente'] ."' and ai.anio = ".$_SESSION['anioEvaluacion'];
+		$sql .= ")";
+
+		/* ejecucion del query en el manejador de base datos */
+		$iteraRegistros = 1;
+		$resultSetGetIndicadoresNoCapturados = mysql_query($sql);
+		
+		while($row = mysql_fetch_array($resultSetGetIndicadoresNoCapturados)){
+			// plantilla de la fila de la tabla		
+			$htmlPlantilla .= "<tr>";
+			$htmlPlantilla .= 	"<td>".$iteraRegistros."</td>";
+			$htmlPlantilla .= 	"<td>".$row[0]."</td>";
+			$htmlPlantilla .= 	"<td>".$row[1]."</td>";
+			$htmlPlantilla .= "<tr>";
+
+			$iteraRegistros++;
+		}
+
+		// cerrando conexion a base de datos
+		close($conexion);
+
+		return $htmlPlantilla;
+	}
+
+	function obtenerPorcentajeDeCaptura($rfcDocente){
+
+		$porcentaje = 0;
+
+		/* conexion a base de datos */
+		$conexion = getConnection();
+
+
+		$sqlGetNumeroIndicadores = "";
+		$sqlGetNumeroIndicadores .= "SELECT ";
+		$sqlGetNumeroIndicadores .= 	"count(i.id_indicador) as numeroIndicadores ";
+		$sqlGetNumeroIndicadores .= "FROM ";
+		$sqlGetNumeroIndicadores .= 	"categoria As c, ";
+		$sqlGetNumeroIndicadores .= 	"indicador As i, ";
+		$sqlGetNumeroIndicadores .= 	"categoria_indicador As ci ";
+		$sqlGetNumeroIndicadores .= "WHERE ";
+		$sqlGetNumeroIndicadores .= 	"c.id_categoria = ci.id_categoria ";
+		$sqlGetNumeroIndicadores .= 	"and i.id_indicador = ci.id_indicador ";
+
+		/* ejecucion del query en el manejador de base datos */
+		$resultSetGetNumeroIndicadores = mysql_query($sqlGetNumeroIndicadores);
+		$row = mysql_fetch_array($resultSetGetNumeroIndicadores);
+
+		if(mysql_num_rows($resultSetGetNumeroIndicadores) > 0){
+			$sqlIndicadoresCapturados = "";
+			$sqlIndicadoresCapturados .= "select ai.id_categoriaindicador ";
+			$sqlIndicadoresCapturados .= "from asignacion_indicador ai, categoria_indicador ci ";
+			$sqlIndicadoresCapturados .= "where ai.RFC_docente = '".$rfcDocente."' and ai.id_categoriaindicador = ci.id_categoriaindicador group by 1";
+
+			/* ejecucion del query en el manejador de base datos */
+			$resultSetIndicadoresCapturados = mysql_query($sqlIndicadoresCapturados);
+			$indicadoresCapturados = mysql_num_rows($resultSetIndicadoresCapturados);
+
+			$numeroIndicadores = $row['numeroIndicadores'];
+			$porcentaje = round(($indicadoresCapturados / $numeroIndicadores)*100);
+			
+		}
+
+		// cerrando conexion a base de datos
+		close($conexion);
+
+		return $porcentaje;
+	}
 	
 	function obtenerPorcentajeDeEvaluacion($rfcDocente){
 
@@ -76,7 +169,6 @@
 			$sql.= 		"c.id_categoria = ci.id_categoria and ";
 			$sql.= 		"i.id_indicador = ci.id_indicador ";
 
-			
 			$resultSet = mysql_query($sql);		
 			
 			

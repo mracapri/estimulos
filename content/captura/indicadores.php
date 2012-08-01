@@ -39,7 +39,7 @@
 		$evaluacionEnviada = $_POST['evaluacion-eviada'];
 		if(!empty($_POST['evaluacion-eviada'])){
 			// Enviar y cerrar evaluacion
-			enviarEvaluacion();
+			enviarCaptura();
 		}
 	?>
 
@@ -168,7 +168,7 @@
 					
 					<div class="span2 categorias">
 						<form id="form-enviar-al-evaluador" method="post">
-							<button class="btn btn-danger" id="enviar-al-evaluador" <?php if(obtenerEstadoDeLaEvaluacion() == 1){ echo "disabled"; }?>>Enviar al evaluador</button>
+							<button class="btn btn-danger" id="enviar-al-evaluador" <?php if(obtenerEstadoDeLaCaptura() == 1){ echo "disabled"; }?>>Enviar al evaluador</button>
 							<input name="evaluacion-eviada" value="1" type="hidden"/>
 						</form>
 					</div>
@@ -176,7 +176,7 @@
 					<div class="span1 categorias"></div>
 					
 					<div class="span2 categorias">
-						<a href="../reportes/acuse.php" target="_blank" class="btn btn-danger" <?php if(obtenerEstadoDeLaEvaluacion() == 0){ echo "disabled"; }?>>Imprimir acuse</a>
+						<a href="../reportes/acuse.php" target="_blank" class="btn btn-danger" <?php if(obtenerEstadoDeLaCaptura() == 0){ echo "disabled"; }?>>Imprimir acuse</a>
 					</div>
 					<div class="span2 categorias"></div>
 				</div>

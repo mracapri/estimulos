@@ -144,6 +144,17 @@ var UTVM = {
 		$("#terminar-evaluacion").click(function(){
 			$('#informacion').modal('show');
 		});
+
+		$("#btn-terminar-evaluacion").click(function(){
+			var comentario = $("#input-comentario").val();
+			if(comentario == ''){
+				$("#alerta-caomentario-obligatorio").show();
+				return false;
+			}else{
+				$("#form-terminar-evaluacion").submit();
+				return true;
+			}
+		});
 	},
 
 	/* funcion principal */

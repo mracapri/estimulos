@@ -37,6 +37,10 @@
 				$plantillaElegirDocente .= 		"<span class='label label-important' 'seleccion-documento'> ";
 				$plantillaElegirDocente .= 			"No enviada";
 				$plantillaElegirDocente .= 		"</span> "; 
+			}else if($row['estado'] == 2){
+				$plantillaElegirDocente .= 		"<span class='label label-info' 'seleccion-documento'> ";
+				$plantillaElegirDocente .= 			"Evaluada";
+				$plantillaElegirDocente .= 		"</span> "; 
 			}else{
 				$plantillaElegirDocente .= 		"<span class='label label-success' 'seleccion-documento'> ";
 				$plantillaElegirDocente .= 			"Enviada";
@@ -48,6 +52,9 @@
 			if($row['estado'] == 0){
 				$plantillaElegirDocente .= 			"<a href='#' class='usuario'> ";			
 				$plantillaElegirDocente .= 			"</a> ";
+			}else if($row['estado'] == 2){
+				$plantillaElegirDocente .= 			"<a href='#' class='usuario'> ";			
+				$plantillaElegirDocente .= 			"</a> ";
 			}else{
 				$plantillaElegirDocente .= 			"<a href='ventanaEvaluacion.php?rfc=".$row['rfc']."' class='usuario'> ";
 				$plantillaElegirDocente .= 			"</a> ";
@@ -56,6 +63,10 @@
 			$plantillaElegirDocente .= 		"</div> ";
 			$plantillaElegirDocente .= 		"<div class='spand1 seccion3-3 '> ";
 			if($row['estado'] == 0){
+				$plantillaElegirDocente .= 			"<a href='#' rel='tooltip' title='".$nombre."'> ";			
+				$plantillaElegirDocente .=				$nombre;
+				$plantillaElegirDocente .= 			"</a> ";
+			}else if($row['estado'] == 2){
 				$plantillaElegirDocente .= 			"<a href='#' rel='tooltip' title='".$nombre."'> ";			
 				$plantillaElegirDocente .=				$nombre;
 				$plantillaElegirDocente .= 			"</a> ";

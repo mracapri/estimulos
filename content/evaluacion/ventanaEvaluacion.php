@@ -39,6 +39,12 @@
 		// mantiene en sesion el rfc del docente a evaluar
 		$_SESSION['rfcDocente'] = $_GET["rfc"];
 
+		$comentarioFinal = $_POST['input-comentario'];
+
+		if(!empty($comentarioFinal)){
+			terminarEvaluacion($rfcDocente, $comentarioFinal);			
+		}
+
 	?>
 </head>
 
@@ -161,7 +167,16 @@
 	<div class="modal hide" id="informacion">
     	<div class="modal-header">
     		<button type="button" class="close" data-dismiss="modal">×</button>
-    		<p>Estimado Evaluador, el usuario evaluado, captur&oacute; el 80% de los indicadores y el 20%, que son los no capturados, se muestran a continuaci&oacute;n:</p>
+    		<?php 
+    			$porcentajeCaptura = obtenerPorcentajeDeCaptura($_SESSION['rfcDocente']);
+    			$porcentajeRestante = 100 - $porcentajeCaptura;
+    		?>
+    		<p>
+    				Estimado Evaluador, el usuario evaluado, captur&oacute; el 
+    				<? echo $porcentajeCaptura; ?>% de los indicadores y el 
+    				<? echo $porcentajeRestante ;?>%, que son los no 
+    				capturados, se muestran a continuaci&oacute;n:
+    		</p>
     	</div>
     	<div class="modal-body">
 			<div class="contenedor-tablas">
@@ -174,68 +189,18 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Categoria1</td>
-						<td>Indicador1 </td>
-					</tr>
-					<tr></tr>
-					<tr>
-						<td>1</td>
-						<td>Categoria1</td>
-						<td>Indicador1 </td>
-					</tr>
-					<tr></tr>
-					<tr>
-						<td>1</td>
-						<td>Categoria1</td>
-						<td>Indicador1 </td>
-					</tr>
-					<tr></tr>
-					<tr>
-						<td>1</td>
-						<td>Categoria1</td>
-						<td>Indicador1 </td>
-					</tr>
-					<tr></tr>
-					<tr>
-						<td>1</td>
-						<td>Categoria1</td>
-						<td>Indicador1 </td>
-					</tr>
-					<tr></tr>
-					<tr>
-						<td>1</td>
-						<td>Categoria1</td>
-						<td>Indicador1 </td>
-					</tr>
-					<tr></tr>
-					<tr>
-						<td>1</td>
-						<td>Categoria1</td>
-						<td>Indicador1 </td>
-					</tr>
-					<tr></tr>
-					<tr>
-						<td>1</td>
-						<td>Categoria1</td>
-						<td>Indicador1 </td>
-					</tr>
-					<tr></tr>
-					<tr>
-						<td>1</td>
-						<td>Categoria1</td>
-						<td>Indicador1 </td>
-					</tr>
-					<tr></tr>
+					<? echo obtieneIndicadoresNoEvaluados(); ?>
 				</tbody>	
 			</table>
 			</div>
-			<textarea id="input-comentario" class="span4 text-area" placeholder="Comentario final" style="width: 500px; height: 96px;"></textarea>
+			<form id="form-terminar-evaluacion" method="post">
+				<textarea id="input-comentario" name="input-comentario" class="span4 text-area" placeholder="Comentario final" style="width: 500px; height: 96px;"></textarea>
+			</form>
+			<div id="alerta-caomentario-obligatorio" class="alert alert-error hide">Comentario obligatorio</div>
     	</div>
-    	<div class="modal-footer">
-    		<a href="#" class="btn" data-dismiss="modal">Terminar</a>
-				</div>
+    	<div class="modal-footer">    		
+			<button class="btn" data-dismiss="modal" id="btn-terminar-evaluacion">Terminar</button>
+		</div>
 	</div>
 </body>
 </html>

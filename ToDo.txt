@@ -1,12 +1,5 @@
 POR HACER:
 
-* Obtener el periodo actual desde el perfil del usuario, para la pantalla de elegirDocenteAEvaluar_lib.php - MARIO (TERMINADO)
-
-* Agregar el porcentaje en el aviso del docente, antes de enviar al evaluador - MARIO (TERMINADO)
-
-* Terminar funcionalidad despues de evaluar al participante, etiquetarlo como evaluado - MARIO 
-
-* Mostar los datos de la evaluacion en la vetana de calificaicon de indicador MARIO (TERMINADO)
 
 * Agregar la información de PREDA en la pantalla de login - NOEMI
 
@@ -27,6 +20,17 @@ POR HACER:
 * Agregar formatos en la seccion de documentos - PENDIENTE
 
 * Encabezado - cambiar el encabezado del reporte para PREDA - DAVID
+
+
+HECHO:
+
+* Obtener el periodo actual desde el perfil del usuario, para la pantalla de elegirDocenteAEvaluar_lib.php - MARIO
+
+* Agregar el porcentaje en el aviso del docente, antes de enviar al evaluador - MARIO 
+
+* Terminar funcionalidad despues de evaluar al participante, etiquetarlo como evaluado - MARIO
+
+* Mostar los datos de la evaluacion en la vetana de calificaicon de indicador MARIO 
 
 * Comentarios finales obligatorios - MARIO
 
