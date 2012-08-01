@@ -128,15 +128,16 @@ var UTVM = {
 		});
 
 		$("#enviar-al-evaluador").click(function(){
-			$result = confirm("Esta seguro de enviar la evaluacion?");
-			if($result){
-				$("#form-enviar-al-evaluador").sbumit();
-			}
+			$("#envio-modal").modal('show');
+			return false;
+		});
+
+		$("#btn-enviar-evaluador").click(function(){
+			$("#form-enviar-al-evaluador").submit();
 		});
 
 		// configura todos los botones para cerrar la sesion
 		$(".cerrar-sesion").attr("href", "/estimulos/lib/logout.php?killsession=1");
-
 
 		$('#protesta-modal').modal('show');
 		

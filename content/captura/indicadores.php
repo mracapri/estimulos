@@ -185,6 +185,23 @@
 			<br/>	
 	</div>
 
+    <div class="modal hide" id="envio-modal">
+    	<div class="modal-header">
+    		<button type="button" class="close" data-dismiss="modal">×</button>
+    		<h3>Importante</h3>
+    	</div>
+    	<div class="modal-body">
+    		<p id="protesta">
+    			Usted lleva un avance del <?php echo obtenerPorcentajeDeCaptura($_SESSION['rfcDocente']); ?>% del total. 
+    			Esta seguro de enviar la información para proceder a la evaluaci&oacuten?
+    		</p>
+    	</div>
+    	<div class="modal-footer">
+    		<a href="#" class="btn" data-dismiss="modal" id="btn-enviar-evaluador">Aceptar</a>
+    		<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
+    	</div>
+    </div>
+
 	<?php 
 		if($_SESSION['mensajeLegal'] == 0){ 
 			$_SESSION['mensajeLegal'] = 1;

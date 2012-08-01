@@ -4,15 +4,25 @@
 	function consultaDocentesAEvaluar()
 	{
 
+		/* conexion a base de datos */
+		$conexion = getConnection();
+
+		$sqlPeriodoActual = "select idperiodo from siin_generales.gral_periodos where actual = 1";
+
+
+		$resultSetPeriodoActual = mysql_query($sqlPeriodoActual);
+		$periodoActual = 0;
+		if(mysql_num_rows($resultSetPeriodoActual) > 0){
+			$rowPeriodoActual = mysql_fetch_array($resultSetPeriodoActual);
+			$periodoActual = $rowPeriodoActual[0];
+		}
+
 		$sqlDocentes = "SELECT a.idempleado as idempleado, concat(b.nombre ,' ',  b.paterno, ' ',  b.materno) as nombre, b.rfc, c.estado ";
 		$sqlDocentes .= "FROM siin_generales.gral_usuarios_adscripcion a, siin_generales.gral_usuarios b, participantes c ";
-		$sqlDocentes .= "WHERE a.idperiodo LIKE '48' "; // periodo actual?
+		$sqlDocentes .= "WHERE a.idperiodo LIKE '".$periodoActual."' ";
 		$sqlDocentes .= "AND a.idempleado = b.idempleado ";
 		$sqlDocentes .= "AND a.idnivel IN ( 6, 7, 8, 9, 10 ) ";
 		$sqlDocentes .= "AND b.rfc = c.rfc";
-
-		/* conexion a base de datos */
-		$conexion = getConnection();
 
 		/* ejecucion del query en el manejador de base datos */
 		$resultSetGetDocentes = mysql_query($sqlDocentes, $conexion);			
