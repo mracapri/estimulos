@@ -110,7 +110,6 @@
 
 			$elementoHtmlCalificacion = "<select id='input-calificacion' name='input-calificacion'>";
 			while($row = mysql_fetch_array($resultSetCalificacion)){
-				
 				if(!empty($registro) && $registro[4] == $row['porcentaje']){
 					$valorSeleccionado = $registro[4];
 
