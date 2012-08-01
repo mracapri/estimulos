@@ -110,9 +110,19 @@
 
 			$elementoHtmlCalificacion = "<select id='input-calificacion' name='input-calificacion'>";
 			while($row = mysql_fetch_array($resultSetCalificacion)){
-				$elementoHtmlCalificacion .= "<option value='".$row['porcentaje']."' data-id-porcentajeindicador='".$row['id_porcentajeindicador']."'>";
-				$elementoHtmlCalificacion .= 	$row['porcentaje']."  -- ".$row['descripcion'];
-				$elementoHtmlCalificacion .= "</option>";
+				
+				if(!empty($registro) && $registro[4] == $row['porcentaje']){
+					$valorSeleccionado = $registro[4];
+
+					$elementoHtmlCalificacion .= "<option value='".$row['porcentaje']."' data-id-porcentajeindicador='".$row['id_porcentajeindicador']."' selected='selected'>";
+					$elementoHtmlCalificacion .= 	$row['porcentaje']."  -- ".$row['descripcion'];
+					$elementoHtmlCalificacion .= "</option>";
+
+				}else{
+					$elementoHtmlCalificacion .= "<option value='".$row['porcentaje']."' data-id-porcentajeindicador='".$row['id_porcentajeindicador']."'>";
+					$elementoHtmlCalificacion .= 	$row['porcentaje']."  -- ".$row['descripcion'];
+					$elementoHtmlCalificacion .= "</option>";					
+				}
 			}
 			$elementoHtmlCalificacion .= "</select>";
 		}else{

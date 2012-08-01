@@ -6,6 +6,8 @@ POR HACER:
 
 * Terminar funcionalidad despues de evaluar al participante, etiquetarlo como evaluado - MARIO 
 
+* Mostar los datos de la evaluacion en la vetana de calificaicon de indicador MARIO (TERMINADO)
+
 * Agregar la información de PREDA en la pantalla de login - NOEMI
 
 * Reporte de excel "Reporte final PREDA" - NOEMI

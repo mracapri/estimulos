@@ -38,12 +38,14 @@
 		require_once("calificacionDocumetosIndicador_lib.php");
 		require_once("../captura/asignaciondocumentos_lib.php");
 
-		$categoriaIndicador = $_GET['categoria_indicador'];	
-		$jsonEvaluacion = $_POST['json-evaluacion'];
-		$registroEvaluado = obtieneRegistroEvaluado($categoriaIndicador);
+		$categoriaIndicador = $_GET['categoria_indicador'];
+		$jsonEvaluacion = $_POST['json-evaluacion'];		
+
 		if(!empty($jsonEvaluacion)){
 			guardaCalificacion($jsonEvaluacion, $categoriaIndicador);
 		}		
+
+		$registroEvaluado = obtieneRegistroEvaluado($categoriaIndicador);
 	?>
 </head>
 
@@ -164,14 +166,14 @@
 					<form class="well">
 							<label>Elija la calificacion</label>
 							<?php 							
-								echo presentaCalificacion($categoriaIndicador, $registro);
+								echo presentaCalificacion($categoriaIndicador, $registroEvaluado);
 							?>
 							<label class="checkbox">Incorrecto
-								<input type="checkbox" id="incorrecto" name="incorrecto"/>
+								<input type="checkbox" id="incorrecto" name="incorrecto" <?php if(!empty($registroEvaluado)){ if($registroEvaluado[6] == 1){ echo "checked"; } } ?>/>
 							</label>
-							<textarea class="span4 text-area" placeholder="Comentario" id="input-comentario"></textarea>								
-							</form>
-						</div>
+							<textarea class="span4 text-area" placeholder="Comentario" id="input-comentario"><?php if(!empty($registroEvaluado)){ echo $registroEvaluado[7]; } ?></textarea>							
+					</form>
+				</div>
 				<div class="span4" id="boton">
 					<div class="row-fluid">
 						<div class="span6"></div>
