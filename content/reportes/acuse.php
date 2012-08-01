@@ -19,7 +19,7 @@ function reporteRegulares($rfcDocente)
 				mysql_query("SET NAMES UTF8");
 				
 				$conexion = getConnection();
-				$NoFolio = ("SELECT(max(coalesce(folio, 0))+1) as folio FROM acuse");
+				$NoFolio = ("SELECT COALESCE(max(folio),0)+1 as folio FROM acuse");
 				
 				/* ejecucion del query en el manejador de base datos */
 				$resultfolio = mysql_query($NoFolio);
