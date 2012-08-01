@@ -15,37 +15,14 @@ function reporteRegulares($rfcDocente)
 		function Header()
 			{
 			
-				// obtener el nuevo folio del acuse 
-				mysql_query("SET NAMES UTF8");
-				
-				$conexion = getConnection();
-				$NoFolio = ("SELECT(max(coalesce(folio, 0))+1) as folio FROM acuse");
-				
-				/* ejecucion del query en el manejador de base datos */
-				$resultfolio = mysql_query($NoFolio);
-
-				/* obteniendo Folio */
+				/* obteniendo Folio 
 				$idfolio = 0;
 				$row = mysql_fetch_array($resultfolio);
 				if(count($row) > 0){
 					$idfolio = $row['Folio']+1;
 				}
 				
-				
-				
-				$sqlInsert .= "INSERT INTO acuse (folio, fecha , nombre , RFC, idempleado, programa_educativo, anio) VALUES (".$idfolio.", now(), '".$_SESSION['nombreUsuario']."', '".$_SESSION['rfcDocente']."', '".$_SESSION['idEmpleado']."',  '".$_SESSION['adscripcion']."', '".$_SESSION['anioEvaluacion']."')";
-				$Insert = mysql_query($sqlInsert);
-				
-				// ejecutano insert sql
-				if (!mysql_query($Insert,$conexion)){
-					$errorCode = mysql_errno();
-					if(!empty($errorCode)){
-						if($errorCode == 1062){ // registro duplicado
-							// mandar un error a la vista en html
-							$resultado = "Ya existe una evulacion con el mismo anio";
-						}
-					}
-				}
+				*/
 				
 				
 				
@@ -103,23 +80,39 @@ function reporteRegulares($rfcDocente)
 				$this->Cell(30,5,'No. Participante',0,0,'C',true);
 				$this->Cell(110,5,'Nombre del Participante',0,0,'C',true);
 				$this->Cell(50,5,'Porcentaje Obtenido (%)',0,0,'C',true);
-				$this->Ln(5);
-				$this->Sety(-60);
-				$this->SetX(10);	
+				$this->Ln(10);
+					
 				
 				// query de los participantes
 
+				mysql_query("SET NAMES UTF8");
+				$participantes = ("select b.rfc, concat(a.nombre, ' ', a.paterno, ' ' ,a.materno) from siin_generales.gral_usuarios a, participantes b where b.anio = 2012 and a.rfc = b.rfc") or die('error');
+				$resultparticipantes = mysql_query($participantes);	
 				
-				/****************************************************/
 				
+							
+				while($Nombre = mysql_fetch_array($resultparticipantes))
+				{
+				 
+				$CalfPorcentaje = ("SELECT cal_porcentaje FROM evaluacion_indicador WHERE ".($resultparticipantes[0])." = ".($resultparticipantes[0])." AND RFC_evaluador = RFC_evaluador ");
+				$Calificaciones = mysql_query($CalfPorcentaje);	
+				//echo $CalfPorcentaje;
+					
+					$this->SetLineWidth(.2);
+					$this->SetX(10);
+					$this->SetFont('Helvetica','',8);
+					$this->SetTextColor(0,0,0);
+					$this->Cell(30,5,($No),1,0,'C');
+					$this->Cell(110,5,utf8_decode($Nombre[1]),1,0,'l');
+					$this->Cell(50,5,utf8_decode($Calificaciones[0]),1,0,'C');					
+					$this->ln(5);
+				}
+				$this->Sety(-60);
+				$this->SetX(10);
 			}
+			
 		function body($rfcDocente)
 			{
-			
-			
-			
-			
-
 				
 				$this->SetFont('Arial','',10);
 				$this->SetTextColor(0,0,0);

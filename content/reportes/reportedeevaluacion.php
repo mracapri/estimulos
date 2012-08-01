@@ -57,7 +57,7 @@ function reporteRegulares($rfcDocente)
 				$this->Ln(4);
 				$this->SetFont('Arial','',8);
 				$this->Cell(32,3,'RFC:',0,0,'l');
-				$this->Cell(32,3,utf8_decode($_SESSION['Usuario']),0,0,'l');		// RFC del docente
+				$this->Cell(32,3,utf8_decode($_SESSION['rfcDocente']),0,0,'l');		// RFC del docente
 				
 				//Salto de línea
 				$this->Ln(8);
