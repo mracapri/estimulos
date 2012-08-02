@@ -63,7 +63,7 @@
 					<li class="active">
 						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
-					<a class="brand-2" href="#">Evaluaci&oacute;n</a>
+					<a class="brand-2" href="#">Evaluando a:<?php echo $_SESSION['rfcDocente']; ?></a>
 					<div class="span2 position">
 					<div class="btn-group pull-right">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">
@@ -71,7 +71,6 @@
 								<?php echo $_SESSION['rfcEvaluador']; ?>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="ventanaEvaluacion.php">Inicio</a></li>
 							<li><a href="elegirDocenteAEvaluar.php">Elegir docente</a></li>
 							<li><a href="#" class="cerrar-sesion">Cerrar Sesi&oacute;n</a></li>
 						</ul>
@@ -130,11 +129,11 @@
 						<div  class="span1" id="encabezado">
 							Porcentaje Indicador
 						</div>
-						<div  class="span2" id="encabezados">
+						<div  class="span2" id="encabezado">
 							Estado
 						</div>
 						<div class="span2" id="encabezado">
-							Observacion
+							Observaci&oacute;n
 						</div>
 						<div class="span1" id="encabezado">
 							Ver
