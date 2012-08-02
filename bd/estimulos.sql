@@ -282,8 +282,6 @@ INSERT INTO `indicador` (`id_indicador`, `descripcion`, `anio`) VALUES
 CREATE TABLE IF NOT EXISTS `participantes` (
   `RFC` varchar(10) NOT NULL DEFAULT '',
   `fecha` datetime DEFAULT NULL,
-  `estado` enum('0','1','2') NOT NULL,
-  `comentario` text NULL,
   `anio` int(4) DEFAULT NULL,
   PRIMARY KEY (`RFC`),
   KEY `RFC` (`RFC`),

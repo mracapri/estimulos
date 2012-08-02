@@ -1,15 +1,22 @@
 POR HACER:
 
+* Obtener el periodo actual desde el perfil del usuario, para la pantalla de elegirDocenteAEvaluar_lib.php - MARIO (TERMINADO)
 
-* Agregar la información de PREDA en la pantalla de login - NOEMI -------------------------------------------------------------------------------------TERMINADO(DAVID)
+* Agregar el porcentaje en el aviso del docente, antes de enviar al evaluador - MARIO (TERMINADO)
+
+* Terminar funcionalidad despues de evaluar al participante, etiquetarlo como evaluado - MARIO 
+
+* Mostar los datos de la evaluacion en la vetana de calificaicon de indicador MARIO (TERMINADO)
+
+* Agregar la información de PREDA en la pantalla de login - NOEMI ---------------------------------------------------------------------------------------TERMINADO(DAVID)
 
 * Reporte de excel "Reporte final PREDA" - NOEMI
  
-* Reporte en PDF del resultado final de los participantes - DAVID
+* Reporte en PDF del resultado final de los participantes - DAVID----------------------------------------------------------------------------------------FALTA(calcular procentaje y numero)
 
-* En el acuse insertar los datos - DAVID--------------------------------------------------------------------------------------------------------------------------------TERMINADO(DAVID)
+* En el acuse insertar los datos - DAVID--------------------------------------------------------------------------------------------------------------------------------FALTA(DAVID)( Codgi QR)
 
-* En la pantalla de Evaluacion - Informar al usuario, que persona esta evaluandoa travez de una etiqueta  - NOEMI
+* En la pantalla de Evaluacion - Informar al usuario, que persona esta evaluandoa travez de una etiqueta  - NOEMI-------	
 
 * Agregar el campo del comentario final en la tabla de participantes tipo BLOB - DAVID------  ------------------------------------------------TERMINADO(DAVID)
 
@@ -21,26 +28,22 @@ POR HACER:
 
 * Encabezado - cambiar el encabezado del reporte para PREDA - DAVID-------------------------------------------------------------------------------TERMINADO(DAVID)
 
-
-HECHO:
-
-* Obtener el periodo actual desde el perfil del usuario, para la pantalla de elegirDocenteAEvaluar_lib.php - MARIO
-
-* Agregar el porcentaje en el aviso del docente, antes de enviar al evaluador - MARIO 
-
-* Terminar funcionalidad despues de evaluar al participante, etiquetarlo como evaluado - MARIO
-
-* Mostar los datos de la evaluacion en la vetana de calificaicon de indicador MARIO 
-
 * Comentarios finales obligatorios - MARIO
+
+*Calcular la suma de los indicadores por categoria en los reportes de estado y evaluacion -----------------------------FALTA (DAVID) reporte evaluacion a quien esta evaluando------TERMINADO(a quien falta suma)
+
+
 
 DUDAS:
 
-* El comentario final, en que reporte dará informe de este dato? - DAVID
+* El comentario final, en que reporte dará informe de este dato? - DAVID-   agregarlo al reporte de evaluacion..------------------------------------------------
 
 
 
 * Que informacion vendra en la ventan de inicio? - NOEMI
+
+
+no se muestra nada en terminacion de evaluacion............................................................ING MARIO
 
 NUNCA OLVIDAR:
 
