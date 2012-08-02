@@ -99,6 +99,7 @@ function reporteRegulares($rfcDocente)
 						$contador = 1;											//contador
 						$sumaPorcentaje = 0;							
 						
+						
 					while($indica = mysql_fetch_array($resultindicador)){
 						
 					$this->SetLineWidth(.2);
@@ -111,12 +112,12 @@ function reporteRegulares($rfcDocente)
 						$sumaPorcentaje = $sumaPorcentaje + $indica['porcentaje']; //procedimiento para la suma de los valores de una categoria
 						
 	
-						$this->Cell(20,5,utf8_decode($sumaPorcentaje),0,0,'C'); //trae el porcentaje de la categoria				
+						$this->Cell(20,5,utf8_decode($sumatotal),0,0,'C'); 			//trae el porcentaje de la categoria				
 						$this->MultiCell(90,5,utf8_decode($indica[2]),0,'J');	   //trae la descripcion del indicador					
 						$y = $this->GetY();										   //regresa el salto de linea que Multicell realiza
 						$this->SetY($y-5);
 						$this->SetX(165);
-						$this->Cell(20,5,utf8_decode($indica[3]),0,0,'C');			//trae el porcentaje del indicador
+						$this->Cell(20,5,utf8_decode($indica[4]),0,0,'C');			//trae el porcentaje del indicador
 						if($indica['estatus'] > 0){									//Estado de captura de un indicador
 						$resul =		"CAPTURADO";
 						}else{
@@ -126,9 +127,9 @@ function reporteRegulares($rfcDocente)
 						
 					$this->Ln(5);
 					
-						$contador++;
 					}
 					
+					$sumatotal = $sumaPorcentaje;
 					//salto de linea y separador
 					$this->SetX(5);
 					$this->SetFillColor(204,204,204);

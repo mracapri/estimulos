@@ -51,9 +51,17 @@ function reporteRegulares($rfcDocente)
 				$this->Cell(32,3,'RFC:',0,0,'l');
 				$this->Cell(120,3,utf8_decode($_SESSION['rfcEvaluador']),0,0,'l');	//RFC del usuario
 				$this->Ln(8);
+				
+				
+				
+				
+				$sqlPerfilUsuario = ("SELECT concat(a.nombre,' ',a.paterno,' ',a.materno)as nombreEmpleado FROM siin_generales.gral_usuarios a WHERE rfc = '".$_SESSION['rfcDocente']."'");
+				$sqlUsuario = mysql_query($sqlPerfilUsuario);
+				//echo $sqlPerfilUsuario;
+				while($DocenteNombre = mysql_fetch_array($sqlUsuario)){
 				$this->SetFont('Arial','',8);
 				$this->Cell(32,3,'Evalua al Docente:',0,0,'l');
-				$this->Cell(32,3,utf8_decode($_SESSION['rfcDocente']),0,0,'l');		// Docente al que se esta evaluando
+				$this->Cell(32,3,utf8_decode($DocenteNombre[0]),0,0,'l');		// Docente al que se esta evaluando
 				$this->Ln(4);
 				$this->SetFont('Arial','',8);
 				$this->Cell(32,3,'RFC:',0,0,'l');
@@ -81,7 +89,7 @@ function reporteRegulares($rfcDocente)
 				$this->SetFillColor(204,204,204);
 				$this->Cell(205,3,'',0,1,'C',true);
 				
-				
+				}
 			}
 		
 		function body($rfcDocente)
@@ -105,10 +113,8 @@ function reporteRegulares($rfcDocente)
 						$this->SetTextColor(0,0,0);
 						$this->Cell(50,5,utf8_decode($indica[1]),0,0,'l');         //trae el nombre de la categoria
 						
-						
 						$sumaPorcentaje = $sumaPorcentaje + $indica['porcentaje']; //procedimiento para la suma de los valores de una categoria
 						
-	
 						$this->Cell(20,5,utf8_decode($sumaPorcentaje),0,0,'C'); //trae el porcentaje de la categoria				
 						$this->MultiCell(90,5,utf8_decode($indica[3]),0,'J');	   //trae la descripcion del indicador					
 						$y = $this->GetY();										   //regresa el salto de linea que Multicell realiza
@@ -136,7 +142,27 @@ function reporteRegulares($rfcDocente)
 							
 			}
 			
+		Function Comentario()
+		{
+				$this->ln(5);
+				$this->SetX(5);
+				//Arial 12
+				$this->SetFont('Helvetica','',9);
+				//Color de fondo
+				$this->SetFillColor(51,51,51);
+				$this->SetTextColor(255,255,255);
+				//Título
+				$this->Cell(205,5,'Comentario final del evaluador.',1,0,'C',true);
 
+				//Salto de línea
+				$this->Ln(5);
+				$this->SetX(5);
+				$this->SetFillColor(204,204,204);
+				$this->SetTextColor(0,0,0);
+				$this->Ln(5);
+				$this->SetX(5);
+				$this->MultiCell(205,5,utf8_decode($indica[3]),1,'J');
+		}
 		//Pie de página
 		function Footer()
 			{
@@ -160,5 +186,6 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Times','',12);
 $pdf->body($rfcDocente);
+$pdf->Comentario();
 $pdf->Output();
 ?>
