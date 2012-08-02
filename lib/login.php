@@ -1,19 +1,32 @@
 <?php
-	
-	if($_GET['killsession'] == 1){
-		logOut();
-		//echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/index.php">';
+
+	/* valida el tiempo de la sesion */
+	$periodoInactividadMinutos = 30; // periodo de inactividad de 30 minutos
+	$seguridadActivada = false;
+
+	if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > ($periodoInactividadMinutos * 60) )) {
+	    logOut();
+		echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/index.php">';
 	}
+	$_SESSION['LAST_ACTIVITY'] = time();
 
 	function logIn(){
+		
 		$usuario = $_POST['usuario'];
 		$clave = $_POST['clave'];
 
 		if(!empty($usuario) && !empty($clave)){
 			if(elUsuarioSeEncuentraEnActiveDirectorie()){
+
+				/* establece el momento en segundos del login */
+				$_SESSION['LAST_ACTIVITY'] = time(); 
+
+				/* obteniendo el anio de evaluacion */			
+				$_SESSION['anioEvaluacion'] = 2012;
+
 				if(elUsuarioEsEvaluador($usuario)){
 					$_SESSION['rfcEvaluador'] = $usuario;
-					$_SESSION['usuarioFirmado'] = "1";
+					$_SESSION['usuarioFirmado'] = "1";					
 					echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/content/evaluacion/elegirDocenteAEvaluar.php">';
 				}else if(elUsuarioEsDocenteParticipante($usuario)){
 					$_SESSION['rfcDocente'] = $usuario;
@@ -39,25 +52,53 @@
 	}
 
 
-	function elUsuarioSeEncuentraEnActiveDirectorie(){
-		/*
-		$result = "";
-		$fd = fopen( "http://10.100.96.7/siin/servicioConecta/conecta.php", "r");	
-		if(empty($fd)){
-			echo "Error en el servidor Web del Siin";
+	function elUsuarioSeEncuentraEnActiveDirectorie(){		
+
+		if($seguridadActivada){
+
+			$fd = fopen( "http://10.100.96.7/siin/servicioConecta/conecta.php", "r");	
+			if(empty($fd)){
+				echo "Error en el servidor Web del Siin";
+			}else{
+			    while(!feof($fd)) {
+			        $result .= $buffer = fgets($fd, 4096);
+			    }
+			    fclose( $fd );
+			}
+			$jsonObj = json_decode($result);
+			$resultadoArray  = jsonToArray($jsonObj);
+			$acceso = $resultadoArray['return']['acceso'];
+
+			if(!empty($acceso)){
+				if($acceso == "1"){
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
 		}else{
-		    while(!feof($fd)) {
-		        $result .= $buffer = fgets($fd, 4096);
-		    }
-		    fclose( $fd );
+			return true;
 		}
+	}
 
-		echo "vacio: ".$r_esult;
-		echo "vacio: ".json_decode($result->{'return'});
-		*/
-
-		//echo json_decode($result."");
-		return true;
+	/* convierte la respuesta json a arreglo*/
+	function jsonToArray($obj){
+	  	$out = array();
+	  	foreach ($obj as $key => $val) {
+	   		switch(true) {
+	    		case is_object($val):
+	     		$out[$key] = jsonToArray($val);
+	     		break;
+	    	case is_array($val):
+	     		$out[$key] = jsonToArray($val);
+	     		break;
+	    	default:
+	     		$out[$key] = $val;
+			}
+		}
+		return $out;
 	}
 
 	function elUsuarioEsEvaluador($rfc){
@@ -107,9 +148,6 @@
 
 		// abriendo conexion a base de datos del siin
 		$conection = getConnection();
-
-		/* obteniendo el anio de evaluacion */			
-		$_SESSION['anioEvaluacion'] = 2012;
 			
 		// obteniendo el perfil del usuario
 		$sqlPerfilUsuario = "";
@@ -165,6 +203,7 @@
 
 	/* Terminar sesion */
 	function logOut(){
-		session_destroy();
+	    session_destroy();   // destruye la session
+	    session_unset();     // remueve la $_SESSION 
 	}
 ?>

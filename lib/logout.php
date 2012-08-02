@@ -7,6 +7,8 @@
 
 	/* Terminar sesion */
 	function logOut(){
-		session_destroy();
+	    session_destroy();   // destruye la session
+	    session_unset();     // remueve la $_SESSION 
 	}
+
 ?>
