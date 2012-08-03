@@ -13,10 +13,12 @@ insert into reportes (id_reporte, nombre, path) values (1, 'Reporte 1', 'reporte
 insert into reportes (id_reporte, nombre, path) values (2, 'Reporte 2', 'reporte2.php');
 
 /* Agregando participantes */
-insert into participantes (rfc, estado, anio) values ('SAZL700719', '0', 2012);
-insert into participantes (rfc, estado, anio) values ('BELJ741120', '0', 2012);
-insert into participantes (rfc, estado, anio) values ('ROMJ750603', '0', 2012);
-insert into participantes (rfc, estado, anio) values ('TEDO651008', '0', 2012);
+
+insert into participantes (rfc, anio) values ('AACC760815', 2012);
+insert into participantes (rfc, anio) values ('TELL671024', 2012);
+insert into participantes (rfc, anio) values ('RIAM821204', 2012);
+
+
 
 
 
