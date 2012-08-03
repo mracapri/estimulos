@@ -6,8 +6,8 @@
 		/* conexion a base de datos */
 		$conexion = getConnection();
 
-		$sql = "SELECT COALESCE(estado,0) as estado FROM participantes where rfc = '".$_SESSION['rfcDocente']."'";
-
+		$sql = "SELECT COALESCE(estado,0) as estado FROM comentarios where rfcdocente = '".$_SESSION['rfcDocente']."' and anio = ".$_SESSION['anioEvaluacion'];
+		
 		$resultSet = mysql_query($sql,$conexion);
 
 		if(mysql_num_rows($resultSet) > 0){
@@ -22,17 +22,31 @@
 
 		return $result;
 	}
-
+	echo obtenerEstadoDeLaCaptura();
 	function enviarCaptura(){		
-		$sql = "UPDATE participantes SET ESTADO = '1', FECHA = NOW() WHERE rfc = '".$_SESSION['rfcDocente']."' and anio = ".$_SESSION['anioEvaluacion'];
+
 		/* conexion a base de datos */
 		$conexion = getConnection();
+		
+		$sqlGetLlave = "SELECT coalesce(MAX(idcomentario),0)+1 as llave from comentarios";
+		
+		/* ejecucion del query en el manejador de base datos */
+		$resultGetLlave = mysql_query($sqlGetLlave);
+
+		/* obteniendo llave */
+		$idLlave = 0;
+		$row = mysql_fetch_array($resultGetLlave);
+		if(count($row) > 0){
+			$idLlave = $row['llave'];
+		}
+		
+		$sql = "INSERT INTO comentarios (idcomentario, rfcdocente, anio, estado) VALUES(".$idLlave.", '".$_SESSION['rfcDocente']."', ".$_SESSION['anioEvaluacion'].", '1')";
 
 		/* ejecucion del query en el manejador de base datos */
 		if (!mysql_query($sql,$conexion)){
 			$errorCode = mysql_errno();
 			// Error al actualizar
-			if(!empty($errorCode)){				
+			if(!empty($errorCode)){
 				echo "Error: ".$errorCode;
 				/* TODO: Incluir mensaje para la vista */
 			}
