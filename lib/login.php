@@ -2,7 +2,7 @@
 
 	/* valida el tiempo de la sesion */
 	$periodoInactividadMinutos = 30; // periodo de inactividad de 30 minutos
-	$seguridadActivada = false;
+	define("SEGURIDAD_ACTIVADA", "1"); // produccion - 1, desarrollo - 0
 
 	if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > ($periodoInactividadMinutos * 60) )) {
 	    logOut();
@@ -16,7 +16,7 @@
 		$clave = $_POST['clave'];
 
 		if(!empty($usuario) && !empty($clave)){
-			if(elUsuarioSeEncuentraEnActiveDirectorie()){
+			if(elUsuarioSeEncuentraEnActiveDirectorie($usuario, $clave)){
 
 				/* establece el momento en segundos del login */
 				$_SESSION['LAST_ACTIVITY'] = time(); 
@@ -52,11 +52,10 @@
 	}
 
 
-	function elUsuarioSeEncuentraEnActiveDirectorie(){		
-
-		if($seguridadActivada){
-
-			$fd = fopen( "http://10.100.96.7/siin/servicioConecta/conecta.php", "r");	
+	function elUsuarioSeEncuentraEnActiveDirectorie($usuario, $clave){
+		if(SEGURIDAD_ACTIVADA == 1){
+			
+			$fd = fopen( "http://10.100.96.7/siin/servicioConecta/conecta.php?usuario=".$usuario."&clave=".$clave, "r");	
 			if(empty($fd)){
 				echo "Error en el servidor Web del Siin";
 			}else{
