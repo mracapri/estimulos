@@ -153,6 +153,31 @@ INSERT INTO `categoria_indicador` (`id_categoriaindicador`, `id_indicador`, `id_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comentarios`
+--
+
+CREATE TABLE IF NOT EXISTS `comentarios` (
+  `idcomentario` int(10) NOT NULL,
+  `rfcDocente` varchar(10) NOT NULL,
+  `rfcEvaluador` varchar(10) NOT NULL,
+  `estado` enum('0','1','2') NOT NULL,
+  `comentario` text,
+  `anio` int(4) DEFAULT NULL,
+  PRIMARY KEY (`idcomentario`),
+  UNIQUE KEY `comentario_eva` (`rfcDocente`,`rfcEvaluador`,`anio`),
+  KEY `anio` (`anio`),
+  KEY `rfcDocente` (`rfcDocente`),
+  KEY `rfc_Evaluador` (`rfcEvaluador`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comentarios`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `evaluacion`
 --
 
@@ -421,6 +446,14 @@ ALTER TABLE `categoria`
 ALTER TABLE `categoria_indicador`
   ADD CONSTRAINT `fk_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_indicador` FOREIGN KEY (`id_indicador`) REFERENCES `indicador` (`id_indicador`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `comentario_evaluador` FOREIGN KEY (`rfcEvaluador`) REFERENCES `evaluador` (`RFC_evaluador`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `comentario_evaluacion` FOREIGN KEY (`anio`) REFERENCES `evaluacion` (`anio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `comentario_participante` FOREIGN KEY (`rfcDocente`) REFERENCES `participantes` (`RFC`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `evaluacion_indicador`
