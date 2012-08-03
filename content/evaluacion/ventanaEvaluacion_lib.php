@@ -234,4 +234,43 @@
 		return $plantillaElemento;
 	}
 	
+	function obtenerNombreUsuario($rfcDocente)
+	{
+		// abriendo conexion a base de datos del siin
+		$conection = getConnection();
+		
+		$rfcDocente = $_SESSION['rfcDocente'];
+		$idPeriodos = $_SESSION['idPeriodos'];
+		$anioEvaluacion = $_SESSION['anioEvaluacion'];	
+		
+		// obteniendo el perfil del usuario
+		
+		$sqlPerfilUsuario = "";
+		$sqlPerfilUsuario .= "SELECT ";
+		$sqlPerfilUsuario .= 	"concat(a.profesion,' ',a.nombre,' ',a.paterno,' ',a.materno)as nombreEmpleado ";
+		$sqlPerfilUsuario .= "FROM ";
+		$sqlPerfilUsuario .= 	"siin_generales.gral_usuarios a, ";
+		$sqlPerfilUsuario .= 	"siin_generales.gral_usuarios_adscripcion b, ";
+		$sqlPerfilUsuario .= 	"siin_generales.gral_adscripcion c, siin_generales.gral_periodos d ";
+		$sqlPerfilUsuario .= "WHERE ";
+		$sqlPerfilUsuario .= 	"a.rfc = '".$rfcDocente."' and ";
+		$sqlPerfilUsuario .= 	"b.idempleado = a.idempleado and ";
+		$sqlPerfilUsuario .= 	"d.actual = 1 and ";
+		$sqlPerfilUsuario .= 	"b.idperiodo = d.idperiodo and ";
+		$sqlPerfilUsuario .= 	"c.idadscripcion = b.idadscripcion";
+		
+		$resultSet = mysql_query($sqlPerfilUsuario);	
+		$resultSetPerfilUsuario = mysql_query($sqlPerfilUsuario, $conection);
+		$row = mysql_fetch_array($resultSetPerfilUsuario);		
+
+		if(mysql_num_rows($resultSetPerfilUsuario) > 0){
+
+			return $row['nombreEmpleado'];
+			
+		}
+
+		// cerrando conexion a base de datos
+		close($conection);
+	}
+		
 ?>

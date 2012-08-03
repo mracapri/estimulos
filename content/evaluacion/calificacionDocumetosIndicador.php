@@ -61,10 +61,10 @@
 				    	<a href="#">Evaluador</a>
 				    </li>
 
-					<li class="active">
+					<li class="active2">
 						<a id="nombre-persona" href="#"><?php echo $_SESSION['nombreUsuario']; ?></a>
 					</li>
-					<a class="brand-2" href="#">Evaluaci&oacute;n documentos indicador</a>
+					<a class="brand-3" href="#">Evaluando a:  <?php echo obtenerNombreUsuario($_SESSION['rfcDocente']); ?></a>
 					<div class="span2 position">
 					<div class="btn-group pull-right">
 						<a class="btn dropdown-toggle" href="#" data-toggle="dropdown">

@@ -190,7 +190,29 @@ input.span4 {
 	
 }
 
-
+.brand-3{
+    color: #999999;
+    display: block;
+    float: left;
+    font-size: 14px;
+    font-weight: 200;
+    line-height: 1;
+    margin-left: -20px;
+    padding: 12px 20px 12px;
+	width:440px;
+	text-decoration: none;  
+	
+}
+a.brand-3:hover
+{
+text-decoration: none; 
+color: white;
+}
+.active2
+{
+    text-decoration: none;
+	width:300px;
+}
 
 /********************************************************************************
 	CSS Estilos
