@@ -19,7 +19,7 @@
 
 		$sqlDocentes = "SELECT a.idempleado as idempleado, concat(b.nombre ,' ',  b.paterno, ' ',  b.materno) as nombre, b.rfc, c.estado ";
 		$sqlDocentes .= "FROM siin_generales.gral_usuarios_adscripcion a, siin_generales.gral_usuarios b, participantes c ";
-		$sqlDocentes .= "WHERE a.idperiodo LIKE '".$periodoActual."' ";
+		$sqlDocentes .= "WHERE a.idperiodo = ".$periodoActual." ";
 		$sqlDocentes .= "AND a.idempleado = b.idempleado ";
 		$sqlDocentes .= "AND a.idnivel IN ( 0, 6, 7, 8, 9, 10 ) ";
 		$sqlDocentes .= "AND b.rfc = c.rfc";
