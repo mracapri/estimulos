@@ -1,8 +1,9 @@
 <?php	
 	session_start();
+	define("PATH", "/estimulos");
 	if($_GET['killsession'] == 1){
 		logOut();
-		echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/index.php">';
+		echo '<META HTTP-EQUIV="Refresh" Content="0; URL='.PATH.'/index.php">';
 	}
 
 	/* Terminar sesion */

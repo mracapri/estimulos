@@ -2,11 +2,12 @@
 
 	/* valida el tiempo de la sesion */
 	$periodoInactividadMinutos = 30; // periodo de inactividad de 30 minutos
-	define("SEGURIDAD_ACTIVADA", "1"); // produccion - 1, desarrollo - 0
+	define("SEGURIDAD_ACTIVADA", "0"); // produccion - 1, desarrollo - 0
+	define("PATH", "/estimulos");
 
 	if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > ($periodoInactividadMinutos * 60) )) {
 	    logOut();
-		echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/index.php">';
+		echo '<META HTTP-EQUIV="Refresh" Content="0; URL='.PATH.'/index.php">';
 	}
 	$_SESSION['LAST_ACTIVITY'] = time();
 
@@ -27,12 +28,12 @@
 				if(elUsuarioEsEvaluador($usuario)){
 					$_SESSION['rfcEvaluador'] = $usuario;
 					$_SESSION['usuarioFirmado'] = "1";					
-					echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/content/evaluacion/elegirDocenteAEvaluar.php">';
+					echo '<META HTTP-EQUIV="Refresh" Content="0; URL='.PATH.'/content/evaluacion/elegirDocenteAEvaluar.php">';
 				}else if(elUsuarioEsDocenteParticipante($usuario)){
 					$_SESSION['rfcDocente'] = $usuario;
 					$_SESSION['usuarioFirmado'] = "2";
 					$_SESSION['mensajeLegal'] = "0";
-					echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/content/captura/indicadores.php">';
+					echo '<META HTTP-EQUIV="Refresh" Content="0; URL='.PATH.'/content/captura/indicadores.php">';
 				}
 				obteniendoPerfil($usuario);
 			}else{					
@@ -42,9 +43,9 @@
 		}else{ 
 			// si el usuario ya esta logueado pues lo deja entrar
 			if($_SESSION['usuarioFirmado'] == 1){
-				echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/content/evaluacion/elegirDocenteAEvaluar.php">';
+				echo '<META HTTP-EQUIV="Refresh" Content="0; URL='.PATH.'/content/evaluacion/elegirDocenteAEvaluar.php">';
 			}else if($_SESSION['usuarioFirmado'] == 2){
-				echo '<META HTTP-EQUIV="Refresh" Content="0; URL=/estimulos/content/captura/indicadores.php">';
+				echo '<META HTTP-EQUIV="Refresh" Content="0; URL='.PATH.'/content/captura/indicadores.php">';
 			}else{
 				enviaMensajeAPantalla("Usuario o Clave incorrecta",  "form-section");
 			}
