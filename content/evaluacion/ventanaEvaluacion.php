@@ -92,7 +92,7 @@
 					    </a>
 					    <ul class="dropdown-menu">
 							<li>
-								<a href="../recursos/GuiaE_DPA_2010_3.pdf" target="_blank">Guia</a>
+								<a href="../recursos/Guia_PREDA_2012.pdf" target="_blank">Guia</a>
 							</li>
 					    </ul>
 					 </div>
