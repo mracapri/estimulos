@@ -13,7 +13,7 @@
 
 	function logIn(){
 		
-		$usuario = $_POST['usuario'];
+		$usuario = strtoupper($_POST['usuario']);
 		$clave = $_POST['clave'];
 
 		if(!empty($usuario) && !empty($clave)){
