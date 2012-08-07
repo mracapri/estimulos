@@ -109,6 +109,8 @@ function reporteRegulares($rfcDocente)
 						$this->Cell(50,5,utf8_decode($indica[1]),0,0,'l');         //trae el nombre de la categoria
 						
 						
+								//hace la suma de los indicadores....		
+					
 						$sumaPorcentaje = $sumaPorcentaje + $indica['porcentaje']; //procedimiento para la suma de los valores de una categoria
 						
 	
@@ -128,7 +130,7 @@ function reporteRegulares($rfcDocente)
 					$this->Ln(5);
 					
 					}
-					
+					// trae la suma toda de una categoria.
 					$sumatotal = $sumaPorcentaje;
 					//salto de linea y separador
 					$this->SetX(5);

@@ -115,7 +115,7 @@ function reporteRegulares($rfcDocente)
 						
 						$sumaPorcentaje = $sumaPorcentaje + $indica['porcentaje']; //procedimiento para la suma de los valores de una categoria
 						
-						$this->Cell(20,5,utf8_decode($sumaPorcentaje),0,0,'C'); //trae el porcentaje de la categoria				
+						$this->Cell(20,5,utf8_decode($sumatotalPorcentaje),0,0,'C'); //trae el porcentaje de la categoria				
 						$this->MultiCell(90,5,utf8_decode($indica[3]),0,'J');	   //trae la descripcion del indicador					
 						$y = $this->GetY();										   //regresa el salto de linea que Multicell realiza
 						$this->SetY($y-5);
@@ -133,7 +133,7 @@ function reporteRegulares($rfcDocente)
 						
 						$contador++;
 					}
-					
+					$sumatotalPorcentaje = $sumaPorcentaje;
 					//salto de linea y separador
 					$this->SetX(5);
 					$this->SetFillColor(204,204,204);
@@ -144,6 +144,12 @@ function reporteRegulares($rfcDocente)
 			
 		Function Comentario()
 		{
+				mysql_query("SET NAMES UTF8");
+				$ComentarioEv = ("SELECT comentario FROM estimulos.comentarios WHERE rfcdocente = '".$_SESSION['rfcDocente']."' and rfcevaluador = '".$_SESSION['rfcEvaluador']."'");
+				$sqlComent = mysql_query($ComentarioEv);
+				//echo $ComentarioEv;
+				while($Coment = mysql_fetch_array($sqlComent)){
+					//echo $Coment;
 				$this->ln(5);
 				$this->SetX(5);
 				//Arial 12
@@ -157,11 +163,25 @@ function reporteRegulares($rfcDocente)
 				//Salto de línea
 				$this->Ln(5);
 				$this->SetX(5);
-				$this->SetFillColor(204,204,204);
+				$this->SetFillColor(255,255,255);
+				
 				$this->SetTextColor(0,0,0);
 				$this->Ln(5);
-				$this->SetX(5);
-				$this->MultiCell(205,5,utf8_decode($indica[3]),1,'J');
+				$this->SetX(15);
+				$this->MultiCell(185,5,utf8_decode($Coment[0]),0,'J',true);
+				
+				$this->SetX(10);
+				$this->SetFont('Arial','',12);
+				$this->SetY(-38);
+				$this->Cell(195,5,'______________________',0,0,'C',false);
+				$this->SetFont('Arial','B',10);
+				$this->Ln(5);
+				$this->Cell(195,5,'Firma del evaluador.',0,0,'C',false);
+				$this->Ln(5);
+				$this->SetFont('Arial','',10);
+				$this->Cell(195,5,utf8_decode($_SESSION['nombreUsuario']),0,0,'C',false);
+				$this->Ln(5);
+				}
 		}
 		//Pie de página
 		function Footer()
@@ -175,7 +195,7 @@ function reporteRegulares($rfcDocente)
 				//Arial italic 8
 				$this->SetFont('Arial','I',8);
 				//Número de página
-				$this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+				$this->Cell(0,15,'Page '.$this->PageNo().'/{nb}',0,0,'C');
 			}
 	}
 }
