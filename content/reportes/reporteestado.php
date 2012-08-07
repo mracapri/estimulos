@@ -73,9 +73,9 @@ function reporteRegulares($rfcDocente)
 				$this->SetTextColor(255,255,255);
 				//Título
 				$this->Cell(50,5,'Categoria',1,0,'C',true);
-				$this->Cell(20,5,'Porcentaje',1,0,'C',true);
+				$this->Cell(20,5,'% Categoria',1,0,'C',true);
 				$this->Cell(90,5,'Indicador',1,0,'C',true);
-				$this->Cell(20,5,'Porcentaje',1,0,'C',true);
+				$this->Cell(20,5,'% Indicador',1,0,'C',true);
 				$this->Cell(25,5,'Estado',1,0,'C',true);
 				//Salto de línea
 				$this->Ln(5);
@@ -91,44 +91,75 @@ function reporteRegulares($rfcDocente)
 				
 				for($idCategoria = 1; $idCategoria <= 8; $idCategoria++)   // iteracion para envocar a todas las categorias e indicadores
 				{
-				//Consulta
-				mysql_query("SET NAMES UTF8");
-						$indicador = ("SELECT c.id_categoria as id_categoria, c.descripcion  as descripcion_categoria, i.descripcion as descripcion_indicador, ci.id_categoriaindicador as categoria_indicador, (select max(porcentaje) from porcentaje_indicador where id_categoriaindicador = ci.id_categoriaindicador) as porcentaje, (select COALESCE(max(id_categoriaindicador),0)  from asignacion_indicador where id_categoriaindicador = ci.id_categoriaindicador and rfc_docente = '".$_SESSION['rfcDocente']."') as estatus FROM categoria As c, indicador As i, categoria_indicador As ci WHERE ci.id_categoria = ".$idCategoria." and c.id_categoria = ci.id_categoria and i.id_indicador = ci.id_indicador ") or die('error');
-						$resultindicador = mysql_query($indicador);		
-						//echo $indicador;
-						$contador = 1;											//contador
-						$sumaPorcentaje = 0;							
+					//Consulta
+					mysql_query("SET NAMES UTF8");
+					$indicador = ("SELECT c.id_categoria as id_categoria, c.descripcion  as descripcion_categoria, i.descripcion as descripcion_indicador, ci.id_categoriaindicador as categoria_indicador, (select max(porcentaje) from porcentaje_indicador where id_categoriaindicador = ci.id_categoriaindicador) as porcentaje, (select COALESCE(max(id_categoriaindicador),0)  from asignacion_indicador where id_categoriaindicador = ci.id_categoriaindicador and rfc_docente = '".$_SESSION['rfcDocente']."') as estatus FROM categoria As c, indicador As i, categoria_indicador As ci WHERE ci.id_categoria = ".$idCategoria." and c.id_categoria = ci.id_categoria and i.id_indicador = ci.id_indicador ") or die('error');					
+					$resultindicador = mysql_query($indicador);		
+					
+					$contador = 1;											//contador
+					$sumaPorcentaje = 0;							
 						
 						
 					while($indica = mysql_fetch_array($resultindicador)){
 						
-					$this->SetLineWidth(.2);
-					$this->SetX(5);
-					$this->SetFont('Helvetica','',8);
+						$this->SetLineWidth(.2);
+						$this->SetX(5);
+						$this->SetFont('Helvetica','',8);
 						$this->SetTextColor(0,0,0);
-						$this->Cell(50,5,utf8_decode($indica[1]),0,0,'l');         //trae el nombre de la categoria
+						if($contador == 1){
+							$this->Cell(50,5,utf8_decode($indica[1]),0,0,'l');         //trae el nombre de la categoria
+						}else{
+							$this->Cell(50,5,utf8_decode(" "),0,0,'l');         //trae el nombre de la categoria
+						}
+
 						
 						
-								//hace la suma de los indicadores....		
+						//hace la suma de los indicadores....
 					
 						$sumaPorcentaje = $sumaPorcentaje + $indica['porcentaje']; //procedimiento para la suma de los valores de una categoria
 						
-	
-						$this->Cell(20,5,utf8_decode($sumatotal),0,0,'C'); 			//trae el porcentaje de la categoria				
+
+
+						if($contador == 1){
+
+							$sqlSumaPorcentajes = "";
+							$sqlSumaPorcentajes .= "SELECT ";
+							$sqlSumaPorcentajes .= 		"max(porcentaje) as porcentaje,  ";
+							$sqlSumaPorcentajes .= 		"id_categoriaindicador  ";
+							$sqlSumaPorcentajes .= "FROM ";
+							$sqlSumaPorcentajes .= 		"porcentaje_indicador ";
+							$sqlSumaPorcentajes .= "WHERE ";
+							$sqlSumaPorcentajes .= 		"id_categoriaindicador in (";
+							$sqlSumaPorcentajes .= 			"select id_categoriaindicador from categoria_indicador where id_categoria = ".$indica['id_categoria'];
+							$sqlSumaPorcentajes .= 		") group by 2";
+
+							$resultSetSumaPorcentajes = mysql_query($sqlSumaPorcentajes);
+
+							$suma = 0;
+							while($rowSuma = mysql_fetch_array($resultSetSumaPorcentajes)){
+								$suma = $suma + $rowSuma['porcentaje'];
+							}
+							$this->Cell(20,5,utf8_decode($suma),0,0,'C'); 			//trae el porcentaje de la categoria
+
+						}else{
+							$this->Cell(20,5,utf8_decode(" "),0,0,'C'); 			//espacio en blanco
+						}
+
 						$this->MultiCell(90,5,utf8_decode($indica[2]),0,'J');	   //trae la descripcion del indicador					
 						$y = $this->GetY();										   //regresa el salto de linea que Multicell realiza
 						$this->SetY($y-5);
 						$this->SetX(165);
 						$this->Cell(20,5,utf8_decode($indica[4]),0,0,'C');			//trae el porcentaje del indicador
 						if($indica['estatus'] > 0){									//Estado de captura de un indicador
-						$resul =		"CAPTURADO";
+							$resul =		"CAPTURADO";
 						}else{
-						$resul=		".........";
+							$resul=		".........";
 						}
 						$this->Cell(25,5,($resul),0,0,'C');							//trae el estado del indicador
 						
-					$this->Ln(5);
-					
+						$this->Ln(5);
+
+						$contador++;
 					}
 					// trae la suma toda de una categoria.
 					$sumatotal = $sumaPorcentaje;
