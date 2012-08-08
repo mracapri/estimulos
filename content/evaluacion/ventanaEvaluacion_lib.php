@@ -247,7 +247,7 @@
 		
 		$sqlPerfilUsuario = "";
 		$sqlPerfilUsuario .= "SELECT ";
-		$sqlPerfilUsuario .= 	"concat(a.profesion,' ',a.nombre,' ',a.paterno,' ',a.materno)as nombreEmpleado ";
+		$sqlPerfilUsuario .= 	"concat(a.profesion,' ',a.nombre,' ',a.paterno,' ',a.materno)as nombreEmpleado, a.idempleado as idempleado, c.idadscripcion as adscripcion ";
 		$sqlPerfilUsuario .= "FROM ";
 		$sqlPerfilUsuario .= 	"siin_generales.gral_usuarios a, ";
 		$sqlPerfilUsuario .= 	"siin_generales.gral_usuarios_adscripcion b, ";
@@ -264,7 +264,8 @@
 		$row = mysql_fetch_array($resultSetPerfilUsuario);		
 
 		if(mysql_num_rows($resultSetPerfilUsuario) > 0){
-
+			$_SESSION['idEmpleadoAEvaluar'] = $row['idempleado'];
+			$_SESSION['idEmpleadoAEvaluarAdscripcion'] = $row['adscripcion'];
 			return $row['nombreEmpleado'];
 			
 		}
