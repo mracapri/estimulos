@@ -229,6 +229,19 @@
 		/* ejecucion del query en el manejador de base datos */
 		$resultSetAsignados = mysql_query($sqlArchivos);
 		
+
+
+		$idEmpleado = $_SESSION['idEmpleadoAEvaluar'];
+
+		if(empty($idEmpleado)){
+			$idEmpleado = $_SESSION['idEmpleado'];
+		}
+
+		$idAdscripcion = $_SESSION['idEmpleadoAEvaluarAdscripcion'];
+		if(empty($idAdscripcion)){
+			$idAdscripcion = $_SESSION['idAdscripcion'];
+		}
+
 		/* barre consulta para generar html */
 		while($row = mysql_fetch_array($resultSetAsignados)){
 			$plantillaElementoAsignacion .="<div class='span1 seccion1-3'>";
@@ -238,9 +251,10 @@
 			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
 			if(substr_count($row['doc_evidencia'],"EBC-FILE") > 0){
 				$valores = preg_split("/[\-,]+/", $row['doc_evidencia']);
-				$plantillaElementoAsignacion .= 	"<a target='_blank' href='http://10.100.96.7/sea-ebc/reportes/concentradoDocentes.php?carrera=".$_SESSION['idEmpleadoAEvaluarAdscripcion']."&idprofesor=".$_SESSION['idEmpleadoAEvaluar']."&idperiodo=".$valores[2]."' class='pdf'>";
+
+				$plantillaElementoAsignacion .= 	"<a target='_blank' href='http://10.100.96.7/sea-ebc/reportes/concentradoDocentes.php?carrera=".$_SESSION['idEmpleadoAEvaluarAdscripcion']."&idprofesor=".$idEmpleado."&idperiodo=".$valores[2]."' class='pdf'>";
 			}else{
-				$plantillaElementoAsignacion .= 	"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/".$_SESSION['idEmpleadoAEvaluarAdscripcion']."/".$row[0]."' class='pdf'>";
+				$plantillaElementoAsignacion .= 	"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/".$idAdscripcion."/".$row[0]."' class='pdf'>";
 			}
 			$plantillaElementoAsignacion .= 		"</a>";
 			$plantillaElementoAsignacion .= 	"</div>";
