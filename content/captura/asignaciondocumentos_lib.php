@@ -81,23 +81,51 @@
 		$anioEvaluacion = $_SESSION['anioEvaluacion'];
 		
 		/* sql para obtener las evidencias del usuario */ 
+		/*-------------------------------Query trae las evidencias del portafolio-------------------------------------*/
 		$sqlArchivos = "";
 		$sqlArchivos.= "SELECT a.evidencia, a.competencia, a.idempleado, b.nombre ";
 		$sqlArchivos.= "FROM siin_trayectorias_docentes.traydoc_portafolio a, siin_trayectorias_docentes.traydoc_portafolio_leyendas b ";
 		$sqlArchivos.= "WHERE a.idperiodo IN ( ".$idPeriodos." ) AND a.idempleado = '".$idEmpleado."' AND a.competencia = b.id ";
 		
 		$sqlArchivos.= "UNION ";
-		
+		/*--------------------------Query trae los formatos de la tabla estimulos_preda------------------------------*/
 		$sqlArchivos.= "SELECT evidencia, '', idempleado, nombre ";
 		$sqlArchivos.= "FROM siin_trayectorias_docentes.traydoc_estimulos_preda ";
 		$sqlArchivos.= "WHERE anyo = '".($anioEvaluacion-1)."' AND idempleado = '".$idEmpleado."' and tipo = 'preda' ";
 		
 		$sqlArchivos.= "UNION ";
-		
+		/*-------------------------------Query trae evidencias de la tabla estimulos_preda -------------------------------------*/
 		$sqlArchivos.= "SELECT evidencia, '', idempleado, nombre ";
 		$sqlArchivos.= "FROM siin_trayectorias_docentes.traydoc_estimulos_preda ";
 		$sqlArchivos.= "WHERE anyo = '".($anioEvaluacion-1)."' AND idempleado = '".$idEmpleado."' and tipo = 'estimulo'";
 
+		$sqlArchivos.= "UNION ";
+		/*-------------------------------Query trae evidencias de Formación Profecional-------------------------------------*/
+		
+		$sqlArchivos.= "SELECT urlTitulo, 'TITULO' as nombre, '', 'TITULO' FROM siin_trayectorias_docentes.traydoc_formacion_profesional WHERE  idempleado = '".$idEmpleado."' AND urlTitulo != '' ";
+		$sqlArchivos.= "UNION ";
+		$sqlArchivos.= "SELECT urlCedula, 'CEDULA' as nombre, '',  'CEDULA' FROM siin_trayectorias_docentes.traydoc_formacion_profesional WHERE  idempleado = '".$idEmpleado."' AND urlCedula != '' ";
+		$sqlArchivos.= "UNION ";
+		$sqlArchivos.= "SELECT urlCertificado, 'CERTIFICADO' as nombre, '', 'CERTIFICADO' FROM siin_trayectorias_docentes.traydoc_formacion_profesional WHERE  idempleado = '".$idEmpleado."' AND urlCertificado != '' ";
+		$sqlArchivos.= "UNION ";
+		$sqlArchivos.= "SELECT documentoPromep, 'PROMEP' as nombre, '', 'DOCUMENTO PROMEP' FROM  siin_trayectorias_docentes.traydoc_datos_complementarios WHERE idperiodo in (".$idPeriodos.") and idempleado = '".$idEmpleado."' AND documentoPromep != '' ";
+		
+		$sqlArchivos.= "UNION ";
+		/*-------------------------------Query trae evidencias de Logros-------------------------------------*/
+		$sqlArchivos.= "SELECT evidencia, nombre, '','LOGROS' FROM siin_trayectorias_docentes.traydoc_datos_logros WHERE fecha like '%".($anioEvaluacion-1)."%' and idempleado = '".$idEmpleado."' AND evidencia != '' ";
+		
+		$sqlArchivos.= "UNION ";
+		/*-------------------------------Query trae evidencias de Premios-------------------------------------*/
+		
+		$sqlArchivos.= "SELECT evidencia, nombre, '','PREMIOS' FROM siin_trayectorias_docentes.traydoc_datos_premios WHERE fecha like '%".($anioEvaluacion-1)."%' and idempleado = '".$idEmpleado."'  AND evidencia != '' ";
+	
+		$sqlArchivos.= "UNION ";
+		/*-------------------------------Query trae evidencias de Formacion Academica-------------------------------------*/
+
+		$sqlArchivos.= "SELECT evidencia, '' as nombre, '', 'FORMACION ACADEMICA' FROM  siin_trayectorias_docentes.traydoc_formacion_academica WHERE evidencia LIKE '%".($anioEvaluacion-1)."%' AND idempleado = '".$idEmpleado."' AND evidencia != '' ";
+		
+		
+		//echo $sqlArchivos;
 		/* conexion a base de datos */
 		$conexion = getConnection();
 		
