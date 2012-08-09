@@ -157,8 +157,8 @@
 			$plantillaElementoAsignacion .= 	"<div class='span1 seccion3-2'>";
 			$plantillaElementoAsignacion .=			"<a href='#' rel='tooltip' title='".$row[3]."'>";
 			$nombreEvidencia = $row[3];
-			if(strlen($row[3]) > 30){
-				$plantillaElementoAsignacion .=	substr($nombreEvidencia, 0, 30)."...";
+			if(strlen($row[3]) > 20){
+				$plantillaElementoAsignacion .=	substr($nombreEvidencia, 0, 20)."...";
 			}else{
 				$plantillaElementoAsignacion .=	$nombreEvidencia;
 			}
@@ -301,15 +301,15 @@
 			$plantillaElementoAsignacion .=			"<a href='#' rel='tooltip' title=''>";
 			if(!empty($row['nombre'])){
 				$nombre = $row['nombre'];	
-				if(strlen($nombre) > 30){
-					$plantillaElementoAsignacion .=	substr($nombre, 0, 30)."...";
+				if(strlen($nombre) > 20){
+					$plantillaElementoAsignacion .=	substr($nombre, 0, 20)."...";
 				}else{
 					$plantillaElementoAsignacion .=	$nombre;
 				}
 			}else{	
 				$nombre = $row['doc_evidencia'];
-				if(strlen($nombre) > 30){
-					$plantillaElementoAsignacion .=	substr($nombre, 0, 30)."...";
+				if(strlen($nombre) > 20){
+					$plantillaElementoAsignacion .=	substr($nombre, 0, 20)."...";
 				}else{
 					$plantillaElementoAsignacion .=	$nombre;
 				}
