@@ -11,7 +11,7 @@
 	<meta name="robots" content="all" />	
 	
 	<!-- Titulo del documento -->		
-	<title>Asignación de documentos</title>
+	<title>Asignaci&oacute;n de documentos</title>
 
 	<!-- css bootstrap framework -->
 	<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css">
