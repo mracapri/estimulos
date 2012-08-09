@@ -16,13 +16,13 @@ POR HACER:
 
 * En el acuse insertar los datos - DAVID--------------------------------------------------------------------------------------------------------------------------------FALTA(DAVID)( Codgi QR)
 
-* En la pantalla de Evaluacion - Informar al usuario, que persona esta evaluandoa travez de una etiqueta  - NOEMI-------	
+* En la pantalla de Evaluacion - Informar al usuario, que persona esta evaluandoa travez de una etiqueta  - NOEMI-------	(terminado)
 
 * Agregar el campo del comentario final en la tabla de participantes tipo BLOB - DAVID------  ------------------------------------------------TERMINADO(DAVID)
 
-* Cambiar la guia para la evaluacion (PDF) del sitio - NOEMI
+* Cambiar la guia para la evaluacion (PDF) del sitio - NOEMI (terminado)
 
-* Cambiar los indiadores con los nuevos agregados en la nueva guia que generó la Mtra - NOEMI
+* Cambiar los indiadores con los nuevos agregados en la nueva guia que generó la Mtra - NOEMI(terminado)
 
 * Agregar formatos en la seccion de documentos - PENDIENTE
 
@@ -31,6 +31,8 @@ POR HACER:
 * Comentarios finales obligatorios - MARIO
 
 *Calcular la suma de los indicadores por categoria en los reportes de estado y evaluacion -----------------------------FALTA (DAVID) reporte evaluacion a quien esta evaluando------TERMINADO(a quien falta suma)
+
+*en insertar comentario de la ventana de evaluacion, el comentario no se inserta, pues cambion de tabla la base de datos.
 
 
 

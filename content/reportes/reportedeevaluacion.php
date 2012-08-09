@@ -79,9 +79,9 @@ function reporteRegulares($rfcDocente)
 				$this->SetTextColor(255,255,255);
 				//Título
 				$this->Cell(50,5,'Categoria',1,0,'C',true);
-				$this->Cell(20,5,'Porcentaje',1,0,'C',true);
+				$this->Cell(20,5,'% Porcentaje',1,0,'C',true);
 				$this->Cell(90,5,'Indicador',1,0,'C',true);
-				$this->Cell(20,5,'Porcentaje',1,0,'C',true);
+				$this->Cell(20,5,'% Porcentaje',1,0,'C',true);
 				$this->Cell(25,5,'Estado',1,0,'C',true);
 				//Salto de línea
 				$this->Ln(5);
@@ -111,11 +111,40 @@ function reporteRegulares($rfcDocente)
 						$this->SetX(5);
 						$this->SetFont('Helvetica','',8);
 						$this->SetTextColor(0,0,0);
+						if($contador == 1){
 						$this->Cell(50,5,utf8_decode($indica[1]),0,0,'l');         //trae el nombre de la categoria
+						}else{
+						$this->Cell(50,5,utf8_decode(" "),0,0,'l');         //trae el nombre de la categoria
+						}
 						
+						
+						//hace la suma de los indicadores....
 						$sumaPorcentaje = $sumaPorcentaje + $indica['porcentaje']; //procedimiento para la suma de los valores de una categoria
 						
-						$this->Cell(20,5,utf8_decode($sumatotalPorcentaje),0,0,'C'); //trae el porcentaje de la categoria				
+						if($contador == 1){
+
+							$sqlSumaPorcentajes = "";
+							$sqlSumaPorcentajes .= "SELECT ";
+							$sqlSumaPorcentajes .= 		"max(porcentaje) as porcentaje,  ";
+							$sqlSumaPorcentajes .= 		"id_categoriaindicador  ";
+							$sqlSumaPorcentajes .= "FROM ";
+							$sqlSumaPorcentajes .= 		"porcentaje_indicador ";
+							$sqlSumaPorcentajes .= "WHERE ";
+							$sqlSumaPorcentajes .= 		"id_categoriaindicador in (";
+							$sqlSumaPorcentajes .= 			"select id_categoriaindicador from categoria_indicador where id_categoria = ".$indica['id_categoria'];
+							$sqlSumaPorcentajes .= 		") group by 2";
+
+							$resultSetSumaPorcentajes = mysql_query($sqlSumaPorcentajes);
+
+							$suma = 0;
+							while($rowSuma = mysql_fetch_array($resultSetSumaPorcentajes)){
+								$suma = $suma + $rowSuma['porcentaje'];
+							}
+							$this->Cell(20,5,utf8_decode($suma),0,0,'C'); 			//trae el porcentaje de la categoria
+
+						}else{
+							$this->Cell(20,5,utf8_decode(" "),0,0,'C'); 			//espacio en blanco
+						}			
 						$this->MultiCell(90,5,utf8_decode($indica[3]),0,'J');	   //trae la descripcion del indicador					
 						$y = $this->GetY();										   //regresa el salto de linea que Multicell realiza
 						$this->SetY($y-5);
