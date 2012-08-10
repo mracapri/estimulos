@@ -108,7 +108,7 @@
 		$sqlArchivos.= "UNION ";
 		$sqlArchivos.= "SELECT urlCertificado, 'CERTIFICADO' as nombre, '', 'CERTIFICADO' FROM siin_trayectorias_docentes.traydoc_formacion_profesional WHERE  idempleado = '".$idEmpleado."' AND urlCertificado != '' ";
 		$sqlArchivos.= "UNION ";
-		$sqlArchivos.= "SELECT documentoPromep, 'PROMEP' as nombre, '', 'DOCUMENTO PROMEP' FROM  siin_trayectorias_docentes.traydoc_datos_complementarios WHERE idperiodo in (".$idPeriodos.") and idempleado = '".$idEmpleado."' AND documentoPromep != '' ";
+		$sqlArchivos.= "SELECT documentoPromep, 'PROMEP' as nombre, '', 'DOCUMENTO PROMEP' FROM  siin_trayectorias_docentes.traydoc_datos_complementarios WHERE fechaPromep LIKE '".($anioEvaluacion-1)."%' and idempleado = '".$idEmpleado."' AND documentoPromep != '' ";
 		
 		$sqlArchivos.= "UNION ";
 		/*-------------------------------Query trae evidencias de Logros-------------------------------------*/
