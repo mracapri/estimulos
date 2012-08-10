@@ -193,7 +193,7 @@
     	<div class="modal-body">
     		<p id="protesta">
     			Usted lleva un avance del <?php echo obtenerPorcentajeDeCaptura($_SESSION['rfcDocente']); ?>% del total. 
-    			Esta seguro de enviar la información para proceder a la evaluaci&oacuten?
+    			Esta seguro de enviar la informaci&oacute;n para proceder a la evaluaci&oacute;n?
     		</p>
     	</div>
     	<div class="modal-footer">

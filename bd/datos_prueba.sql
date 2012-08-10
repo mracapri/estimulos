@@ -7,6 +7,11 @@ values (2012, 'Evaluacion 2012', DATE('2012/07/25'), DATE('2012/07/29'), DATE('2
 
 /*insert into evaluador (RFC_evaluador, nombre, tipo, anio) values ('TETE750801', 'Elia Trejo Trejo', 'I', 2012);*/
 insert into evaluador (RFC_evaluador, nombre, tipo, anio) values ('MENN901110', 'Noemi Mejia Nieto ', 'E', 2012);
+insert into evaluador (RFC_evaluador, nombre, tipo, anio) values ('AEJM840225', 'Melissa Acevedo Jaguey ', 'I', 2012);
+insert into evaluador (RFC_evaluador, nombre, tipo, anio) values ('GAGS740831', 'Selene García Guerrero ', 'I', 2012);
+insert into evaluador (RFC_evaluador, nombre, tipo, anio) values ('MUOS710523', 'Sandra Muñoz Ortega ', 'I', 2012);
+insert into evaluador (RFC_evaluador, nombre, tipo, anio) values ('NUZM671017', 'Margarita Nuñez Zamudio ', 'I', 2012);
+insert into evaluador (RFC_evaluador, nombre, tipo, anio) values ('SASA800227', 'Alejandra Sánchez Salazar ', 'E', 2012);
 
 /* Reportes del sistema */
 insert into reportes (id_reporte, nombre, path) values (1, 'Reporte 1', 'reporte1.php');
