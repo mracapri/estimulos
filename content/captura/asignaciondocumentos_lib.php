@@ -112,18 +112,19 @@
 		
 		$sqlArchivos.= "UNION ";
 		/*-------------------------------Query trae evidencias de Logros-------------------------------------*/
-		$sqlArchivos.= "SELECT evidencia, nombre, '','LOGROS' FROM siin_trayectorias_docentes.traydoc_datos_logros WHERE fecha like '%".($anioEvaluacion-1)."%' and idempleado = '".$idEmpleado."' AND evidencia != '' ";
+		$sqlArchivos.= "SELECT evidencia, 'LOGROS', '',nombre FROM siin_trayectorias_docentes.traydoc_datos_logros WHERE fecha like '".($anioEvaluacion-1)."%' and idempleado = '".$idEmpleado."' AND evidencia != '' ";
 		
 		$sqlArchivos.= "UNION ";
 		/*-------------------------------Query trae evidencias de Premios-------------------------------------*/
 		
-		$sqlArchivos.= "SELECT evidencia, nombre, '','PREMIOS' FROM siin_trayectorias_docentes.traydoc_datos_premios WHERE fecha like '%".($anioEvaluacion-1)."%' and idempleado = '".$idEmpleado."'  AND evidencia != '' ";
+		$sqlArchivos.= "SELECT evidencia, 'PREMIO', '',nombre FROM siin_trayectorias_docentes.traydoc_datos_premios WHERE fecha like '".($anioEvaluacion-1)."%' and idempleado = '".$idEmpleado."'  AND evidencia != '' ";
 	
 		$sqlArchivos.= "UNION ";
-		/*-------------------------------Query trae evidencias de Formacion Academica-------------------------------------*/
+		/*--------------------------Query trae evidencias de Formacion Academica---------------------------------*/
 
-		$sqlArchivos.= "SELECT evidencia, '' as nombre, '', 'FORMACION ACADEMICA' FROM  siin_trayectorias_docentes.traydoc_formacion_academica WHERE evidencia LIKE '%".($anioEvaluacion-1)."%' AND idempleado = '".$idEmpleado."' AND evidencia != '' ";
-		
+		$sqlArchivos.= "SELECT evidencia, 'FORMACION ACADEMICA' ,'' ,tituloArticulo FROM  siin_trayectorias_docentes.traydoc_formacion_academica WHERE fechaPublicacionArticulo LIKE '%".($anioEvaluacion-1)."%' AND idempleado = '".$idEmpleado."' AND evidencia != '' ";
+		$sqlArchivos.= "UNION ";
+		$sqlArchivos.= "SELECT evidencia, 'FORMACION ACADEMICA' , '', tituloArticulo FROM  siin_trayectorias_docentes.traydoc_formacion_academica WHERE fechaInicioAsesoria	 LIKE '%".($anioEvaluacion-1)."%' AND idempleado = '".$idEmpleado."' AND evidencia != '' ";
 		
 		//echo $sqlArchivos;
 		/* conexion a base de datos */
