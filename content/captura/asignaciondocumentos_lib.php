@@ -108,7 +108,7 @@
 		$sqlArchivos.= "UNION ";
 		$sqlArchivos.= "SELECT urlCertificado, 'CERTIFICADO' as nombre, '', 'CERTIFICADO' FROM siin_trayectorias_docentes.traydoc_formacion_profesional WHERE  idempleado = '".$idEmpleado."' AND urlCertificado != '' ";
 		$sqlArchivos.= "UNION ";
-		$sqlArchivos.= "SELECT documentoPromep, 'PROMEP' as nombre, '', 'DOCUMENTO PROMEP' FROM  siin_trayectorias_docentes.traydoc_datos_complementarios WHERE fechaPromep LIKE '".($anioEvaluacion-1)."%' and idempleado = '".$idEmpleado."' AND documentoPromep != '' ";
+		$sqlArchivos.= "SELECT documentoPromep, 'PROMEP' as nombre, '', 'DOCUMENTO PROMEP' FROM  siin_trayectorias_docentes.traydoc_datos_complementarios WHERE idempleado = '".$idEmpleado."' AND documentoPromep != '' ";
 		
 		$sqlArchivos.= "UNION ";
 		/*-------------------------------Query trae evidencias de Logros-------------------------------------*/
@@ -176,12 +176,30 @@
 			$plantillaElementoAsignacion .= 		"<input type='checkbox' data-nombre-archivo='EBC-FILE-".$periodos[$iteraPeriodo]."-".obtieneNombrePeriodo($periodos[$iteraPeriodo])."' />";
 			$plantillaElementoAsignacion .= 	"</span>";
 			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
-			$plantillaElementoAsignacion .= 		"<a target='_blank' href='http://10.100.96.7/sea-ebc/reportes/concentradoDocentes.php?carrera=".$idAdscripcion."&idprofesor=".$idEmpleado."&idperiodo=".$periodos[$iteraPeriodo]."' class='pdf'>";
+			$plantillaElementoAsignacion .= 		"<a target='_blank' href='http://10.100.96.7/sea-ebc/reportes/individual.php?carrera=".$idAdscripcion."&idprofesor=".$idEmpleado."&periodo=".$periodos[$iteraPeriodo]."' class='pdf'>";
 			$plantillaElementoAsignacion .= 		"</a>";
 			$plantillaElementoAsignacion .= 	"</div>";
 			$plantillaElementoAsignacion .= 	"<div class='span1 seccion3-2'>";
 			$plantillaElementoAsignacion .=			"<a href='#' rel='tooltip' title='Evaluacion EBC'>";
 			$plantillaElementoAsignacion .=				"Evaluacion EBC ".obtieneNombrePeriodo($periodos[$iteraPeriodo]) ;
+			$plantillaElementoAsignacion .=			"</a>";
+			$plantillaElementoAsignacion .=		"</div>";
+			$plantillaElementoAsignacion .= "</div>";
+		}
+		/* Resultado de Evaluacion Tutor */
+		$periodos = preg_split("/[\s,]+/", $idPeriodos);
+		for($iteraPeriodo = 0; $iteraPeriodo < count($periodos); $iteraPeriodo++){
+			$plantillaElementoAsignacion .="<div class='span1 seccion1-3'>";
+			$plantillaElementoAsignacion .=		"<span class='seleccion-documento'>";
+			$plantillaElementoAsignacion .= 		"<input type='checkbox' data-nombre-archivo='EBC-FILE-".$periodos[$iteraPeriodo]."-".obtieneNombrePeriodo($periodos[$iteraPeriodo])."' />";
+			$plantillaElementoAsignacion .= 	"</span>";
+			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
+			$plantillaElementoAsignacion .= 		"<a target='_blank' href='http://10.100.96.7/sea-ebc/reportes/individualTutorPreda.php?carrera=".$idAdscripcion."&idprofesor=".$idEmpleado."&idperiodo=".$periodos[$iteraPeriodo]."' class='pdf'>";
+			$plantillaElementoAsignacion .= 		"</a>";
+			$plantillaElementoAsignacion .= 	"</div>";
+			$plantillaElementoAsignacion .= 	"<div class='span1 seccion3-2'>";
+			$plantillaElementoAsignacion .=			"<a href='#' rel='tooltip' title='Evaluacion EBC'>";
+			$plantillaElementoAsignacion .=				"Evaluacion EBC Tutor ".obtieneNombrePeriodo($periodos[$iteraPeriodo]) ;
 			$plantillaElementoAsignacion .=			"</a>";
 			$plantillaElementoAsignacion .=		"</div>";
 			$plantillaElementoAsignacion .= "</div>";
@@ -281,7 +299,6 @@
 			$idAdscripcion = $_SESSION['idAdscripcion'];
 		}
 
-
 		/* barre consulta para generar html */
 		while($row = mysql_fetch_array($resultSetAsignados)){
 			$plantillaElementoAsignacion .="<div class='span1 seccion1-3'>";
@@ -292,11 +309,21 @@
 			if(substr_count($row['doc_evidencia'],"EBC-FILE") > 0){
 				$valores = preg_split("/[\-,]+/", $row['doc_evidencia']);
 
-				$plantillaElementoAsignacion .= 	"<a target='_blank' href='http://10.100.96.7/sea-ebc/reportes/concentradoDocentes.php?carrera=".$idAdscripcion."&idprofesor=".$idEmpleado."&idperiodo=".$valores[2]."' class='pdf'>";
+				$plantillaElementoAsignacion .= 	"<a target='_blank' href='http://10.100.96.7/sea-ebc/reportes/individual.php?carrera=".$idAdscripcion."&idprofesor=".$idEmpleado."&periodo=".$valores[2]."' class='pdf'>";
 			}else{
 				$plantillaElementoAsignacion .= 	"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/".$idAdscripcion."/".$row[0]."' class='pdf'>";
 			}
 			$plantillaElementoAsignacion .= 		"</a>";
+			//  Trae evidencia EBC-tutores
+			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
+			if(substr_count($row['doc_evidencia'],"EBC-FILE_2") > 0){
+				$valores = preg_split("/[\-,]+/", $row['doc_evidencia']);
+
+				$plantillaElementoAsignacion .= 	"<a target='_blank' href='http://10.100.96.7/sea-ebc/reportes/individualTutorPreda.php?carrera=".$idAdscripcion."&idprofesor=".$idEmpleado."&idperiodo=".$valores[2]."' class='pdf'>";
+			}else{
+				$plantillaElementoAsignacion .= 	"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/".$idAdscripcion."/".$row[0]."' class='pdf'>";
+			}
+			$plantillaElementoAsignacion .= 		"</a>";///
 			$plantillaElementoAsignacion .= 	"</div>";
 			$plantillaElementoAsignacion .= 	"<div class='span1 seccion3-2'>";
 			$plantillaElementoAsignacion .=			"<a href='#' rel='tooltip' title=''>";
@@ -319,6 +346,7 @@
 			$plantillaElementoAsignacion .=		"</div>";
 			$plantillaElementoAsignacion .= "</div>";
 		}	
+		//echo $plantillaElementoAsignacion;
 		// cerrando conexion a base de datos
 		close($conexion);
 		
