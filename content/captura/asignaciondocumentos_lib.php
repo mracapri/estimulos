@@ -314,6 +314,8 @@
 				$plantillaElementoAsignacion .= 	"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/".$idAdscripcion."/".$row[0]."' class='pdf'>";
 			}
 			$plantillaElementoAsignacion .= 		"</a>";
+			$plantillaElementoAsignacion .= 	"</div>";
+			/*
 			//  Trae evidencia EBC-tutores
 			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
 			if(substr_count($row['doc_evidencia'],"EBC-FILE_2") > 0){
@@ -323,8 +325,8 @@
 			}else{
 				$plantillaElementoAsignacion .= 	"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/".$idAdscripcion."/".$row[0]."' class='pdf'>";
 			}
-			$plantillaElementoAsignacion .= 		"</a>";///
-			$plantillaElementoAsignacion .= 	"</div>";
+			$plantillaElementoAsignacion .= 		"</a>";
+			$plantillaElementoAsignacion .= 	"</div>";*/
 			$plantillaElementoAsignacion .= 	"<div class='span1 seccion3-2'>";
 			$plantillaElementoAsignacion .=			"<a href='#' rel='tooltip' title=''>";
 			if(!empty($row['nombre'])){
