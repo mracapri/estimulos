@@ -34,7 +34,7 @@
 	<script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
 
 	<?php
-		require_once("../../lib/librerias.php");
+		require_once("../../lib/librerias.php");		
 	?>
 </head>
 
@@ -108,6 +108,7 @@
 			
 			<?php
 				require_once("elegirDocenteAEvaluar_lib.php");
+				verificarSesionDelUsuario();
 			?>
 			<div class="span12 seccion3">
 				<div class="span5 secciontext">
