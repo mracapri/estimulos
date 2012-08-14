@@ -155,6 +155,25 @@ var UTVM = {
 				return true;
 			}
 		});
+
+		$("#enviadas").click(function(){
+			$(".seccion1-3-1").hide();
+			$(".seccion1-3-1").find(".seleccion-documento[title=enviada]").parent().show();
+		});
+
+		$("#no-enviadas").click(function(){
+			$(".seccion1-3-1").hide();
+			$(".seccion1-3-1").find(".seleccion-documento[title=no-enviada]").parent().show();
+		});
+
+		$("#evaluadas").click(function(){
+			$(".seccion1-3-1").hide();
+			$(".seccion1-3-1").find(".seleccion-documento[title=evaluada]").parent().show();
+		});
+
+		$("#todas").click(function(){
+			$(".seccion1-3-1").show();
+		});
 	},
 
 	/* funcion principal */
