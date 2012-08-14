@@ -158,7 +158,7 @@
 					<div class="span4 categorias"></div>
 					<div class="span4 categorias"></div>
 					<div class="span2 categorias">
-						<button class="btn btn-danger" id="terminar-evaluacion">Terminar Evaluaci&oacute;n</button>
+						<button class="btn btn-danger" id="terminar-evaluacion" <?php if(elEvaluadorAEvaluadoAlDocente($_SESSION['rfcDocente'])){ echo "disabled"; } ?> >Terminar Evaluaci&oacute;n</button>
 					</div>
 				</div>
 	</div>

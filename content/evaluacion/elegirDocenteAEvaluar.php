@@ -110,15 +110,27 @@
 				require_once("elegirDocenteAEvaluar_lib.php");
 			?>
 			<div class="span12 seccion3">
-				<div class="span2 secciontext">
+				<div class="span5 secciontext">
 					<ul>
 						<li>
 							<p class="formato">Docentes a evaluar</p>
+							<a href="#" id="enviadas">
+								Enviadas
+							</a>
+							-
+							<a href="#" id="no-enviadas">
+								No Enviadas
+							</a>
+							-
+							<a href="#" id="evaluadas">
+								Evaluadas
+							</a>
+							-
+							<a href="#" id="todas">
+								Todas
+							</a>
 						</li>
-						<li>
-							<a href="#">Elegir docente a evaluar</a>
-						</li>
-					</ul>
+					</ul>					
 				</div>
 				<div class="span11 seccion3-1">
 					<?php echo consultaDocentesAEvaluar(); ?>

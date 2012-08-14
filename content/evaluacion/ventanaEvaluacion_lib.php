@@ -1,12 +1,24 @@
 <?php
 	require_once("../../lib/librerias.php");
+	require_once("elegirDocenteAEvaluar_lib.php");
 
 	function terminarEvaluacion($rfcDocente, $comentarioFinal){
 		/* conexion a base de datos */
 		$conexion = getConnection();		
 
-		$sql = "UPDATE participantes SET estado = '2', comentario = '".$comentarioFinal."' WHERE rfc = '".$rfcDocente."'";
+		$sql = "UPDATE participantes SET estado = '2' WHERE rfc = '".$rfcDocente."'";
 		mysql_query($sql);
+
+		$sqlFolioComentarios = "select COALESCE(max(idcomentario),0)+1 as folio from comentarios";
+		$resultSetFolioComentarios = mysql_query($sqlFolioComentarios);
+		if(mysql_num_rows($resultSetFolioComentarios) > 0){
+			$row = mysql_fetch_array($resultSetFolioComentarios);
+			$folio = $row['folio'];
+		}
+
+		$sqlInsertaComentarios = "insert into comentarios (idcomentario, rfcDocente, rfcEvaluador, comentario, anio) ";
+		$sqlInsertaComentarios .= "values (".$folio.", '".$_SESSION['rfcDocente']."', '".$_SESSION['rfcEvaluador']."', '".$comentarioFinal."', ".$_SESSION['anioEvaluacion'].")";
+		mysql_query($sqlInsertaComentarios);
 
 		// cerrando conexion a base de datos
 		close($conexion);
@@ -26,7 +38,7 @@
 		$sql .= "and not exists ( ";
 		$sql .= 	"select null ";
 		$sql .= 	"from asignacion_indicador ai ";
-		$sql .= 	"where ai.id_categoriaindicador = ci.id_categoriaindicador and ai.rfc_docente = '".$_SESSION['rfcDocente'] ."' and ai.anio = ".$_SESSION['anioEvaluacion'];
+		$sql .= 	"where ai.id_categoriaindicador = ci.id_categoriaindicador and ai.rfc_docente = '".$_SESSION['rfcDocente']."' and ai.anio = ".$_SESSION['anioEvaluacion'];
 		$sql .= ")";
 
 		/* ejecucion del query en el manejador de base datos */

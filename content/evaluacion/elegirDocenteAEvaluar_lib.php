@@ -1,6 +1,20 @@
 <?php
 	require_once("../../lib/librerias.php");
 	
+	function elEvaluadorAEvaluadoAlDocente($rfcDocente){
+		$result = false;
+		/* conexion a base de datos */
+		$conexion = getConnection();
+
+		$sql = "SELECT null FROM comentarios WHERE rfcEvaluador = '".$_SESSION['rfcEvaluador']."' and rfcDocente = '".$rfcDocente."'";
+		$resultSet = mysql_query($sql);	
+		if(mysql_num_rows($resultSet) > 0){
+			$result = true;
+		}
+
+		return $result;
+	}
+
 	function consultaDocentesAEvaluar()
 	{
 
@@ -30,19 +44,26 @@
 		$plantillaElegirDocente = "";
 		while($row = mysql_fetch_array($resultSetGetDocentes)){
 
-			$nombre = $row['nombre'];			
+			$nombre = $row['nombre'];	
+			$docenteEvaluado = elEvaluadorAEvaluadoAlDocente($row['rfc']);
 			
 			$plantillaElegirDocente .= "<div class='span1 seccion1-3-1'> ";
 			if($row['estado'] == 0){
-				$plantillaElegirDocente .= 		"<span class='label label-important' 'seleccion-documento'> ";
+				$plantillaElegirDocente .= 		"<span class='label label-important seleccion-documento' title='no-enviada'>";
 				$plantillaElegirDocente .= 			"No enviada";
 				$plantillaElegirDocente .= 		"</span> "; 
 			}else if($row['estado'] == 2){
-				$plantillaElegirDocente .= 		"<span class='label label-info' 'seleccion-documento'> ";
-				$plantillaElegirDocente .= 			"Evaluada";
-				$plantillaElegirDocente .= 		"</span> "; 
+				if($docenteEvaluado){
+					$plantillaElegirDocente .= 		"<span class='label label-info seleccion-documento' title='evaluada'>";
+					$plantillaElegirDocente .= 			"Evaluada";
+					$plantillaElegirDocente .= 		"</span> "; 
+				}else{
+					$plantillaElegirDocente .= 		"<span class='label label-success seleccion-documento' title='enviada'>";
+					$plantillaElegirDocente .= 			"Enviada";
+					$plantillaElegirDocente .= 		"</span> "; 
+				}
 			}else{
-				$plantillaElegirDocente .= 		"<span class='label label-success' 'seleccion-documento'> ";
+				$plantillaElegirDocente .= 		"<span class='label label-success seleccion-documento' title='enviada'> ";
 				$plantillaElegirDocente .= 			"Enviada";
 				$plantillaElegirDocente .= 		"</span> "; 
 			}
@@ -53,7 +74,7 @@
 				$plantillaElegirDocente .= 			"<a href='#' class='usuario'> ";			
 				$plantillaElegirDocente .= 			"</a> ";
 			}else if($row['estado'] == 2){
-				$plantillaElegirDocente .= 			"<a href='#' class='usuario'> ";			
+				$plantillaElegirDocente .= 			"<a href='ventanaEvaluacion.php?rfc=".$row['rfc']."' class='usuario'> ";
 				$plantillaElegirDocente .= 			"</a> ";
 			}else{
 				$plantillaElegirDocente .= 			"<a href='ventanaEvaluacion.php?rfc=".$row['rfc']."' class='usuario'> ";

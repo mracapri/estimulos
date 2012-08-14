@@ -37,6 +37,7 @@
 	<?php
 		require_once("calificacionDocumetosIndicador_lib.php");
 		require_once("../captura/asignaciondocumentos_lib.php");
+		require_once("elegirDocenteAEvaluar_lib.php");
 
 		$categoriaIndicador = $_GET['categoria_indicador'];
 		$jsonEvaluacion = $_POST['json-evaluacion'];		
@@ -179,7 +180,7 @@
 						<div class="span6"></div>
 						<div class="span4"></div>	
 					<div class="span1">
-					<button class="btn btn-danger" id="guardar-evaluacion">Guardar</button>
+					<button class="btn btn-danger" id="guardar-evaluacion" <?php if(elEvaluadorAEvaluadoAlDocente($_SESSION['rfcDocente'])){ echo "disabled"; } ?>>Guardar</button>
 						</div>
 					</div>
 				</div>
