@@ -176,7 +176,7 @@
 					<div class="span1 categorias"></div>
 					
 					<div class="span2 categorias">
-						<a href="../reportes/acuse.php" target="_blank" class="btn btn-danger" <?php if(obtenerEstadoDeLaCaptura() == 0){ echo "disabled"; }?>>Imprimir acuse</a>
+						<a id="imprimir-acuse" href="../reportes/acuse.php" target="_blank" class="btn btn-danger" <?php if(obtenerEstadoDeLaCaptura() == 0){ echo "disabled"; }?>>Imprimir acuse</a>
 					</div>
 					<div class="span2 categorias"></div>
 				</div>

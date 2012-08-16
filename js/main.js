@@ -100,10 +100,42 @@ var UTVM = {
 			}
 		});
 
+
+		$("#incorrecto").click(function(){
+			var checkboxSeleccionado = $("#incorrecto").attr("checked");
+			if(typeof checkboxSeleccionado == "undefined"){
+				$("#input-calificacion").val($("#input-calificacion").attr("title"));
+				$("#input-comentario").attr("dataset-obligatorio","0");
+			}else{
+				$("#input-comentario").attr("dataset-obligatorio","1");
+				$("#input-calificacion").val("0");
+			}
+		});
+
+		$("#input-comentario").attr("dataset-obligatorio","0");
+		$("#input-calificacion").keyup(function(){
+			var calificacion, calificacionMaxima;			
+			calificacion = $(this).val();			
+			if(calificacion != ""){
+				calificacion = parseInt(calificacion);
+				calificacionMaxima = parseInt($("#input-calificacion").attr("title"));
+				if(!isNaN(calificacion)){
+					if(calificacion < calificacionMaxima){
+						$("#input-comentario").attr("dataset-obligatorio","1");
+					}else{
+						$("#input-comentario").attr("dataset-obligatorio","0");
+					}
+				}
+			}
+		});
+
+
 		$("#guardar-evaluacion").click(function(){
 
+			var validarComentario = $("#input-comentario").attr("dataset-obligatorio");
 			var multiPorcentaje = $("#input-calificacion option:selected").size();
 			var idPorcentajeindicador = 0;
+
 			if(multiPorcentaje > 0){
 				idPorcentajeindicador = $("#input-calificacion option:selected").attr("data-id-porcentajeindicador");	
 			}else{
@@ -124,7 +156,17 @@ var UTVM = {
 
 			$("#json-evaluacion").val(JSON.stringify(evaluacion));
 
-			$("#form-calificacion").submit();
+			/* valida captura de comentarios */
+			if(validarComentario == "1"){
+				var valorComentario = $("#input-comentario").val();
+				if(valorComentario != ""){
+					$("#form-calificacion").submit();
+				}else{
+					alert("Es obligatorio capturar el comentario del indicador");
+				}
+			}else{
+				$("#form-calificacion").submit();
+			}
 		});
 
 		$("#enviar-al-evaluador").click(function(){
@@ -173,6 +215,15 @@ var UTVM = {
 
 		$("#todas").click(function(){
 			$(".seccion1-3-1").show();
+		});
+
+		$("#imprimir-acuse").click(function(){
+			var isDisabled = $(this).attr("disabled");
+			if(typeof isDisabled == "undefined"){
+				return true;
+			}else{
+				return false;
+			}			
 		});
 	},
 
