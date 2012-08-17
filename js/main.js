@@ -180,8 +180,7 @@ var UTVM = {
 
 		// configura todos los botones para cerrar la sesion
 		$(".cerrar-sesion").attr("href", "/estimulos/lib/logout.php?killsession=1");
-
-		$('#protesta-modal').modal('show');
+		
 		
 		$("#terminar-evaluacion").click(function(){
 			$('#informacion').modal('show');
@@ -225,6 +224,14 @@ var UTVM = {
 				return false;
 			}			
 		});
+
+
+		$('#protesta-modal').modal('show');		
+
+	    $('#protesta-modal').on('hidden', function () {
+			$('#aviso-modal').modal('show');
+	    });
+
 	},
 
 	/* funcion principal */

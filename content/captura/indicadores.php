@@ -223,7 +223,30 @@
 				Art&iacute;culo 313 del C&oacute;digo Penal para el Estado de Hidalgo, que establece 
 				las sanciones penales cuando se emita informaci&oacute;n falsa ante autoridad 
 				que act&uacute;a en funci&oacute;n de sus atribuciones legales, textualmente: 
-				<a href="../recursos/articulo-313.html" target="_blank">Articulo 133</a>
+				<a id="aceptar-protesta" href="../recursos/articulo-313.html" target="_blank">Articulo 133</a>
+    		</p>
+    	</div>
+    	<div class="modal-footer">
+    		<a href="#" class="btn" data-dismiss="modal">Aceptar</a>
+    	</div>
+    </div>
+
+
+    <div class="modal hide" id="aviso-modal">
+    	<div class="modal-header">
+    		<button type="button" class="close" data-dismiss="modal">×</button>
+    		<h3>Aviso</h3>
+    	</div>
+    	<div class="modal-body">
+    		<p id="protesta">
+				Estimado usuario,
+
+				<p>Respecto a los archivos que haya subido en Trayectorias Profesionales, si existe alg&uacute;n incidente 
+				respecto a esto! Notificar directamente con Noe A. Cano Leon. &Eacute;l le dar&aacute; instrucciones 
+				para corregir dicha incidencia.</p>
+				<br/>
+				<br/>
+				<p>Gracias</p>
     		</p>
     	</div>
     	<div class="modal-footer">
