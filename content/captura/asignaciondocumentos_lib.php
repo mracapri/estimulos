@@ -173,7 +173,7 @@
 		for($iteraPeriodo = 0; $iteraPeriodo < count($periodos); $iteraPeriodo++){
 			$plantillaElementoAsignacion .="<div class='span1 seccion1-3'>";
 			$plantillaElementoAsignacion .=		"<span class='seleccion-documento'>";
-			$plantillaElementoAsignacion .= 		"<input type='checkbox' data-nombre-archivo='EBC-FILE-".$periodos[$iteraPeriodo]."-".obtieneNombrePeriodo($periodos[$iteraPeriodo])."' />";
+			$plantillaElementoAsignacion .= 		"<input type='checkbox' data-nombre-archivo='EBC-INDIVIDUAL-".$periodos[$iteraPeriodo]."-".obtieneNombrePeriodo($periodos[$iteraPeriodo])."' />";
 			$plantillaElementoAsignacion .= 	"</span>";
 			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
 			$plantillaElementoAsignacion .= 		"<a target='_blank' href='http://10.100.96.7/sea-ebc/reportes/individual.php?carrera=".$idAdscripcion."&idprofesor=".$idEmpleado."&periodo=".$periodos[$iteraPeriodo]."' class='pdf'>";
@@ -191,7 +191,7 @@
 		for($iteraPeriodo = 0; $iteraPeriodo < count($periodos); $iteraPeriodo++){
 			$plantillaElementoAsignacion .="<div class='span1 seccion1-3'>";
 			$plantillaElementoAsignacion .=		"<span class='seleccion-documento'>";
-			$plantillaElementoAsignacion .= 		"<input type='checkbox' data-nombre-archivo='EBC-FILE-".$periodos[$iteraPeriodo]."-".obtieneNombrePeriodo($periodos[$iteraPeriodo])."' />";
+			$plantillaElementoAsignacion .= 		"<input type='checkbox' data-nombre-archivo='EBC-TUTOR-".$periodos[$iteraPeriodo]."-".obtieneNombrePeriodo($periodos[$iteraPeriodo])."' />";
 			$plantillaElementoAsignacion .= 	"</span>";
 			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
 			$plantillaElementoAsignacion .= 		"<a target='_blank' href='http://10.100.96.7/sea-ebc/reportes/individualTutorPreda.php?carrera=".$idAdscripcion."&idprofesor=".$idEmpleado."&idperiodo=".$periodos[$iteraPeriodo]."' class='pdf'>";
@@ -306,27 +306,25 @@
 			$plantillaElementoAsignacion .= 		"<input type='checkbox' data-nombre-archivo='".$row[0]."' />";
 			$plantillaElementoAsignacion .= 	"</span>";
 			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
-			if(substr_count($row['doc_evidencia'],"EBC-FILE") > 0){
+			
+			
+			//  Trae evidencias EBC individuales y tutores
+			if(substr_count($row['doc_evidencia'],"EBC-INDIVIDUAL") > 0){
 				$valores = preg_split("/[\-,]+/", $row['doc_evidencia']);
 
 				$plantillaElementoAsignacion .= 	"<a target='_blank' href='http://10.100.96.7/sea-ebc/reportes/individual.php?carrera=".$idAdscripcion."&idprofesor=".$idEmpleado."&periodo=".$valores[2]."' class='pdf'>";
-			}else{
-				$plantillaElementoAsignacion .= 	"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/".$idAdscripcion."/".$row[0]."' class='pdf'>";
-			}
-			$plantillaElementoAsignacion .= 		"</a>";
-			$plantillaElementoAsignacion .= 	"</div>";
-			/*
-			//  Trae evidencia EBC-tutores
-			$plantillaElementoAsignacion .= 	"<div class='pdf2'>";
-			if(substr_count($row['doc_evidencia'],"EBC-FILE_2") > 0){
+			}else if(substr_count($row['doc_evidencia'],"EBC-TUTOR") > 0){
 				$valores = preg_split("/[\-,]+/", $row['doc_evidencia']);
-
 				$plantillaElementoAsignacion .= 	"<a target='_blank' href='http://10.100.96.7/sea-ebc/reportes/individualTutorPreda.php?carrera=".$idAdscripcion."&idprofesor=".$idEmpleado."&idperiodo=".$valores[2]."' class='pdf'>";
 			}else{
 				$plantillaElementoAsignacion .= 	"<a target='_blank' href='http://10.100.96.7/siin/trayectoriasProfesionales/uploads/".$idAdscripcion."/".$row[0]."' class='pdf'>";
 			}
 			$plantillaElementoAsignacion .= 		"</a>";
-			$plantillaElementoAsignacion .= 	"</div>";*/
+			$plantillaElementoAsignacion .= 	"</div>";
+			
+		
+			
+			
 			$plantillaElementoAsignacion .= 	"<div class='span1 seccion3-2'>";
 			$plantillaElementoAsignacion .=			"<a href='#' rel='tooltip' title=''>";
 			if(!empty($row['nombre'])){
