@@ -129,8 +129,11 @@
 						<div  class="span1" id="encabezado">
 							Porcentaje Indicador
 						</div>
-						<div  class="span2" id="encabezado">
+						<div  class="span1" id="encabezado">
 							Estado
+						</div>
+						<div  class="span1" id="encabezado">
+							Porcentaje Obtenido
 						</div>
 						<div class="span2" id="encabezado">
 							Observaci&oacute;n

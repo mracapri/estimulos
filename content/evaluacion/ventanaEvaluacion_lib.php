@@ -173,6 +173,8 @@
 			$sql.= 		"(select max(porcentaje) from porcentaje_indicador where id_categoriaindicador = ci.id_categoriaindicador) as porcentaje, ";
 			$sql.= 		"(select COALESCE(max(id_categoriaindicador),0)  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador and rfc_docente = '".$_SESSION['rfcDocente']."' and rfc_evaluador = '".$_SESSION['rfcEvaluador']."') as estatus, ";
 			$sql.= 		"(select motivo  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador and rfc_docente = '".$_SESSION['rfcDocente']."' and rfc_evaluador = '".$_SESSION['rfcEvaluador']."') as observacion , ";
+			$sql.= 		"(select estado  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador and rfc_docente = '".$_SESSION['rfcDocente']."' and rfc_evaluador = '".$_SESSION['rfcEvaluador']."') as estado , ";
+			$sql.= 		"(select cal_porcentaje  from evaluacion_indicador where id_categoriaindicador = ci.id_categoriaindicador and rfc_docente = '".$_SESSION['rfcDocente']."' and rfc_evaluador = '".$_SESSION['rfcEvaluador']."') as calificacion , ";
 			$sql.= 		"(select COALESCE(max(id_categoriaindicador),0) from asignacion_indicador where id_categoriaindicador = ci.id_categoriaindicador and rfc_docente = '".$_SESSION['rfcDocente']."') as estatusCaptura ";
 			$sql.= 	"FROM "; 
 			$sql.= 		"categoria As c, indicador As i, categoria_indicador As ci ";
@@ -212,12 +214,22 @@
 				$plantillaElemento .=	"<div  class='span1 categorias'>";
 				$plantillaElemento .=		$row['porcentaje'];
 				$plantillaElemento .=	"</div>";
-				$plantillaElemento .=	"<div  class='span2 categorias'>";
+				$plantillaElemento .=	"<div  class='span1 categorias'>";
 
 				if($row['estatus'] > 0){
 					$plantillaElemento .=		"EVALUADO";
 				}else{
 					$plantillaElemento .=		".........";
+				}
+
+				$plantillaElemento .=	"</div>";
+				$plantillaElemento .=	"<div  class='span1 categorias'>";
+				if($row['estado'] == 0){
+					$plantillaElemento .=		$row['calificacion'];
+				}else{
+						if($row['estado'] == 1){
+						$plantillaElemento .=		"0";
+						}
 				}
 
 				$plantillaElemento .=	"</div>";

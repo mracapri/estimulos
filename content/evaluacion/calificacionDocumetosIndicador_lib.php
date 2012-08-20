@@ -31,7 +31,7 @@
 			$idPorcentajeIndicador = $resultado->{'idPorcentajeindicador'};
 			$calificacion = $resultado->{'calificacion'};
 			$comentario = $resultado->{'comentario'};
-			$estado = $resultado->{'false'};
+			$estado = $resultado->{'estado'};
 			$rfcEvaluador = $_SESSION['rfcEvaluador'];
 			$rfcDocente = $_SESSION['rfcDocente'];
 			$anioEvaluacion = $_SESSION['anioEvaluacion'];
@@ -74,7 +74,7 @@
 					$sqlInsertEvaluacion .= 	$idPorcentajeIndicador.", ";
 					$sqlInsertEvaluacion .= 	$calificacion.", ";
 					$sqlInsertEvaluacion .= 	"'".$rfcEvaluador."', ";
-					$sqlInsertEvaluacion .= 	"1 , ";
+					$sqlInsertEvaluacion .= 	"'".$estado."',";
 					$sqlInsertEvaluacion .= 	"'".$comentario."', ";
 					$sqlInsertEvaluacion .= 	$anioEvaluacion;					
 					$sqlInsertEvaluacion .= ") ";
