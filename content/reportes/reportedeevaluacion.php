@@ -160,12 +160,18 @@ function reporteRegulares($rfcDocente)
 						$resul=		".........";
 						}*/
 						//$this->Cell(17,5,($resul),0,0,'C');							//trae el estado del indicador
-						$observacion = "SELECT cal_porcentaje as calificacion, motivo as observacion from evaluacion_indicador a, categoria_indicador b where a.rfc_docente = '".$_SESSION['rfcDocente']."' and a.rfc_evaluador = '".$_SESSION['rfcEvaluador']."' and b.id_categoria = ".$idCategoria." and b.id_indicador = ".$indica[2]." and a.id_categoriaindicador = b.id_categoriaindicador";
+						$observacion = "SELECT cal_porcentaje as calificacion, motivo as observacion, estado as estado from evaluacion_indicador a, categoria_indicador b where a.rfc_docente = '".$_SESSION['rfcDocente']."' and a.rfc_evaluador = '".$_SESSION['rfcEvaluador']."' and b.id_categoria = ".$idCategoria." and b.id_indicador = ".$indica[2]." and a.id_categoriaindicador = b.id_categoriaindicador";
 						//echo $observacion;
 						$sqlobservacion = mysql_query($observacion);
 						while($observa = mysql_fetch_array($sqlobservacion)){
-						
+						if($observa['estado'] == 0){
 						$this->Cell(18,5,($observa[0]),0,0,'C');
+						}else{
+							if($observa['estado'] == 1){
+								$this->Cell(18,5,"0",0,0,'C');
+							}
+						}
+						
 						$this->SetX(150);
 						$this->MultiCell(60,5,utf8_decode($observa[1]),0,'J');
 						$y = $this->GetY();							//regresa el salto de linea que Multicell realiza
