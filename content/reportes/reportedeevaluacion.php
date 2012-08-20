@@ -78,11 +78,12 @@ function reporteRegulares($rfcDocente)
 				$this->SetFillColor(51,51,51);
 				$this->SetTextColor(255,255,255);
 				//Título
-				$this->Cell(50,5,'Categoria',1,0,'C',true);
-				$this->Cell(20,5,'% Porcentaje',1,0,'C',true);
-				$this->Cell(90,5,'Indicador',1,0,'C',true);
-				$this->Cell(20,5,'% Porcentaje',1,0,'C',true);
-				$this->Cell(25,5,'Estado',1,0,'C',true);
+				$this->Cell(40,5,'Categoria',1,0,'C',true);
+				//$this->Cell(20,5,'% Porcentaje',1,0,'C',true);
+				$this->Cell(75,5,'Indicador',1,0,'C',true);
+				$this->Cell(12,5,'% Max.',1,0,'C',true);
+				$this->Cell(18,5,'% Obtenido',1,0,'C',true);
+				$this->Cell(60,5,'Comentario',1,0,'C',true);
 				//Salto de línea
 				$this->Ln(5);
 				$this->SetX(5);
@@ -107,22 +108,8 @@ function reporteRegulares($rfcDocente)
 						
 					while($indica = mysql_fetch_array($resultindicador)){
 						
-						$this->SetLineWidth(.2);
-						$this->SetX(5);
-						$this->SetFont('Helvetica','',8);
-						$this->SetTextColor(0,0,0);
-						if($contador == 1){
-						$this->Cell(50,5,utf8_decode($indica[1]),0,0,'l');         //trae el nombre de la categoria
-						}else{
-						$this->Cell(50,5,utf8_decode(" "),0,0,'l');         //trae el nombre de la categoria
-						}
-						
-						
-						//hace la suma de los indicadores....
+						/*//hace la suma de los indicadores....
 						$sumaPorcentaje = $sumaPorcentaje + $indica['porcentaje']; //procedimiento para la suma de los valores de una categoria
-						
-						if($contador == 1){
-
 							$sqlSumaPorcentajes = "";
 							$sqlSumaPorcentajes .= "SELECT ";
 							$sqlSumaPorcentajes .= 		"max(porcentaje) as porcentaje,  ";
@@ -140,26 +127,52 @@ function reporteRegulares($rfcDocente)
 							while($rowSuma = mysql_fetch_array($resultSetSumaPorcentajes)){
 								$suma = $suma + $rowSuma['porcentaje'];
 							}
-							$this->Cell(20,5,utf8_decode($suma),0,0,'C'); 			//trae el porcentaje de la categoria
-
+							//la suma de los indicadores es para hacer la suma total de una categoria 
+						*/
+						$this->SetLineWidth(.2);
+						$this->SetX(5);
+						$this->SetFont('Helvetica','',8);
+						$this->SetTextColor(0,0,0);
+						if($contador == 1){
+						$this->MultiCell(40,5,utf8_decode($indica[1]),0,'l');  
+						$y = $this->GetY();										   //regresa el salto de linea que Multicell realiza
+						$this->SetY($y-5);		
+						$this->SetX(45);						//trae el nombre de la categoria
 						}else{
-							$this->Cell(20,5,utf8_decode(" "),0,0,'C'); 			//espacio en blanco
-						}			
-						$this->MultiCell(90,5,utf8_decode($indica[3]),0,'J');	   //trae la descripcion del indicador					
+							if($contador == 2){
+							$this->Cell(40,5,utf8_decode($suma),0,0,'c');         //trae el nombre de la categoria
+							}
+							else{
+							$this->Cell(40,5,utf8_decode(" "),0,0,'l');
+							}
+						}
+		
+		
+						$this->MultiCell(75,5,utf8_decode($indica[3]),0,'J');	   //trae la descripcion del indicador					
 						$y = $this->GetY();										   //regresa el salto de linea que Multicell realiza
 						$this->SetY($y-5);
-						$this->SetX(165);
-						$this->Cell(20,5,utf8_decode($indica[5]),0,0,'C');			//trae el porcentaje del indicador
-						if($indica['estatus'] > 0){									//Estado de captura de un indicador
+						$this->SetX(120);
+						$this->Cell(12,5,utf8_decode($indica[5]),0,0,'C');			//trae el porcentaje del indicador
+						/*if($indica['estatus'] > 0){									//Estado de captura de un indicador
 						$resul =		"EVALUADO";
 						}
 						else{
 						$resul=		".........";
+						}*/
+						//$this->Cell(17,5,($resul),0,0,'C');							//trae el estado del indicador
+						$observacion = "SELECT cal_porcentaje as calificacion, motivo as observacion from evaluacion_indicador a, categoria_indicador b where a.rfc_docente = '".$_SESSION['rfcDocente']."' and a.rfc_evaluador = '".$_SESSION['rfcEvaluador']."' and b.id_categoria = ".$idCategoria." and b.id_indicador = ".$indica[2]." and a.id_categoriaindicador = b.id_categoriaindicador";
+						//echo $observacion;
+						$sqlobservacion = mysql_query($observacion);
+						while($observa = mysql_fetch_array($sqlobservacion)){
+						
+						$this->Cell(18,5,($observa[0]),0,0,'C');
+						$this->SetX(150);
+						$this->MultiCell(60,5,utf8_decode($observa[1]),0,'J');
+						$y = $this->GetY();							//regresa el salto de linea que Multicell realiza
+						$this->SetY($y-5);
+						$this->SetX(125);
 						}
-						$this->Cell(25,5,($resul),0,0,'C');							//trae el estado del indicador
-						
 						$this->Ln(5);
-						
 						$contador++;
 					}
 					$sumatotalPorcentaje = $sumaPorcentaje;
@@ -199,6 +212,8 @@ function reporteRegulares($rfcDocente)
 				$this->SetX(15);
 				$this->MultiCell(185,5,utf8_decode($Coment[0]),0,'J',true);
 				
+				
+				}
 				$this->SetX(10);
 				$this->SetFont('Arial','',12);
 				$this->SetY(-38);
@@ -210,7 +225,6 @@ function reporteRegulares($rfcDocente)
 				$this->SetFont('Arial','',10);
 				$this->Cell(195,5,utf8_decode($_SESSION['nombreUsuario']),0,0,'C',false);
 				$this->Ln(5);
-				}
 		}
 		//Pie de página
 		function Footer()
