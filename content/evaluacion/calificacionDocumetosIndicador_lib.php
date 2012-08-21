@@ -36,8 +36,10 @@
 			$rfcDocente = $_SESSION['rfcDocente'];
 			$anioEvaluacion = $_SESSION['anioEvaluacion'];
 
-			if ($estado == 'true' ) {
-				$calificacion = 0;
+			if($estado == "true"){
+				$estado = 1;
+			}else{
+				$estado = 0;
 			}
 
 			/* ejecucion del query en el manejador de base datos */
