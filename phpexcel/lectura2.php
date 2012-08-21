@@ -12,12 +12,12 @@
 	//Llenar plantilla	
 	$objWorksheet = $objPHPExcel->getActiveSheet();		
 	
-	$queryObtieneEvaluadores = "select RFC_evaluador as rfcEvaluador, nombre from evaluador where anio = 2012";
+	$queryObtieneEvaluadores = "select RFC_evaluador as rfcEvaluador, nombre as nombreEva from evaluador where anio = 2012";
 	$resultSetObtieneEvaluadores = mysql_query($queryObtieneEvaluadores, $conection) or die(mysql_error());
 	$totalObtieneEvaluadores = mysql_num_rows($resultSetObtieneEvaluadores);
 	
 	
-	$queryObtieneDocente = "SELECT b.rfc as rfcDocente, concat( a.nombre, ' ', a.paterno, ' ', a.materno ) ";
+	$queryObtieneDocente = "SELECT b.rfc as rfcDocente, concat( a.nombre, ' ', a.paterno, ' ', a.materno ) as nombreDoc ";
 	$queryObtieneDocente .= "FROM siin_generales.gral_usuarios a, estimulos.participantes b ";
 	$queryObtieneDocente .= "WHERE b.anio = 2012 AND a.rfc = b.rfc";
 	
@@ -28,8 +28,8 @@
 	$columnaEvaluador =1;
 	while($rowEvaluadores = mysql_fetch_array($resultSetObtieneEvaluadores))
 	{
-		$nombre= $rowEvaluadores["nombre"];		
-		//$objWorksheet->getCell('B4')->setValue($nombre);
+		$nombre= utf8_encode($rowEvaluadores["nombreEva"]);		
+		$objWorksheet->getCell('B4')->setValue($nombre);
 		$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($columnaEvaluador, 4, $nombre);
 		$objPHPExcel->getActiveSheet()->insertNewColumnBefore('B', 1);
 		$columnaEvaluador++;
@@ -41,11 +41,11 @@
 	$filaDocente = 5;
 	while($rowDocentes = mysql_fetch_array($resultSetObtieneDocentes))
 	{
-		$nombreDoc= $rowDocentes["concat( a.nombre, ' ', a.paterno, ' ', a.materno )"];		
+		$nombreDoc= utf8_encode($rowDocentes["nombreDoc"]);		
 		$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0, $filaDocente, $nombreDoc);
 		$filaDocente++;
 		
-		//echo $nombreDoc."--".$rowDocentes["rfc"]."<br/>";
+		
 	}
 	
 	/* inserta calificaciones */
