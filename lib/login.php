@@ -29,7 +29,7 @@
 					$_SESSION['rfcEvaluador'] = $usuario;
 					$_SESSION['usuarioFirmado'] = "1";					
 					echo '<META HTTP-EQUIV="Refresh" Content="0; URL='.PATH.'/content/evaluacion/elegirDocenteAEvaluar.php">';
-				}else if(elUsuarioEsDocenteParticipante($usuario)){
+				}else if(elUsuarioEsDocenteParticipante($usuario) /*&& false*/){       //{&& false} es para denegar el acceso a los profesores 
 					$_SESSION['rfcDocente'] = $usuario;
 					$_SESSION['usuarioFirmado'] = "2";
 					$_SESSION['mensajeLegal'] = "0";
