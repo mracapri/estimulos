@@ -96,4 +96,8 @@
 	//Guardar doc xls
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 	$objWriter->save('reporte_final.xls');	
+	echo "<div>Por favor para descargar el reporte de Excel dar clic en la siguiente liga:</div>";
+	echo "<a href='reporte_final.xls'>Reporte Excel</a>";
+	//$enlace = $_GET['reporte_final.xls'];
+	//exec('reporte_final.xls');
 ?>
