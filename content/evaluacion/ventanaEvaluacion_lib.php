@@ -239,7 +239,7 @@
 				$plantillaElemento .=	"<div class='span1 categorias'>";
 
 				if($row['estatusCaptura'] > 0){
-					$plantillaElemento .=		"<a href='calificaciondocumetosindicador.php?id_indicador=".$row[id_indicador]."&categoria_indicador=".$row['categoria_indicador']."' class='ver'></a>";
+					$plantillaElemento .=		"<a href='calificacionDocumetosIndicador.php?id_indicador=".$row[id_indicador]."&categoria_indicador=".$row['categoria_indicador']."' class='ver'></a>";
 				}else{
 					$plantillaElemento .=		"<a href='#' class='no-ver'></a>";
 				}
