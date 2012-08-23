@@ -128,7 +128,7 @@ function reporteRegulares($rfcDocente)
 								$suma = $suma + $rowSuma['porcentaje'];
 							}
 							//la suma de los indicadores es para hacer la suma total de una categoria 
-						*/
+						
 						$this->SetLineWidth(.2);
 						$this->SetX(5);
 						$this->SetFont('Helvetica','',8);
