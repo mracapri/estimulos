@@ -108,7 +108,7 @@ function reporteRegulares($rfcDocente)
 						
 					while($indica = mysql_fetch_array($resultindicador)){
 						
-						/*//hace la suma de los indicadores....
+						//hace la suma de los indicadores....
 						$sumaPorcentaje = $sumaPorcentaje + $indica['porcentaje']; //procedimiento para la suma de los valores de una categoria
 							$sqlSumaPorcentajes = "";
 							$sqlSumaPorcentajes .= "SELECT ";
@@ -186,6 +186,20 @@ function reporteRegulares($rfcDocente)
 					$this->SetX(5);
 					$this->SetFillColor(204,204,204);
 					$this->Cell(205,3,'',0,1,'C',true);
+				}
+				//trae la suma total del porcentaje que tubo al ser evaluado
+				//query que hace la suma de la puntuacion total que tubo un docente
+				$querycalificacion = "SELECT (sum(cal_porcentaje)) as calificacion from evaluacion_indicador where rfc_docente = '".$_SESSION['rfcDocente']."' and rfc_evaluador = '".$_SESSION['rfcEvaluador']."' and anio = 2012";
+				$calificacionfinal = mysql_query($querycalificacion);
+				while($rowSuma = mysql_fetch_array($calificacionfinal)){
+				$this->SetX(5);
+				$this->SetFont('Helvetica','',9);
+				$this->SetFillColor(0,0,0);
+				$this->SetTextColor(255,255,255);
+				$this->Cell(125,5,'Porcentaje total obtenido:',1,0,'R',true);
+				$this->Cell(14,5,($rowSuma[0]),1,0,'R',true);
+				$this->Cell(66,5,'%',1,0,'L',true);
+				$this->SetTextColor(0,0,0);
 				}
 							
 			}
