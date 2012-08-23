@@ -42,7 +42,7 @@
 		$comentarioFinal = $_POST['input-comentario'];
 
 		if(!empty($comentarioFinal)){
-			terminarEvaluacion($rfcDocente, $comentarioFinal);			
+			terminarEvaluacion($_SESSION['rfcDocente'], $comentarioFinal);			
 		}
 
 	?>
@@ -175,8 +175,8 @@
     		?>
     		<p>
     				Estimado Evaluador, el usuario evaluado, captur&oacute; el 
-    				<? echo $porcentajeCaptura; ?>% de los indicadores y el 
-    				<? echo $porcentajeRestante ;?>%, que son los no 
+    				<?php echo $porcentajeCaptura; ?>% de los indicadores y el 
+    				<?php echo $porcentajeRestante ;?>%, que son los no 
     				capturados, se muestran a continuaci&oacute;n:
     		</p>
     	</div>
@@ -191,7 +191,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<? echo obtieneIndicadoresNoEvaluados(); ?>
+					<?php echo obtieneIndicadoresNoEvaluados(); ?>
 				</tbody>	
 			</table>
 			</div>
