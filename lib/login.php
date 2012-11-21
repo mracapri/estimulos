@@ -1,9 +1,9 @@
 <?php
 
 	/* valida el tiempo de la sesion */
-	$periodoInactividadMinutos = 30; // periodo de inactividad de 30 minutos
-	define("SEGURIDAD_ACTIVADA", "0"); // produccion - 1, desarrollo - 0
-	define("PATH", "/estimulos");
+	$periodoInactividadMinutos = 120; // periodo de inactividad de 120 minutos
+	define("SEGURIDAD_ACTIVADA", "1"); // produccion - 1, desarrollo - 0
+	define("PATH", CONTEXTO."/estimulos");
 
 	if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > ($periodoInactividadMinutos * 60) )) {
 	    logOut();
@@ -149,6 +149,8 @@
 		// abriendo conexion a base de datos del siin
 		$conection = getConnection();
 			
+		mysql_query("SET NAMES UTF8");
+		
 		// obteniendo el perfil del usuario
 		$sqlPerfilUsuario = "";
 		$sqlPerfilUsuario .= "SELECT ";
@@ -159,12 +161,15 @@
 		$sqlPerfilUsuario .= "FROM ";
 		$sqlPerfilUsuario .= 	"siin_generales.gral_usuarios a, ";
 		$sqlPerfilUsuario .= 	"siin_generales.gral_usuarios_adscripcion b, ";
-		$sqlPerfilUsuario .= 	"siin_generales.gral_adscripcion c, siin_generales.gral_periodos d ";
+		$sqlPerfilUsuario .= 	"siin_generales.gral_adscripcion c ";
+		//$sqlPerfilUsuario .= 	"siin_generales.gral_periodos d ";
 		$sqlPerfilUsuario .= "WHERE ";
 		$sqlPerfilUsuario .= 	"a.rfc = '".$usuario."' and ";
 		$sqlPerfilUsuario .= 	"b.idempleado = a.idempleado and ";
-		$sqlPerfilUsuario .= 	"d.actual = 1 and ";
-		$sqlPerfilUsuario .= 	"b.idperiodo = d.idperiodo and ";
+		//$sqlPerfilUsuario .= 	"d.actual = 1 and ";
+		$sqlPerfilUsuario .= 	"b.idperiodo = ".PERIODO_CUATRIMESTRAL." and ";
+		//$sqlPerfilUsuario .= 	"b.idperiodo = 48 and ";
+		//$sqlPerfilUsuario .= 	"b.idperiodo = d.idperiodo and ";
 		$sqlPerfilUsuario .= 	"c.idadscripcion = b.idadscripcion";
 
 		$resultSetPerfilUsuario = mysql_query($sqlPerfilUsuario, $conection);

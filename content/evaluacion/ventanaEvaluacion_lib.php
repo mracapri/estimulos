@@ -275,12 +275,14 @@
 		$sqlPerfilUsuario .= "FROM ";
 		$sqlPerfilUsuario .= 	"siin_generales.gral_usuarios a, ";
 		$sqlPerfilUsuario .= 	"siin_generales.gral_usuarios_adscripcion b, ";
-		$sqlPerfilUsuario .= 	"siin_generales.gral_adscripcion c, siin_generales.gral_periodos d ";
+		$sqlPerfilUsuario .= 	"siin_generales.gral_adscripcion c ";
+		//$sqlPerfilUsuario .= 	"siin_generales.gral_periodos d ";
 		$sqlPerfilUsuario .= "WHERE ";
 		$sqlPerfilUsuario .= 	"a.rfc = '".$rfcDocente."' and ";
 		$sqlPerfilUsuario .= 	"b.idempleado = a.idempleado and ";
-		$sqlPerfilUsuario .= 	"d.actual = 1 and ";
-		$sqlPerfilUsuario .= 	"b.idperiodo = d.idperiodo and ";
+		//$sqlPerfilUsuario .= 	"d.actual = 1 and ";
+		$sqlPerfilUsuario .= 	"b.idperiodo = ".PERIODO_CUATRIMESTRAL." and ";
+		//$sqlPerfilUsuario .= 	"b.idperiodo = d.idperiodo and ";
 		$sqlPerfilUsuario .= 	"c.idadscripcion = b.idadscripcion";
 		
 		$resultSet = mysql_query($sqlPerfilUsuario);	

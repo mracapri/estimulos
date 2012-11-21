@@ -26,7 +26,7 @@
 	}
 
 	function guardaCalificacion($jsonEvaluacion, $categoriaIndicador){
-		$resultado = json_decode(stripslashes($jsonEvaluacion));		
+		$resultado = json_decode(stripslashes(iconv('ISO-8859-1','UTF-8//TRANSLIT',$jsonEvaluacion)));
 		if(!empty($resultado)){
 			$idPorcentajeIndicador = $resultado->{'idPorcentajeindicador'};
 			$calificacion = $resultado->{'calificacion'};
@@ -48,6 +48,7 @@
 			$conexion = getConnection();
 
 			if(!empty($registro)){
+				mysql_query("SET NAMES UTF8");
 				$sqlUpdateRegistro .= "UPDATE evaluacion_indicador set cal_porcentaje = ".$calificacion.", estado = ".$estado.", motivo = '".$comentario."' ";
 				$sqlUpdateRegistro .= "where RFC_evaluador = '".$rfcEvaluador."' and RFC_docente = '".$rfcDocente."' and anio = ".$anioEvaluacion." and id_categoriaindicador = ".$categoriaIndicador;
 				mysql_query($sqlUpdateRegistro);

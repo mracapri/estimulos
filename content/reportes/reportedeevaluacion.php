@@ -4,15 +4,16 @@ require('../../ext-lib/fpdfp/fpdf.php');   //libreria fpdf
 include "../../lib/mysql.php";
 
 $rfcDocente = $_SESSION['rfcDocente'];
+$fechaAnterior = $_GET['fa'];
 
-reporteRegulares($rfcDocente);
-function reporteRegulares($rfcDocente)
+reporteRegulares($rfcDocente, $fechaAnterior);
+function reporteRegulares($rfcDocente, $fechaAnterior)
 {
 	$conexion = getConnection();
 	class PDF extends FPDF
 	{
 		//Cabecera de página
-		function Header()
+		function cabecera($fechaAnterior)
 			{
 				//Logo
 				$this->Image('../../img/logo.jpg',10,8,33);
@@ -41,7 +42,13 @@ function reporteRegulares($rfcDocente)
 				$mesnum = date('m') + 0;
 				$mes = array('','Enero','Febrero','Marzo','Aril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
 				$this->Cell(32,3,'Fecha de Impresión:',0,0,'LR',0,'L');
+						
+				if( empty($fechaAnterior) ){
 				$this->Cell(90,3,utf8_decode(date('d')." de ".$mes[$mesnum]." del ".date('Y')),0,0,'L');
+				}else{
+					$this->Cell(90,3,utf8_decode($fechaAnterior),0,0,'L');
+				}
+				
 				$this->Ln(4);
 				$this->SetFont('Arial','',8);
 				$this->Cell(32,3,'Evaluador:',0,0,'l');
@@ -56,6 +63,7 @@ function reporteRegulares($rfcDocente)
 				
 				
 				$sqlPerfilUsuario = ("SELECT concat(a.nombre,' ',a.paterno,' ',a.materno)as nombreEmpleado FROM siin_generales.gral_usuarios a WHERE rfc = '".$_SESSION['rfcDocente']."'");
+				mysql_query("SET NAMES UTF8");
 				$sqlUsuario = mysql_query($sqlPerfilUsuario);
 				//echo $sqlPerfilUsuario;
 				while($DocenteNombre = mysql_fetch_array($sqlUsuario)){
@@ -268,6 +276,7 @@ $pdf=new PDF('P','mm','letter');
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Times','',12);
+$pdf->cabecera($fechaAnterior);
 $pdf->body($rfcDocente);
 $pdf->Comentario();
 $pdf->Output();

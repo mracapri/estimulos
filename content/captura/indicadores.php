@@ -28,7 +28,7 @@
 	<script type='text/javascript' src='../../js/bootstrap-dropdown.js'></script>
 
 	<!-- js application -->
-	<script type='text/javascript' src='../../js/main.js'></script>
+	<script type='text/javascript' src='../../js/main.php'></script>
 
 	<!-- YUI -->
 	<script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>

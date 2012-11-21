@@ -1,9 +1,10 @@
 <?php	
 	session_start();
-	define("PATH", "/estimulos");
+	require_once("constants.php"); // constantes del sistema
+	define("PATH", CONTEXTO."/estimulos");
 	if($_GET['killsession'] == 1){
 		logOut();
-		echo '<META HTTP-EQUIV="Refresh" Content="0; URL='.PATH.'/index.php">';
+		echo '<META HTTP-EQUIV="Refresh" Content="0; URL='.CONTEXTO.'/estimulos/index.php">';
 	}
 
 	/* Terminar sesion */
