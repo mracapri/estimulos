@@ -4,7 +4,6 @@
 	require_once("indicadores_lib.php");
 
 	function guardarAsignacion($jsonAsignacion, $categoriaIndicador){
-		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario
 		if(obtenerEstadoDeLaCaptura() == 0){
 			// variables de sesion
 			$idEmpleado = $_SESSION['idEmpleado'];
@@ -73,8 +72,6 @@
 	}
 	
 	function consultaArchivosHtml(){
-		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario	
-
 		/* datos desde la sesion */
 		$idEmpleado = $_SESSION['idEmpleado'];
 		$idPeriodos = $_SESSION['idPeriodos'];
@@ -126,7 +123,6 @@
 		$sqlArchivos.= "UNION ";
 		$sqlArchivos.= "SELECT evidencia, 'FORMACION ACADEMICA' , '', tituloArticulo FROM  siin_trayectorias_docentes.traydoc_formacion_academica WHERE fechaInicioAsesoria	 LIKE '%".($anioEvaluacion-1)."%' AND idempleado = '".$idEmpleado."' AND evidencia != '' ";
 		
-		//echo $sqlArchivos;
 		/* conexion a base de datos */
 		$conexion = getConnection();
 		
@@ -232,8 +228,6 @@
 	}
 	
 	function consultaDetalleIndicador($idIndicador){
-		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario	
-
 		$sqlConsultas = "";
 		$sqlConsultas.= "SELECT ";
 		$sqlConsultas.= 		"c.id_categoria, "; 
@@ -266,8 +260,6 @@
 
 
 	function consultaArchivosAsignadosHtml($idCategoriaIndicador){
-		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario	
-
 		/* datos desde la sesion */
 		$rfcDocente = $_SESSION['rfcDocente'];
 		$idPeriodos = $_SESSION['idPeriodos'];

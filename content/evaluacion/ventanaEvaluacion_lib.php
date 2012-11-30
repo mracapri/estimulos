@@ -140,7 +140,6 @@
 	}
 
 	function generaIndicadoresHtml(){
-		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario
 		/* SQL */
 		$sqlCategorias = "";
 		$sqlCategorias.= "SELECT ";
@@ -148,8 +147,6 @@
 		$sqlCategorias.= 	"descripcion ";
 		$sqlCategorias.= "FROM ";
 		$sqlCategorias.= 	"categoria order by 1 asc";
-		
-		
 
 		/* conexion a base de datos */
 		$conexion = getConnection();
@@ -228,7 +225,7 @@
 					$plantillaElemento .=		$row['calificacion'];
 				}else{
 						if($row['estado'] == 1){
-						$plantillaElemento .=		"0";
+							$plantillaElemento .=		"0";
 						}
 				}
 

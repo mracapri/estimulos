@@ -1,31 +1,141 @@
 <?php
 	require_once("../../lib/librerias.php");
 
-
-
 	$guardarEvaluacion = $_POST['guardar-evaluacion'];
 	$guardarPermisoEspecial = $_POST['guardar-permiso'];
 	$guardarEvaluador = $_POST['guardar-evaluador'];
 
-	if (!empty($guardarEvaluacion)) {
+	if (filter_has_var(INPUT_POST, "guardar-evaluacion")) {
 		// Registrando evaluacion
 		$resultado = registraEvaluacion();
+	}else if (filter_has_var(INPUT_POST, "cargar-usuarios")) {
+		// cargando participantes desde el procedimiento almacenado
+		cargarParticipanes();
+	}else if (filter_has_var(INPUT_POST, "eliminar-participantes")) {
+		$participantes = json_decode(stripslashes($_POST['eliminar-participantes']));
+		eliminarParticipantes($participantes);
+	}else if (
+		filter_has_var(INPUT_POST, "input-periodo-actual") && 
+		filter_var($_POST['input-periodo-actual'], FILTER_VALIDATE_INT)) {
+		cambiaPeriodoCuatrimestralEnParametros($_POST['input-periodo-actual']);
+	}else if (filter_has_var(INPUT_GET, "eliminar-evaluador") && !empty($_GET['rfc'])) {
+		eliminarEvaluador($_GET['rfc']);
 	}else if(!empty($guardarPermisoEspecial)){
 		// Registrando permiso especial
 		registraPermisoEspecial();
-	}else if(!empty($guardarEvaluador)){
-		// Registrando evaluador
-		registraEvaluador();
+	}
+
+	function cambiaPeriodoCuatrimestralEnParametros($periodo){
+		// Definiendo el procedimiento almacenado 
+		// para esta tarea		
+		$sqlDelete = "delete from parametros where clave = 'PERIODO_ACTUAL'";
+		$sqlInsert = "insert into parametros values('PERIODO_ACTUAL', '".$periodo."')";
+
+		// Abriendo conexion
+		$conection = getConnection();
+		// ejecutando el sql
+		mysql_query($sqlDelete);
+		mysql_query($sqlInsert);
+
+		// Cerrando conexion
+		close($conection);
+	}
+
+	function eliminarEvaluador($rfc){
+		// Definiendo el procedimiento almacenado 
+		// para esta tarea
+
+		// Abriendo conexion
+		$conection = getConnection();
+
+		// construyendo el query para eliminar los registros
+		$sql = "delete from evaluador ";				
+		$sql .= "where RFC_evaluador = '".$rfc."' "; 
+		$sql .= "and anio in (select max(anio) from evaluacion)";
+
+		// ejecutando el sql
+		mysql_query($sql);
+
+		// Cerrando conexion
+		close($conection);
+	}
+
+	function eliminarParticipantes($arregloParticipantes){
+		// Abriendo conexion
+		$conection = getConnection();
+
+		for($iteraParticipante = 0; 
+			$iteraParticipante < sizeof($arregloParticipantes);
+			 $iteraParticipante++){
+			// construyendo el query para eliminar los registros
+			$sql = "delete from participantes ";				
+			$sql .= "where rfc = '".$arregloParticipantes[$iteraParticipante]."' "; 
+			$sql .= "and anio in (select max(anio) from evaluacion)";
+
+			// ejecutando el sql
+			mysql_query($sql);
+		}
+
+		// Cerrando conexion
+		close($conection);
+	}
+
+	function cargarParticipanes(){
+		// Definiendo el procedimiento almacenado 
+		// para esta tarea
+		$sql = "call cargaParticipantes()";	
+
+		// Abriendo conexion
+		$conection = getConnection();
+
+		// ejecutando el sql
+		mysql_query($sql);
+
+		// Cerrando conexion
+		close($conection);
+	}
+
+
+	function consultaParticipantes(){
+		$htmlPlantilla = "";
+
+		$sql = "select "; 
+		$sql .= 	"p.rfc, "; 
+		$sql .= 	"concat(a.profesion,' ',a.nombre,' ',a.paterno,' ',a.materno) as nombre_empleado "; 
+		$sql .= "from ";
+		$sql .= 	"participantes p, ";
+		$sql .= 	"siin_generales.gral_usuarios a ";
+		$sql .= "where ";
+		$sql .= 	"p.anio in (select max(anio) from evaluacion) and a.rfc = p.rfc";
+
+		// Abriendo conexion
+		$conection = getConnection();
+
+		// ejecutando el sql
+		$iteraRegistros = 1;
+		$resultSet = mysql_query($sql);
+		while($row = mysql_fetch_array($resultSet)){
+			// plantilla de la fila de la tabla		
+			$htmlPlantilla .= "<tr>";
+			$htmlPlantilla .= 	"<td>".$iteraRegistros."</td>";
+			$htmlPlantilla .= 	"<td>".$row['nombre_empleado']."</td>";
+			$htmlPlantilla .= 	"<td><input class='participante-selected' title='".$row['rfc']."'  type='checkbox' /></td>";
+			$htmlPlantilla .= "<tr>";
+
+			$iteraRegistros++;
+		}
+
+		// Cerrando conexion
+		close($conection);
+
+		// regresando resultados
+		return $htmlPlantilla;
 	}
 
 	/*
 
 	*/
 	function consultaEvaluaciones(){
-
-		
-		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario
-
 		$htmlPlantilla = "";
 
 		$sql = "select ";
@@ -63,9 +173,6 @@
 	}
 
 	function consultaPermisosEspeciales(){
-
-		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario		
-
 		$htmlPlantilla = "";
 		// abriendo conexion a base de datos del siin
 		$conection = getConnection();
@@ -94,8 +201,6 @@
 	}
 
 	function consultaEvaluadores(){
-		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario		
-
 		$htmlPlantilla = "";
 
 		// abriendo conexion a base de datos del siin
@@ -106,7 +211,9 @@
 		$sql .= 	"nombre, "; 
 		$sql .= 	"tipo "; 
 		$sql .= "from ";
-		$sql .= 	"evaluador";
+		$sql .= 	"evaluador ";
+		$sql .= "where ";
+		$sql .= 	"anio in (select max(anio) from evaluacion)";
 
 		$iteraRegistros = 1;
 		$resultSet = mysql_query($sql);
@@ -117,6 +224,7 @@
 			$htmlPlantilla .= 	"<td>".$row['RFC_evaluador']."</td>";
 			$htmlPlantilla .= 	"<td>".$row['nombre']."</td>";
 			$htmlPlantilla .= 	"<td>".$row['tipo']."</td>";
+			$htmlPlantilla .= 	"<td><a href='?eliminar-evaluador=1&rfc=".$row['RFC_evaluador']."'>Eliminar</a></td>";
 			$htmlPlantilla .= "<tr>";
 
 			$iteraRegistros++;
@@ -128,8 +236,6 @@
 	}
 
 	function consultaReportes(){
-		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario		
-
 		$htmlPlantilla = "";
 
 		// abriendo conexion a base de datos
@@ -156,33 +262,37 @@
 	}
 
 	function registraPermisoEspecial(){
-		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario		
-
 		/* Variables de entrada despues de enviar los datos de registro de permisos especiales*/
 		$inputRfcPermisos = $_POST['input-rfc-permisos'];
-
-
 	}
 
 	function registraEvaluador(){
-		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario		
-
 		/* Variables de entrada despues de enviar los datos de registro de evaluadores*/
 		$inputRfcEvaluador = $_POST['input-rfc-evaluador'];
 		$inputNombreEvaluador = $_POST['input-nombre-evaluador'];
 		$inputTipoEvaluador = $_POST['input-tipo-evaluador'];
 
 		if(empty($inputRfcEvaluador)){
-			$resultado = "Por favor, introduzca el RFC del evaluador";
+			return construyeAlertaHtml("Por favor, introduzca el RFC del evaluador");
 		}else if(empty($inputNombreEvaluador)){
-			$resultado = "Por favor, introduzca el nombre del evaluador";
+			return construyeAlertaHtml("Por favor, introduzca el nombre del evaluador");
 		}
+
+		$sql = "insert into evaluador(RFC_evaluador, nombre, tipo, anio) ";	
+		$sql .= "values('".$inputRfcEvaluador."', '".$inputNombreEvaluador."', '".$inputTipoEvaluador."', (select max(anio) from evaluacion))";	
+
+		// Abriendo conexion
+		$conection = getConnection();
+
+		// ejecutando el sql
+		mysql_query($sql);
+
+		// Cerrando conexion
+		close($conection);
 
 	}	
 
 	function construyeAlertaHtml($mensaje){
-		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario		
-
 		$alertaHtml = "";	
 		$alertaHtml .= "<div class='alert alert-error'>";	
 		$alertaHtml .= 		"_mensaje_";
@@ -192,9 +302,6 @@
 	}
 
 	function registraEvaluacion(){
-
-		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario		
-
 		/* Variables de entrada despues de enviar los datos de registro de evaluacion*/
 		$descripcion = $_POST['input-descripcion'];
 		$anio = $_POST['input-anio'];

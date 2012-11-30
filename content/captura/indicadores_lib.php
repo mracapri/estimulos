@@ -86,10 +86,8 @@
 		return $porcentaje;
 	}
 	
-	function generaIndicadoresHtml(){
+	function generaIndicadoresHtml(){		
 		
-		if(!verificarSesionDelUsuario()){ return; }; //IMPORTANTE: verifica la sesion del usuario
-
 		/* SQL */
 		$sqlCategorias = "";
 		$sqlCategorias.= "SELECT ";

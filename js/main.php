@@ -89,12 +89,25 @@ echo ("
 			});
 
 			$('#input-calificacion').keyup(function(){
-				var calificacionMaxima = parseInt($(this).attr('title'));
+				var calificacionMaxima = parseInt($('#calificacion-maxima').text());
 				var calificacionCapturada = parseInt($(this).val());
 				if(!isNaN(calificacionCapturada)){
-					if(!(calificacionCapturada >= 0 && calificacionCapturada <= calificacionMaxima) ){
-						$(this).val($(this).attr('title'));
+					if(calificacionCapturada >= 0 && calificacionCapturada <= calificacionMaxima){
+						if(calificacionCapturada == 0){							
+							$('#incorrecto').attr('checked', 'checked');
+							$('#input-comentario').attr('dataset-obligatorio','1');
+						}else{							
+							$('#incorrecto').removeAttr('checked');	
+							$('#input-comentario').attr('dataset-obligatorio','0');
+						}
+					}else{
+						$(this).val(calificacionMaxima);
+						$('#incorrecto').removeAttr('checked');
+						$('#input-comentario').attr('dataset-obligatorio','0');
 					}
+				}else{
+					$('#incorrecto').removeAttr('checked');
+					$('#input-comentario').attr('dataset-obligatorio','0');
 				}
 			});
 
@@ -110,23 +123,11 @@ echo ("
 				}
 			});
 
-			$('#input-comentario').attr('dataset-obligatorio','0');
-			$('#input-calificacion').keyup(function(){
-				var calificacion, calificacionMaxima;			
-				calificacion = $(this).val();			
-				if(calificacion != ''){
-					calificacion = parseInt(calificacion);
-					calificacionMaxima = parseInt($('#input-calificacion').attr('title'));
-					if(!isNaN(calificacion)){
-						if(calificacion < calificacionMaxima){
-							$('#input-comentario').attr('dataset-obligatorio','1');
-						}else{
-							$('#input-comentario').attr('dataset-obligatorio','0');
-						}
-					}
-				}
-			});
-
+			if($('#input-calificacion').val() == '0'){
+				$('#input-comentario').attr('dataset-obligatorio','1');
+			}else{
+				$('#input-comentario').attr('dataset-obligatorio','0');
+			}			
 
 			$('#guardar-evaluacion').click(function(){
 
@@ -137,7 +138,7 @@ echo ("
 				if(multiPorcentaje > 0){
 					idPorcentajeindicador = $('#input-calificacion option:selected').attr('data-id-porcentajeindicador');	
 				}else{
-					idPorcentajeindicador = $('#input-calificacion').attr('data-id-porcentajeindicador');
+					idPorcentajeindicador =$('#calificacion-maxima').text();
 				}
 
 				var evaluacionIncorrecta = true;
@@ -228,6 +229,27 @@ echo ("
 
 			$('#protesta-modal').on('hidden', function () {
 				$('#aviso-modal').modal('show');
+			});
+
+			
+			$('#btn-eliminar-participantes').click(function(){
+				var participantesObj = $('.participante-selected:checked');				
+				var participantes = [];
+				$.each(participantesObj, function(key, value){					
+					var rfc = $(value).attr('title');
+					participantes.push(rfc);					
+				});
+				console.log(JSON.stringify(participantes));
+				$('#eliminar-participantes').val(JSON.stringify(participantes));
+				$('#form-eliminar-participantes').submit();
+			});
+
+			$('#seleccionar-todos-participantes').click(function(){
+				$('.participante-selected').attr('checked', 'checked');
+			});
+
+			$('#eliminar-seleccion-participantes').click(function(){
+				$('.participante-selected').removeAttr('checked');
 			});
 
 		},

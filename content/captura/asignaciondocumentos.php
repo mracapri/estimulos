@@ -39,7 +39,8 @@
 
 	<?php
 		require_once("asignaciondocumentos_lib.php");
-
+		if(!verificarSesionDelUsuario()){ die(); };
+		
 		$jsonAsignacion = $_POST['json_asignacion'];	
 		$categoriaIndicador = $_GET['categoria_indicador'];	
 

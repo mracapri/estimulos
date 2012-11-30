@@ -1,11 +1,13 @@
 <?php
 
 	/* valida el tiempo de la sesion */
-	$periodoInactividadMinutos = 120; // periodo de inactividad de 120 minutos
-	define("SEGURIDAD_ACTIVADA", "1"); // produccion - 1, desarrollo - 0
-	define("PATH", CONTEXTO."/estimulos");
+	$periodoInactividadMinutos = PERIODO_INACTIVIDAD;
 
-	if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > ($periodoInactividadMinutos * 60) )) {
+	// Periodo cuatrimestral desde la tabla de parametros		
+	define("PERIODO_CUATRIMESTRAL", obtienePeriodoDeParametrosConfiguracion());
+
+	if (isset($_SESSION['LAST_ACTIVITY']) 
+		&& (time() - $_SESSION['LAST_ACTIVITY'] > ($periodoInactividadMinutos * 60) )) {
 	    logOut();
 		echo '<META HTTP-EQUIV="Refresh" Content="0; URL='.PATH.'/index.php">';
 	}
@@ -23,9 +25,12 @@
 				$_SESSION['LAST_ACTIVITY'] = time(); 
 
 				/* obteniendo el anio de evaluacion */			
-				$_SESSION['anioEvaluacion'] = 2012;
+				$_SESSION['anioEvaluacion'] = obtieneAnioEvaluacion();
 
-				if(elUsuarioEsEvaluador($usuario)){
+				if(elUsuarioEsAdministrador($usuario)){
+					$_SESSION['usuarioFirmado'] = "3";
+					echo '<META HTTP-EQUIV="Refresh" Content="0; URL='.PATH.'/content/configuracion/configuracion.php">';
+				}else if(elUsuarioEsEvaluador($usuario)){
 					$_SESSION['rfcEvaluador'] = $usuario;
 					$_SESSION['usuarioFirmado'] = "1";					
 					echo '<META HTTP-EQUIV="Refresh" Content="0; URL='.PATH.'/content/evaluacion/elegirDocenteAEvaluar.php">';
@@ -54,7 +59,7 @@
 
 
 	function elUsuarioSeEncuentraEnActiveDirectorie($usuario, $clave){
-		if(SEGURIDAD_ACTIVADA == 1){
+		if(SEGURIDAD == 1){
 			
 			$fd = fopen( "http://10.100.96.7/siin/servicioConecta/conecta.php?usuario=".$usuario."&clave=".$clave, "r");	
 			if(empty($fd)){
@@ -122,9 +127,66 @@
 		return $result;
 	}
 
+	function obtienePeriodoDeParametrosConfiguracion(){
+		$sql = "select valor from parametros where clave = 'PERIODO_ACTUAL'";
+
+		// abriendo conexion a base de datos del siin
+		$conection = getConnection();		
+
+		// obteniendo la informacion consultada
+		$resultSet = mysql_query($sql, $conection);		
+		$row = mysql_fetch_array($resultSet);
+		if(mysql_num_rows($resultSet) > 0){			
+			$result = $row['valor'];
+		}
+
+		// cerrando conexion a base de datos
+		close($conection);
+
+		return $result;
+	}
+
+	function obtieneAnioEvaluacion(){
+		$sql = "select max(anio) as anio from evaluacion";
+
+		// abriendo conexion a base de datos del siin
+		$conection = getConnection();		
+
+		// obteniendo la informacion consultada
+		$resultSet = mysql_query($sql, $conection);		
+		$row = mysql_fetch_array($resultSet);
+		if(mysql_num_rows($resultSet) > 0){			
+			$result = $row['anio'];
+		}
+
+		// cerrando conexion a base de datos
+		close($conection);
+
+		return $result;
+	}
+
 	function elUsuarioEsDocenteParticipante($rfc){
 		$result = false;
 		$sql = "select * from participantes where rfc = '".$rfc."'";
+
+		// abriendo conexion a base de datos del siin
+		$conection = getConnection();		
+
+		$resultSet = mysql_query($sql, $conection);		
+
+		if(mysql_num_rows($resultSet) > 0){			
+			$result = true;
+		}
+
+		// cerrando conexion a base de datos
+		close($conection);
+		log_("LOG: ".$sql);
+		return $result;
+	}
+
+	function elUsuarioEsAdministrador($rfc){
+		$result = false;
+		$sql = "select * from administracion where rfc = '".$rfc."'";
 
 		// abriendo conexion a base de datos del siin
 		$conection = getConnection();		
@@ -166,10 +228,7 @@
 		$sqlPerfilUsuario .= "WHERE ";
 		$sqlPerfilUsuario .= 	"a.rfc = '".$usuario."' and ";
 		$sqlPerfilUsuario .= 	"b.idempleado = a.idempleado and ";
-		//$sqlPerfilUsuario .= 	"d.actual = 1 and ";
 		$sqlPerfilUsuario .= 	"b.idperiodo = ".PERIODO_CUATRIMESTRAL." and ";
-		//$sqlPerfilUsuario .= 	"b.idperiodo = 48 and ";
-		//$sqlPerfilUsuario .= 	"b.idperiodo = d.idperiodo and ";
 		$sqlPerfilUsuario .= 	"c.idadscripcion = b.idadscripcion";
 
 		$resultSetPerfilUsuario = mysql_query($sqlPerfilUsuario, $conection);

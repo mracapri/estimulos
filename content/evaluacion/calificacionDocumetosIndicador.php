@@ -39,6 +39,8 @@
 		require_once("../captura/asignaciondocumentos_lib.php");
 		require_once("elegirDocenteAEvaluar_lib.php");
 
+		if(!verificarSesionDelUsuario()){ die(); };
+
 		$categoriaIndicador = $_GET['categoria_indicador'];
 		$jsonEvaluacion = $_POST['json-evaluacion'];		
 
@@ -143,7 +145,7 @@
 						</li>
 						<li>
 							Puntuacion maxima a obtener:
-							<a href="#"><?php echo $detalle[4]; ?></a>
+							<a href="#" id="calificacion-maxima"><?php echo $detalle[4]; ?></a>
 	
 						</li>
 						
@@ -170,9 +172,10 @@
 								echo presentaCalificacion($categoriaIndicador, $registroEvaluado);
 							?>
 							<label class="checkbox">Incorrecto
-								<input type="checkbox" id="incorrecto" name="incorrecto" <?php if(!empty($registroEvaluado)){ if($registroEvaluado[6] == 1){ echo "checked"; } } ?>/>
+								<input type="checkbox" id="incorrecto" name="incorrecto" 
+									<?php if(!empty($registroEvaluado)){ if($registroEvaluado[4] == 0){ echo ' checked '; } } ?> />
 							</label>
-							<textarea class="span4 text-area" placeholder="Comentario" id="input-comentario"><?php if(!empty($registroEvaluado)){ echo $registroEvaluado[7]; } ?></textarea>							
+							<textarea class="span4 text-area" placeholder="Comentario" id="input-comentario"><?php if(!empty($registroEvaluado)){ echo $registroEvaluado[7]; } ?></textarea>
 					</form>
 				</div>
 				<div class="span4" id="boton">

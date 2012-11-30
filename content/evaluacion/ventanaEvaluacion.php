@@ -35,6 +35,7 @@
 	
 	<?php
 		require_once("ventanaEvaluacion_lib.php");
+		if(!verificarSesionDelUsuario()){ die(); };
 
 		// mantiene en sesion el rfc del docente a evaluar
 		$_SESSION['rfcDocente'] = $_GET["rfc"];

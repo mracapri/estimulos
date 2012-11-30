@@ -98,9 +98,13 @@
 		$conexion = getConnection();
 		
 		$sql = "select id_porcentajeindicador, porcentaje, descripcion from porcentaje_indicador where id_categoriaindicador = ".$idCategoriaindicador;
+		$sqlVerificaCalificacion = "select cal_porcentaje  from evaluacion_indicador where id_categoriaindicador = ".$idCategoriaindicador." and rfc_docente = '".$_SESSION['rfcDocente']."' and rfc_evaluador = '".$_SESSION['rfcEvaluador']."'";
 
 		/* ejecucion del query en el manejador de base datos */
 		$resultSetCalificacion = mysql_query($sql);
+
+		$resultSetVerificaCalificacion = mysql_query($sqlVerificaCalificacion);
+
 		echo mysql_error();
 
 		if(mysql_num_rows($resultSetCalificacion) > 1){
@@ -123,9 +127,15 @@
 				}
 			}
 			$elementoHtmlCalificacion .= "</select>";
-		}else{
-			$row = mysql_fetch_array($resultSetCalificacion);
-			$elementoHtmlCalificacion = "<input class='span4' type='text' placeholder='Calificaci&oacute;n' id='input-calificacion' name='input-calificacion' value='".$row['porcentaje']."' title='".$row['porcentaje']."' data-id-porcentajeindicador='".$row['id_porcentajeindicador']."'/>";
+		}else{			
+			if(!empty($registro)){
+				$calificacion = $registro[4];
+			}
+			$elementoHtmlCalificacion = "<input class='span4' type='text' 
+				placeholder='Calificaci&oacute;n' 
+				id='input-calificacion' 
+				name='input-calificacion' 
+				value='".$calificacion."'/>";
 		}
 
 		// cerrando conexion a base de datos

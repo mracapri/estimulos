@@ -35,6 +35,7 @@
 
 	<?php
 		require_once("indicadores_lib.php");
+		if(!verificarSesionDelUsuario()){ die(); };
 
 		$evaluacionEnviada = $_POST['evaluacion-eviada'];
 		if(!empty($_POST['evaluacion-eviada'])){

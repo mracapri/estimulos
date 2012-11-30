@@ -34,7 +34,8 @@
 	<script src="http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js"></script>
 
 	<?php
-		require_once("../../lib/librerias.php");		
+		require_once("../../lib/librerias.php");
+		if(!verificarSesionDelUsuario()){ die(); };
 	?>
 </head>
 
